@@ -1,0 +1,850 @@
+Cuenta;Nombre;Naturaleza;Tercero;Auxiliar;C. Costo
+;;;;;
+1;ACTIVO                                  ;D;S;N;N
+11;DISPONIBLE                              ;D;S;N;N
+1105;CAJA                                    ;D;S;N;N
+110505;CAJA GENERAL                            ;D;S;S;N
+110510;CAJAS MENOR                             ;D;S;S;N
+1110;BANCOS                                  ;D;S;N;N
+111005;MONEDA NACIONAL                         ;D;S;N;N
+1120;CUENTAS DE AHORROS                      ;D;S;N;N
+112005;BANCOS                                  ;D;S;N;N
+112010;CORPORACIONES DE AHORRO Y VIVIENDA      ;D;S;N;N
+112015;ORGANISMOS COOPERATIVOS FINANCIEROS     ;D;S;N;N
+1125;FONDOS                                  ;D;S;N;N
+112505;ROTATORIOS MONEDA NACIONAL              ;D;S;N;N
+112510;ROTATORIOS MONEDA EXTRANJERA            ;D;S;N;N
+112515;ESPECIALES MONEDA NACIONAL              ;D;S;N;N
+112520;ESPECIALES MONEDA EXTRANJERA            ;D;S;N;N
+12;INVERSIONES                             ;D;S;N;N
+1205;ACCIONES                                ;D;S;N;N
+1220;CEDULAS                                 ;D;S;N;N
+1225;CERTIFICADOS                            ;D;S;N;N
+122505;CERTIFICADOS DE DEPOSITO A TERMINO (CDT);D;S;N;N
+122510;CERTIFICADOS DE DEPOSITO DE AHORRO      ;D;N;N;N
+122515;CERTIFICADOS DE AHORROS DE VALOR CONSTAN;D;S;N;N
+1245;DERECHOS FIDUCIARIOS                    ;D;N;N;N
+124505;FIDEICOMISOS DE INVERSION MONEDA NACIONA;D;N;S;N
+1295;OTRAS INVERSIONES                       ;D;S;N;N
+129501;OTROS                                   ;D;S;S;N
+129505;APORTES EN COOPERATIVAS                 ;D;S;S;N
+1299;PROVISIONES                             ;C;S;N;N
+13;DEUDORES                                ;D;S;N;N
+1305;CLIENTES                                ;D;S;N;N
+130505;NACIONALES                              ;D;S;S;N
+1325;CUENTAS POR COBRAR A SOCIOS Y ACCIONISTA;D;S;N;N
+132505;A SOCIOS                                ;D;S;N;N
+13250501;PRESTAMO A SOCIOS                       ;D;S;S;S
+132510;A ACCIONISTAS                           ;D;S;N;N
+1330;ANTICIPOS Y AVANCES                     ;D;S;N;N
+133005;A PROVEEDORES                           ;D;S;N;N
+133010;A CONTRATISTAS                          ;D;S;N;N
+133015;ANTICIPO EMPLEADOS                      ;D;S;N;N
+133020;A AGENTES                               ;D;S;N;S
+133025;A CONCESIONARIOS                        ;D;S;N;N
+1335;DEPOSITOS                               ;D;S;N;N
+133505;PARA IMPORTACIONES                      ;D;S;N;N
+133510;PARA SERVICIOS                          ;D;S;N;N
+133515;PARA CONTRATOS                          ;D;S;N;N
+133520;PARA RESPONSABILIDADES                  ;D;S;N;N
+1340;PROMESAS DE COMPRA VENTA                ;D;S;N;N
+134005;DE BIENES RAICES                        ;D;S;S;N
+1345;INGRESOS POR COBRAR                     ;D;S;N;N
+134505;DIVIDENDOS Y/O PARTICIPACIONES          ;D;S;N;N
+134510;INTERESES                               ;D;S;N;N
+134515;COMISIONES                              ;D;S;N;N
+134520;HONORARIOS                              ;D;S;N;N
+1355;ANTICIPO DE IMPTOS Y CONTRIBUCIONES O SA;D;S;N;N
+135505;ANTICIPO DE RENTA Y COMPLEMENTARIOS     ;D;S;N;N
+135510;ANTICIPO DE IMPTO DE INDUSTRIA Y COMERCI;D;N;N;N
+135515;ANTICIPO DE RETENCION EN LA FUENTE      ;D;S;N;N
+13551501;ANTCIPO RETE FTE 2.5%                   ;D;S;S;N
+13551502;ANTICIPO RETE FTE TARJETAS              ;D;S;S;N
+13551503;ANTICIPO DE RTE FTE 1%                  ;D;S;S;N
+13551504;HONORARIOS 11%                          ;D;S;S;N
+135517;IMPUSTO A LAS VENTAS RETENIDO - IVA RETE;D;N;N;N
+13551701;IVA RETENIDO 15%                        ;D;S;S;N
+13551702;IVA RETENIDO 15% TARJETAS               ;D;S;S;N
+135518;IMPUESTO DE INDUSTRIA Y COMERCIO RETENID;D;N;N;N
+13551801;ANT. IND Y COMERCIO NORMA ANTERIOR      ;D;S;S;N
+13551802;ANT. IND Y CIO X TARJETAS CREDITO       ;D;S;S;N
+13551803;AUTORETENCION ICA                       ;D;S;S;N
+13551804;ANTICIPO DE IMPTO IND Y CIO             ;D;N;N;N
+13551805;AUTORRETENCION DE ICA                   ;D;N;N;N
+135530;Impuestos Descontables                  ;D;S;S;N
+135535;Otros                                   ;D;S;S;N
+135575;AUTORRETENCION CREE                     ;D;N;N;N
+13557501;AUTORETENCION CREE 0.4% POR VENTAS      ;D;S;S;N
+135595;OTROS                                   ;D;S;S;N
+1360;RECLAMACIONES                           ;D;S;N;N
+136095;OTRAS                                   ;D;S;N;N
+13609501;INCAPACIDADES                           ;D;S;S;S
+1365;CUENTAS POR COBRAR A TRABAJADORES       ;D;S;N;N
+136595;OTROS                                   ;D;S;S;N
+1370;PRESTAMOS A PARTICULARES                ;D;S;N;N
+137001;PRESTAMO A TERCEROS                     ;D;S;S;S
+1380;DEUDORES VARIOS                         ;D;S;N;N
+138095;OTROS                                   ;D;S;N;N
+13809501;PARTICULARES                            ;D;S;S;N
+13809502;TARJETAS DATAFONO                       ;D;S;S;N
+138096;LICENCIA DE MATERNIDAD                  ;D;S;S;N
+1390;DEUDAS DE DIFICIL COBRO                 ;D;S;N;N
+1399;PROVISIONES                             ;C;S;N;N
+14;INVENTARIOS                             ;D;S;N;N
+1430;PRODUCTOS TERMINADOS                    ;D;S;N;N
+143099;Ajuste por Inflacion                    ;D;S;S;N
+1435;MERCANCIAS NO FABRICADAS POR LA EMPRESA ;D;S;N;N
+143542;MERCANCIAS NO FABRICADAS POR LA EMPRESA ;D;S;N;N
+14354201;MERCANCIAS NO FABRICADAS POR LA EMPRESA ;D;S;N;N
+1435420101;COMPRAS NO GRAVADAS                     ;D;S;S;N
+1435420102;COMPRAS GRAVADAS DEL 5%                 ;D;S;S;N
+1435420103;COMPRAS GRAVADAS DEL 19%                ;D;S;S;N
+14354202;COSTO DE VENTAS                         ;D;S;N;N
+1435420201;COSTO DE VENTAS NO GRAVADO              ;D;S;S;N
+1435420202;COSTO DE VENTAS GRAVADO                 ;D;S;S;N
+1440;Bienes Raices                           ;D;S;N;N
+144099;Ajuste por inflacion                    ;D;S;N;N
+1450;Terrenos                                ;D;S;N;N
+1455;Materiales Repuestos y ascesorios       ;D;S;N;N
+145505;Lubricantes                             ;D;S;N;N
+145599;Ajuste Por Inflacion                    ;D;S;N;N
+15;PROPIEDADES PLANTA Y EQUIPO             ;D;S;N;N
+1504;TERRENOS                                ;D;S;N;N
+1516;CONSTRUCCIONES Y EDIFICACIONES          ;D;S;N;N
+151605;EDIFICIOS                               ;D;S;N;N
+151610;OFICINAS                                ;D;S;N;N
+1520;MAQUINARIA Y EQUIPO                     ;D;S;N;N
+152010;MAQUINARIA Y QUIPO                      ;D;S;N;N
+1524;EQUIPO DE OFICINA                       ;D;S;N;N
+152405;MUEBLES Y ENSERES                       ;D;S;N;N
+15240501;COSTO                                   ;D;S;S;N
+15240502;IVAS MAYOR VALOR COSTO                  ;D;S;S;N
+152410;EQUIPOS                                 ;D;S;N;N
+15241001;COSTO                                   ;D;S;S;N
+15241002;IVAS MAYOR VALOR COSTO                  ;D;S;S;N
+152415;Otros                                   ;D;S;S;N
+152495;OTROS                                   ;D;S;N;N
+15249501;COSTO                                   ;D;S;S;N
+15249502;IVAS MAYOR VALOR COSTO                  ;D;S;S;N
+152499;AJUSTES POR INFLACION                   ;D;S;N;N
+1528;EQUIPO DE COMPUTO Y COMUNICACION        ;D;S;N;N
+152805;EQUIPO DE PROCESAMIENTO DE DATOS        ;D;S;N;N
+15280501;COSTO                                   ;D;S;S;N
+15280502;IVAS MAYOR VALOR COSTO                  ;D;S;S;N
+152810;EQUIPO DE TELECOMUNICACIONES            ;D;S;N;N
+15281001;COSTO                                   ;D;S;S;N
+15281002;IVAS MAYOR VALOR COSTO                  ;D;S;S;N
+152825;LINEAS TELEFONICAS                      ;D;S;S;N
+152895;OTROS                                   ;D;S;N;N
+15289501;COSTO                                   ;D;S;S;N
+15289502;IVAS MAYOR VALOR COSTO                  ;D;S;S;N
+1532;EQUIPO MEDICO CIENTIFICO                ;D;S;N;N
+153215;LABORATORIO                             ;D;S;S;N
+153299;AJUSTES POR INFLACION                   ;D;S;S;N
+1540;FLOTA Y EQUIPO DE TRANSPORTE            ;D;S;N;N
+154005;AUTOS  CAMIONETAS Y CAMPEROS            ;D;S;N;N
+15400501;COSTO                                   ;D;S;S;N
+15400502;IVAS MAYOR VALOR COSTO                  ;D;S;S;N
+154099;AJUSTES POR INFLACION                   ;D;S;S;N
+1592;DEPRECIACION ACUMULADA                  ;C;S;N;N
+159205;CONSTRUCCIONES Y EDIFICACIONES          ;C;S;S;N
+159210;MAQUINARIA Y EQUIPO                     ;C;S;N;N
+159215;EQUIPO DE OFICINA                       ;C;S;S;N
+159216;CONSTRUCCIONES Y EDIFICACIONES          ;C;S;S;N
+159220;MAQUINARIA Y EQUIPO                     ;C;S;S;N
+159224;EQUIPO DE OFICINA                       ;C;S;S;N
+159225;EQUIPO MEDICO-CIENTIFICO                ;C;S;S;N
+159228;EQUIPO DE COMPUTO Y TELECOMUNICACIONES  ;C;S;S;N
+159235;FLOTA Y EQUIPO DE TRANSPORTE            ;C;S;S;N
+159240;FLOTA Y EQUIPO DE TRANSPORTE            ;C;S;S;N
+159299;AJUSTES POR INFLACION                   ;C;S;S;N
+16;INTANGIBLES                             ;D;S;N;N
+1635;LICENCIAS                               ;D;S;N;N
+163501;SOFTLAND                                ;D;S;S;N
+17;DIFERIDOS                               ;D;S;N;N
+1705;GASTOS PAGADOS POR ANTICIPADO           ;D;S;N;N
+170501;ANTICIPOS DE COMPRA                     ;D;S;S;N
+170505;INTERESES                               ;D;S;S;N
+170520;SEGUROS Y FIANZAS                       ;D;S;S;N
+170595;OTROS                                   ;D;S;S;N
+1710;CARGOS DIFERIDOS                        ;D;S;N;N
+171016;PROGRAMAS PARA COMPUTADORES(SOFTWARE)   ;D;S;S;N
+171020;UTILES Y PAPELERIA                      ;D;S;S;N
+171048;ELEMENTOS DE ASEO Y CAFETERIA           ;D;S;S;N
+171095;OTROS                                   ;D;S;S;N
+171099;AJUSTES POR INFLACION                   ;D;S;S;N
+18;OTROS ACTIVOS                           ;D;S;N;N
+1895;DIVERSOS                                ;D;S;N;N
+189560;ELEMENTOS DE ROPERIA Y LENCERIA         ;D;S;S;N
+189595;OTROS                                   ;D;S;S;N
+189599;AJUSTES POR INFLACION                   ;D;S;S;N
+19;VALORIZACIONES                          ;D;S;N;N
+1910;DE PROPIEDADES                          ;D;S;N;N
+191008;CONSTRUCCIONES Y EDIFICACIONES          ;D;S;S;N
+2;PASIVO                                  ;C;S;N;N
+21;OBLIGACIONES FINANCIERAS                ;C;S;N;N
+2105;BANCOS NACIONALES                       ;C;S;N;N
+210510;PAGARES                                 ;C;S;N;N
+210515;PARTICULARES                            ;C;S;N;N
+22;PROVEEDORES                             ;C;S;N;N
+2205;NACIONALES                              ;C;S;N;N
+220501;PROVEEDORES NACIONALES                  ;C;S;S;N
+23;CUENTAS POR PAGAR                       ;C;S;N;N
+2335;COSTOS Y GASTOS POR PAGAR               ;C;S;N;N
+233505;COSTOS Y GASTOS POR PAGAR               ;C;S;S;N
+233510;LEGALES                                 ;C;S;S;N
+233515;LIBROS,SUSCRIPCIONES,PERIODICOS Y RVISTA;C;S;S;N
+233520;COMISIONES                              ;C;S;S;S
+233525;HONORARIOS                              ;C;S;S;N
+233530;SERVICIOS TECNICOS                      ;C;S;S;N
+233535;SERVICIOS DE MANTENIMIENTO              ;C;S;S;N
+233540;ARRENDAMIENTOS                          ;C;S;S;N
+233545;TRANSPORTES FLETES Y ACARREOS           ;C;S;S;N
+233550;SERVICIOS PUBLICOS                      ;C;S;S;N
+233555;SEGUROS                                 ;C;S;S;N
+233560;SERVICIOS DE ASEO Y LIMPIEZA            ;C;S;S;N
+233565;RELACIONES PUBLICAS Y/O GTOS REPRESENT. ;C;S;S;N
+233570;SERVICIO DE MAQUILA                     ;C;S;S;N
+233595;OTROS                                   ;C;S;S;N
+2345;ACREEDORES OFICIALES                    ;C;S;N;N
+234515;MUNICIPALES                             ;C;S;S;N
+2355;DEUDAS CON ACCIONISTAS O SOCIOS         ;C;S;N;N
+235510;SOCIOS                                  ;C;S;S;N
+2357;DEUDAS CON DIRECTOS                     ;C;S;N;N
+2360;DIVIDENDOS O PARTICIPACIONES POR PAGAR  ;C;S;N;N
+236010;PARTICIPACIONES                         ;C;S;N;N
+2365;RETENCION EN LA FUENTE                  ;C;S;N;N
+236505;INGRESOS LABORALES                      ;C;N;N;N
+23650501;RETENCION POR SALARIOS                  ;C;S;S;S
+236515;HONORARIOS                              ;C;S;N;N
+23651501;HONORARIOS DECLARANTES 11%              ;C;S;S;N
+23651502;HONORARIOS NO DECLARANTES 10%           ;C;S;S;N
+236520;COMISIONES                              ;C;S;N;N
+23652001;COMISIONES DECLARANTES 11%              ;C;S;S;N
+23652002;COMISIONES NO DECLARANTES 10%           ;C;S;S;N
+236525;SERVICIOS                               ;C;S;N;N
+23652501;SERVICIOS DECLARANTES 4%                ;C;S;S;N
+23652502;SERVICIOS NO DECLARANTES 6%             ;C;S;S;N
+23652503;FLETES Y ACARREOS 1%                    ;C;S;S;N
+23652504;SERVICIOS TEMPORALES 2%                 ;C;S;S;N
+23652505;SERVICIO X CONTRATO DE CONSTRUCCION Y OB;C;S;S;N
+23652506;PUENTE                                  ;C;S;S;N
+23652507;SERVICIO X DISE�O PAGINA WEB            ;C;S;S;N
+236530;ARRENDAMIENTOS                          ;C;S;N;N
+23653001;ARRENDAMIENTOS DE BIENES MUEBLES 4%     ;C;S;S;N
+23653002;ARRENDAMIENTO DE BIENES INMUEBLES 3.5%  ;C;S;S;N
+236535;INTERESES Y R.F                         ;C;S;N;N
+23653501;INTERESES Y RENDIMIENTOS FINANCIEROS 7% ;C;S;S;N
+236540;COMPRAS GENERALES                       ;C;S;N;N
+23654001;COMPRAS GENERALES (NO DECLARANTES) 3.5% ;5;S;S;N
+23654002;COMPRAS GENERALES (DECLARANTES) 2.5%    ;C;S;S;N
+23654003;COMPRA DE COMBUSTIBLE 0.15              ;C;S;S;N
+23654004;COMPRAS NO DECLARANTES 3.5%             ;C;S;S;N
+23654005;COMPRAS A REG. SIMPLE 0.625%            ;C;S;S;N
+23654006;RETE FTE COMPRAS REG SIMPLE 1.25% (50% T;C;S;S;N
+236565;POR IMPUESTO DE TIMBRE                  ;C;S;S;N
+236570;OTRAS RETENCIONES Y PATRIMONIO          ;C;S;N;N
+23657005;RENTAS DE TRABAJO                       ;C;S;S;N
+236575;ANTICIPO AUTORRETENCION CREE 0.4        ;C;N;N;N
+23657501;ANTICIPO AUTORRETENCION CREE 0.4 POR VEN;C;S;S;N
+236598;RETENCION EN LA FUENTE POR PAGAR        ;C;N;N;S
+23659805;PERIODO ACTUAL                          ;C;S;S;S
+2367;IMPUESTO A LAS VENTAS RETENIDO          ;C;S;N;N
+236701;COMPRAS                                 ;C;S;S;N
+236702;SERVICIOS                               ;C;S;S;N
+236703;ARRIENDOS                               ;C;S;S;N
+2368;RETENCION POR ICA                       ;C;S;N;N
+236801;RETE ICA COMPRAS DE MERCANCIAS NORMA ANT;C;S;S;N
+236802;RETE ICA POR SERVICIOS NORMA ANTERIOR   ;C;S;S;N
+236803;RETE ICA POR OTROS CONCEPTOS NORMA ANTER;C;S;S;N
+236804;RETENCION DE ICA PRACTICADA NUEVA NORMA ;C;N;N;N
+23680401;RETE ICA POR COMPRA DE MERCANCIA        ;C;N;N;N
+2368040101;RETE ICA TARIFA 4.8 X 1000              ;C;S;S;N
+2368040102;RETE ICA TARIFA 5 X 1000                ;C;S;S;N
+2368040103;RETE ICA TARIFA 5.2 X 1000              ;C;S;S;N
+2368040104;RETE ICA TARIFA 6 X 1000                ;C;S;S;N
+2368040105;RETE ICA TARIFA 7 X 1000                ;C;S;S;N
+2368040106;RETE ICA TARIFA 11.04 X 1000            ;C;S;S;N
+2368040107;RETE ICA X COMPRAS 5.4 X 1000           ;C;S;S;N
+2368040108;RETE ICA TARIFA 9 X 1000                ;C;S;S;N
+2368040109;RETE ICA POR COMPRAS A TARIFA DEL 7.2 X ;C;S;S;S
+2368040110;RETE ICA TARIFA 2.2X1000                ;C;S;S;N
+23680402;RETE ICA POR SERVICIOS                  ;C;N;N;N
+2368040201;RETE ICA POR SERVICIOS DEL 6X1000       ;C;S;S;N
+2368040202;RETE ICA SERVICIOS TARIFA 7.2 X 1000    ;C;S;S;S
+2368040203;RETE ICA POR SERVICIOS DEL 4X1000       ;C;S;S;S
+2368040204;SERVICIOS 5.4 X 1000                    ;C;S;S;N
+2368040205;SERICIOS 9 X 1000                       ;C;S;S;N
+23680403;RETE ICA POR OTROS CONCEPTOS            ;C;N;N;N
+2368040301;RETE ICA POR OTROS CONCEPTOS            ;C;S;S;N
+23680404;OTROS CONCEPTOS                         ;C;N;N;N
+2368040401;RETE ICA X AVISO Y TABLEROS (15%)       ;C;S;S;N
+2368040402;RETE ICA X SOBRETASA BOMBERIL (10%)     ;C;S;S;N
+23680410;RETE ICA TARIFA 2.2X1000                ;C;S;S;N
+236805;AUTORRETENCION DE ICA                   ;C;N;N;N
+23680501;AUTORRETENCION X VENTAS (4,8X1000)      ;C;N;N;N
+2368050101;AUTORETEICA TARIFA GENERAL 4,8X1000     ;C;S;S;N
+2368050102;AUTORETEICA X AVISO Y TABLEROS (15%)    ;C;S;S;N
+2368050103;AUTORETEICA X SOBRETASA BOMBERIL (10%)  ;C;S;S;N
+2370;RETENCIONES Y APORTES DE NOMINA         ;C;S;N;N
+237005;ENTIDADES PROMOTORAS DE SALUD           ;C;S;N;N
+23700502;EMPLEADO (4%)                           ;C;S;S;N
+237006;RIESGOS LABORALES                       ;C;S;N;N
+23700601;RIESGOS LABORALES SURA (EMPLEADOR)      ;C;S;S;N
+237010;APORTES A PARAFISCALES (EMPLEADOR)      ;C;S;N;N
+23701001;ICBF                                    ;C;S;S;N
+23701002;SENA                                    ;C;S;S;N
+23701003;CAJAS DE COMPENSACION                   ;C;S;S;N
+237045;FONDO DE PENSIONES                      ;C;S;N;N
+23704501;EMPLEADOR (12%)                         ;C;S;S;N
+23704502;EMPLEADO (4%)                           ;C;S;S;N
+23704503;FONDO DE SOLIDARIDAD PENSIONAL          ;C;S;S;S
+2380;ACREEDORES VARIOS                       ;C;S;N;N
+238001;POLIZA GENERAL EMPRESA                  ;C;S;S;N
+238002;POLIZA VEHICULO                         ;C;S;S;N
+238005;AHORRO EMPLEADOS                        ;C;S;S;N
+238008;REINTEGROS POR PAGAR                    ;C;S;N;N
+238030;FONDO DE PENSIONES Y/O CESANTIAS        ;C;S;S;N
+238095;OTROS                                   ;C;S;S;N
+24;IMPUESTOS GRAVAMENES Y TASAS            ;C;S;N;N
+2404;DE RENTA Y COMPLEMENTARIOS              ;C;S;N;N
+240405;VIGENCIA FISCAL CORRIENTE               ;C;S;S;N
+2408;IMPUESTO A LAS VENTAS POR PAGAR         ;C;S;N;N
+240801;IVA GENERADO                            ;C;S;N;N
+24080101;GENERADO POR VENTAS 5%                  ;C;S;S;N
+24080102;GENERADO POR VENTAS 19%                 ;C;S;S;N
+24080103;POR DEVOLUCIONES EN COMPRAS             ;C;S;N;N
+240802;IVA DESCONTABLE                         ;D;S;N;N
+24080201;DESCONTABLE POR COMPRAS 5%              ;D;S;S;N
+24080202;DESCONTABLE POR COMPRAS 19%             ;D;S;S;N
+24080203;SERVICIOS GRAVADOS 19%                  ;D;S;S;N
+24080204;DEVOLUCIONES EN VENTAS 5%               ;D;S;S;N
+24080205;DEVOLUCIONES EN VENTAS 19%              ;D;S;S;N
+240805;IVA POR PAGAR                           ;C;S;N;N
+24080501;VIGENCIA FISCAL                         ;C;S;S;N
+2412;DE INDUSTRIA Y COMERCIO                 ;C;S;N;N
+241205;VIGENCIA FISCAL CORRIENTE               ;C;S;S;N
+2436;DE VEHICULOS                            ;C;S;N;N
+25;OBLIGACIONES LABORALES                  ;C;S;N;N
+2505;SALARIOS POR PAGAR                      ;C;S;N;N
+250501;SALARIOS POR PAGAR                      ;C;S;S;N
+250510;SUELDOS                                 ;C;S;S;N
+250515;AUXILIO DE TRANSPORTE                   ;C;S;S;N
+2510;CESANTIAS CONSOLIDADAS                  ;C;S;N;N
+251001;CESANTIAS CONSOLIDADAS                  ;C;S;S;N
+251010;LEY 50/90 Y NORMAS POSTERIORES          ;C;S;S;N
+2515;INTERESES SOBRE CESANTIAS               ;C;S;N;N
+251505;INTERESES SOBRE CESANTIAS               ;C;S;S;S
+2520;PRIMA DE SERVICIOS                      ;C;S;N;N
+2525;VACACIONES CONSOLIDADAS                 ;C;S;N;N
+252505;VACACIONES                              ;C;S;S;S
+2530;PRESTACIONES EXTRALEGALES               ;C;S;N;N
+253015;DOTACION Y SUMINISTROS A TRABAJADORES   ;C;S;S;N
+26;PASIVOS ESTIMADOS Y PROVISIONES         ;C;S;N;N
+2605;PARA COSTOS Y GASTOS                    ;C;S;N;N
+260535;SERVICIOS PUBLICOS                      ;C;S;S;N
+2610;PARA OBLIGACIONES LABORALES             ;C;S;N;N
+261005;CESANTIAS                               ;C;S;S;N
+261010;INTERESES SOBRE CESANTIAS               ;C;S;S;N
+261015;VACACIONES                              ;C;S;S;N
+261020;PRIMA DE SERVICIOS                      ;C;S;S;N
+2615;PARA OBLIGACIONES FISCALES              ;C;S;N;N
+261505;DE RENTA Y COMPLEMENTARIOS              ;C;S;S;N
+261510;DE INDUSTRIA Y COMERCIO                 ;C;S;S;N
+28;OTROS PASIVOS                           ;C;S;N;N
+2805;ANTICIPOS Y AVANCES RECIBIDOS           ;C;S;N;N
+280505;DE CLIENTES                             ;C;S;S;N
+280510;SOBRE CONTRATOS                         ;C;S;S;N
+280595;OTROS                                   ;C;S;N;N
+28059501;CONSIGNACIONES NO IDENTIFICADAS         ;C;S;S;N
+28059502;ANTICIPO EMPLEADOS                      ;C;S;S;N
+2810;DEPOSITOS RECIBIDOS                     ;C;S;N;N
+281005;OTROS                                   ;C;S;S;N
+281030;DE MANEJO DE BIENES                     ;C;S;S;N
+2815;INGRESOS RECIBIDOS PARA TERCEROS        ;C;N;N;N
+281505;VALORES RECIBIDOS PARA TERCEROS-SISTECRE;C;S;S;N
+3;PATRIMONIO                              ;C;S;N;N
+31;CAPITAL                                 ;C;S;N;N
+3105;Capital suscrito y pagado               ;C;S;N;N
+310505;CAPITAL AUTORIZADO                      ;C;S;S;N
+3115;CUOTAS O PARTES DE INTERES SOCIAL       ;C;S;N;N
+311505;CUOTAS O PARTES DE INTERES SOCIAL       ;C;S;S;N
+33;RESERVAS                                ;C;S;N;N
+3305;RESERVAS OBLIGATORIAS                   ;C;S;N;N
+330505;RESERVA LEGAL                           ;C;S;S;N
+3315;RESERVAS OCASIONALES                    ;C;S;N;N
+331535;PARA CAPITAL DE TRABAJO                 ;C;S;S;N
+34;REVALORIZACION DEL PATRIMONIO           ;C;S;N;N
+3405;Ajustes por inflacion                   ;C;S;N;N
+340505;DE CAPITAL SOCIAL                       ;C;S;S;N
+340510;CUOTAS O PARTES DE INTERES SOCIAL       ;C;S;S;N
+340515;DE RESERVAS                             ;C;S;S;N
+340520;DE RESULTADOS DE EJERCICIOS ANTERIORES  ;C;S;S;N
+3410;DE SUPERAVIT DE CAPITAL                 ;C;S;N;N
+3415;DE RESERVAS                             ;C;S;N;N
+341505;OBLIGATORIAS                            ;C;S;S;N
+341510;ESTATUTARIAS                            ;C;S;S;N
+36;RESULTADOS DEL EJERCICIO                ;C;S;N;N
+3605;UTILIDAD DEL EJERCICIO                  ;C;S;N;N
+360505;UTILIDAD DEL EJERCICIO                  ;C;S;S;N
+3610;PERDIDA DEL EJERCICIO                   ;C;S;N;N
+361001;PERDIDA DEL EJERCICIO                   ;C;S;S;N
+37;UTILIDADES ACUMULADAS                   ;C;S;N;N
+3705;UTILIDADES ACUMULADAS                   ;C;S;N;N
+370505;UTILIDADES ACUMULADAS                   ;C;S;S;N
+3710;PERDIDAS ACUMULADAS                     ;C;S;N;N
+371005;PERDIDAS ACUMULADAS                     ;C;S;S;N
+38;SUPERAVIT POR VALORIZACIONES            ;C;S;N;N
+3805;DE INVERSIONES                          ;C;S;N;N
+380505;Acciones                                ;C;S;S;N
+3810;De propiedades, planta y equipo         ;C;S;N;N
+381004;Terrenos                                ;C;S;S;N
+381008;Construcciones y edificaciones          ;C;S;S;N
+381016;Equipo de oficina                       ;C;S;S;N
+381020;Equipo de computacion y comunicacion    ;C;S;S;N
+4;INGRESOS                                ;C;S;N;N
+41;OPERACIONALES                           ;C;S;N;N
+4135;COMERCIO AL POR MAYOR Y POR MENOR       ;C;S;N;N
+413542;VENTA  DE MATERIALES PARA CONSTRUCC Y OR;C;S;N;N
+41354201;VENTAS EXCLUIDAS                        ;C;S;S;N
+41354202;VENTAS GRAVADAS DEL 5%                  ;C;S;S;N
+41354203;VENTAS GRAVADAS DEL 19%                 ;C;S;S;N
+4175;DEVOLUCIONES EN VENTAS                  ;D;S;N;N
+417501;DEVOLUCIONES EN VENTAS                  ;D;S;S;N
+42;NO OPERACIONALES                        ;C;S;N;N
+4210;FINANCIEROS                             ;C;S;N;N
+421005;INTERESES                               ;C;S;N;N
+42100501;RENDIMIENTOS CUENTAS DE AHORRO          ;C;S;S;N
+42100502;DESCUENTOS ARRIENDO                     ;C;S;S;N
+421025;FINANCIACION                            ;C;S;S;N
+421040;DESCUENTOS COMERCIALES CONDICIONADOS    ;C;S;S;N
+421099;AJUSTES POR INFLACION                   ;C;S;S;N
+4230;HONORARIOS                              ;C;S;N;N
+423005;REVISORIA FISCAL                        ;C;S;S;N
+4245;UTILIDAD EN VENTA DE PROPIEDADES PLANTA ;C;S;N;N
+424516;CONTRUCCIONES Y EDIFICACIONES           ;C;S;S;N
+424520;MAQUINARIA Y EQUIPO                     ;C;S;S;N
+424524;EQUIPO DE OFICINA                       ;C;S;S;N
+424528;EQUIPO DE COMPUTACION Y COMUNICACION    ;C;S;S;N
+424540;FLOTA Y EQUIPO DE TRANSPORTE            ;C;S;S;N
+4250;RECUPERACIONES                          ;C;S;N;N
+425010;SEGUROS                                 ;C;S;S;N
+425030;DESCUENTOS CONCEDIDOS                   ;C;S;N;N
+42503001;DESCUENTOS CONCEDIDOS                   ;C;S;S;S
+425035;REINTEGRO PROVISIONES                   ;C;S;N;N
+42503501;REINTEGRO DE COSTO X PROVISION DE PS    ;C;S;S;N
+425050;REINTEGRO DE OTROS COSTOS Y GASTOS      ;C;S;S;N
+4255;INDEMNIZACIONES                         ;C;S;N;N
+425540;POR INCAPACIDADES E.P.S                 ;C;S;S;N
+4295;DIVERSOS                                ;C;S;N;N
+429505;APROVECHAMIENTOS                        ;C;S;S;N
+429551;EXCEDENTES C-10                         ;C;S;S;N
+429552;EXCEDENTES CAJA                         ;C;S;S;N
+429567;FOTOCOPIAS-UTILES-PAPELERIA             ;C;S;S;N
+429581;AJUSTE AL PESO                          ;C;S;S;N
+429599;AJUSTES POR INFLACION                   ;C;S;S;N
+47;AJUSTES POR INFLACION                   ;C;S;N;N
+4705;CORRECCION MONETARIA                    ;C;S;N;N
+470515;PROPIEDAD PLANTA Y EQUIPO (CR)          ;C;S;S;N
+470525;ACTIVOS DIFERIDOS                       ;C;S;S;N
+470530;OTROS ACTIVOS                           ;C;S;S;N
+470540;PATRIMONIO                              ;C;S;S;N
+470545;DEPRECIACION ACUMULADA                  ;C;S;S;N
+470565;INGRESOS OPERACIONALES                  ;C;S;S;N
+470570;INGRESOS NO OPERACIONALES               ;C;S;S;N
+470575;GASTOS OPERACIONALES                    ;C;S;S;N
+470585;GASTOS NO OPERACIONALES                 ;C;S;S;N
+470594;COSTO DE PRODUCCION O DE OPERACION      ;C;S;S;N
+5;GASTOS                                  ;D;S;N;N
+51;OPERACIONALES DE ADMON                  ;D;S;N;N
+5105;GASTOS DE PERSONAL                      ;D;S;N;N
+510506;SUELDOS                                 ;D;S;S;N
+510518;COMISIONES                              ;D;S;S;N
+510520;INCAPACIDADES                           ;D;S;S;S
+510524;INCAPACIDADES ASUMIDAS                  ;D;S;S;N
+510527;AUXILIO DE TRANSPORTE                   ;D;S;S;N
+510530;CESANTIAS                               ;D;S;S;N
+510533;INTERESES SOBRE CESANTIAS               ;D;S;S;N
+510536;PRIMA DE SERVICIOS                      ;D;S;S;N
+510539;VACACIONES                              ;D;S;S;N
+510542;PRIMAS EXTRALEGALES                     ;D;S;S;N
+510543;PRIMA DE EXCLUSIVIDAD                   ;D;S;S;N
+510544;PRIMA DE VACACIONES                     ;D;S;S;N
+510545;AUXILIO NO SALARIAL                     ;D;S;S;N
+510548;BONIFICACION ANUAL                      ;D;S;S;N
+510551;DOTACION Y SUMINISTRO                   ;D;S;S;N
+510554;SEGUROS                                 ;D;S;S;N
+510563;CAPACITACION AL PERSONAL                ;D;S;S;N
+510566;GASTOS DEPORTIVOS Y DE RECREACION       ;D;S;S;N
+510568;ADMINISTRADORA DE RIESGOS               ;D;S;S;N
+510569;EPS                                     ;D;S;S;N
+510570;PENSIONES                               ;D;S;S;N
+510572;COMFENALCO                              ;D;S;S;N
+510575;ICBF                                    ;D;S;S;N
+510578;SENA                                    ;D;S;S;N
+510580;ISS INDEPENDIENTE                       ;D;S;S;N
+510581;APORTES FONDO DE EMPLEADOS              ;D;S;S;N
+510584;GASTOS MEDICOS Y DROGAS                 ;D;S;S;N
+510595;OTROS                                   ;D;S;S;N
+510597;TRASLADO A COSTOS                       ;D;S;S;N
+510599;AJUSTES POR INFLACION                   ;D;S;S;N
+5110;HONORARIOS                              ;D;S;N;N
+511005;JUNTA DIRECTIVA                         ;D;S;S;N
+511010;REVISORIA FISCAL                        ;D;S;S;N
+511015;AUDITORIA EXTERNA                       ;D;S;S;N
+511025;ASESORIA JURIDICA                       ;D;S;S;N
+511030;ASESORIA FINANCIERA                     ;D;S;S;N
+511035;ASESORIA TECNICA                        ;D;S;S;N
+511040;SEGURIDAD INDUSTRIAL                    ;D;S;S;N
+511095;OTROS                                   ;D;S;N;N
+51109501;ASESORIA CONTABLE                       ;D;S;S;N
+51109502;APOYO COMERCIAL                         ;D;S;S;N
+51109503;ASESORIA INFORMATICA Y PROGRAMACION     ;D;S;S;N
+511097;TRASLADO A COSTOS DE SERVICIOS          ;D;S;S;N
+511099;AJUSTES POR INFLACION                   ;D;S;S;N
+5115;IMPUESTOS                               ;D;S;N;N
+511505;INDUSTRIA Y COMERCIO                    ;D;S;S;N
+511515;A LA PROPIEDAD RAIZ                     ;D;S;S;N
+511525;VALORIZACION                            ;D;S;S;N
+511540;DE VEHICULOS                            ;D;S;S;N
+511595;OTROS                                   ;D;S;N;N
+51159501;REGISTRO                                ;D;S;S;N
+51159502;IVA ASUMIDO EN GASTOS                   ;D;S;S;N
+51159503;IMPO CONSUMO CELULARES                  ;D;S;S;N
+51159504;IMPUESTO AL CONSUMO RESTAURANTES        ;D;S;S;N
+51159505;IMPUESTO ALUMBRADO PUBLICO              ;D;S;S;N
+51159506;IMPOCONSUMO BOLSAS PLASTICAS            ;D;S;S;N
+511599;AJUSTES POR INFLACION                   ;D;S;S;N
+5120;ARRENDAMIENTOS                          ;D;S;N;N
+512010;CONSTRUCCIONES Y EDIFICACIONES          ;D;S;S;N
+512020;MAQUINARIA Y EQUIPO                     ;D;S;S;N
+512040;FLOTA Y EQUIPO DE TRANSPORTE            ;D;S;S;N
+512095;OTROS                                   ;D;S;S;N
+512097;TRASLADO A COSTOS DE SERVICIOS          ;D;S;S;N
+512099;AJUSTES POR INFLACION                   ;D;S;S;N
+5125;CONTRIBUCIONES  Y AFILIACIONES          ;D;S;N;N
+512505;CONTRIBUCIONES                          ;D;S;S;N
+512510;AFILIACIONES Y SOSTENIMIENTO            ;D;S;S;N
+512599;AJUSTES POR INFLACION                   ;D;S;S;N
+5130;SEGUROS                                 ;D;S;N;N
+513005;MANEJO                                  ;D;S;S;N
+513010;SEGURO CREDITOS                         ;D;S;S;N
+513020;VIDA COLECTIVA                          ;D;S;S;N
+513025;INCENDIO                                ;D;S;S;N
+513035;SUSTRACCION Y HURTO                     ;D;S;S;N
+513040;FLOTA Y EQUIPO DE TRANSPORTE            ;D;S;S;N
+513045;POLIZA GENERAL EMPRESA                  ;D;S;S;N
+513050;SEGURO FALABELLA                        ;D;S;S;N
+513070;ROTURA DE MAQUINARIA                    ;D;S;S;N
+513095;OTROS                                   ;D;S;S;N
+513097;TRASLADO A COSTOS DE SERVICIOS          ;D;S;S;N
+513099;AJUSTES POR INFLACION                   ;D;S;S;N
+5135;SERVICIOS                               ;D;S;N;N
+513505;ASEO Y VIGILANCIA                       ;D;S;S;N
+513510;ADMINISTRACION                          ;D;S;S;N
+513515;ASISTENCIA T�CNICA                      ;D;S;S;N
+513525;ACUEDUCTO Y ALCANTARILLADO              ;D;S;S;N
+513530;ENERGIA ELECTRICA                       ;D;S;S;N
+513535;TELEFONO                                ;D;S;S;N
+513540;MENSAJERIA, ENVIOS Y DOMICILIOS         ;D;S;S;N
+513545;FAX Y TELEX                             ;D;S;S;N
+513550;TRANSPORTE FLETES Y ACARREOS            ;D;S;S;N
+513555;GAS                                     ;D;S;S;N
+513595;OTROS                                   ;D;S;N;N
+51359501;DESCARGUES                              ;D;S;S;N
+51359502;MAQUILA                                 ;D;S;S;N
+51359503;POR SERVICIOS AUXILIAR CONTABLE         ;D;S;S;N
+51359504;PRESTACION SERVICIOS                    ;D;S;S;N
+51359505;PRUEBAS PSICOTECNICAS                   ;D;S;S;N
+51359506;EXAMENES MEDICOS SSGT                   ;D;S;S;N
+513599;AJUSTES POR INFLACION                   ;D;S;S;N
+5140;GASTOS LEGALES                          ;D;S;N;N
+514005;NOTARIALES                              ;D;S;S;N
+514010;REGISTRO MERCANTIL                      ;D;S;S;N
+514015;TRAMITES Y LICENCIAS                    ;D;S;S;N
+514095;OTROS                                   ;D;S;N;N
+51409501;CERTIFICADOS                            ;D;S;S;N
+51409502;OTROS                                   ;D;S;S;S
+514099;AJUSTES POR INFLACION                   ;D;S;S;N
+5145;MANTENIMIENTO Y REPARACIONES            ;D;S;N;N
+514510;CONSTRUCCIONES Y EDIFICACIONES          ;D;S;S;N
+514515;MAQUINARIA Y EQUIPO                     ;D;S;S;N
+514520;EQUIPO DE OFICINA                       ;D;S;S;N
+514525;EQUIPO DE COMPUTACION Y COMUNICACION    ;D;S;S;N
+514540;FLOTA Y EQUIPO DE TRANSPORTE            ;D;S;S;N
+514595;OTROS                                   ;D;S;S;S
+514597;TRASLADO A COSTOS DE SERVICIOS          ;D;S;S;N
+514599;AJUSTES POR INFLACION                   ;D;S;S;N
+5150;ADECUACION E INSTALACION                ;D;S;N;N
+515005;INSTALACIONES ELECTRICAS                ;D;S;S;N
+515006;ADECUACION REFUERZO PARA BURRO          ;D;S;S;N
+515010;CONSTRUCCIONES  Y EDIFICACIONES         ;D;S;S;N
+515015;REPARACIONES LOCATIVAS                  ;D;S;S;N
+515095;OTROS                                   ;D;S;S;N
+515099;AJUSTES POR INFLACION                   ;D;S;S;N
+5155;GASTOS DE VIAJE                         ;D;S;N;N
+515505;ALOJAMIENTO Y MANUTENCION               ;D;S;S;N
+515515;PASAJES AEREOS                          ;D;S;S;N
+515520;PASAJES TERRESTRES                      ;D;S;S;N
+515595;OTROS                                   ;D;S;N;N
+51559501;PARQUEADEROS                            ;D;S;S;N
+51559502;PEAJES                                  ;D;S;S;N
+515599;AJUSTES POR INFLACION                   ;D;S;S;N
+5160;DEPRECIACION ACUMULADA                  ;D;S;N;N
+516005;CONSTRUCCIONES Y EDIFICACION            ;D;S;S;N
+516010;MAQUINARIA Y EQUIPO                     ;D;S;S;N
+516015;EQUIPO DE OFICINA                       ;D;S;S;N
+516020;EQUIPO DE COMPUTACION                   ;D;S;S;N
+516025;EQUIPO MEDICO Y CIENTIFICO              ;D;S;S;N
+516035;FLOTA Y EQUIPO DE TRANSPORTE            ;D;S;S;N
+516040;FLOTA Y EQUIPO DE TRANSPORTE            ;D;S;S;N
+516097;TRASLADO A COSTOS DE SERVICIOS          ;D;S;S;N
+516099;AJUSTES POR INFLACION                   ;D;S;S;N
+5195;DIVERSOS                                ;D;S;N;N
+519510;LIBROS-SUSCRIPC-PERIODICOS Y REVISTAS   ;D;S;S;N
+519520;GASTOS DE REPRESENTACION Y REL PUBLICAS ;D;S;S;N
+519525;ELEMENTOS DE ASEO Y CAFETERIA           ;D;S;S;N
+519530;UTILES  PAPELERIA Y FOTOCOPIAS          ;D;S;S;N
+519535;COMBUSTIBLES                            ;D;S;S;N
+519540;ENVASES Y EMPAQUE                       ;D;S;S;N
+519545;TAXIS Y BUSES                           ;D;S;S;N
+519550;ESTAMPILLAS                             ;D;S;S;N
+519560;CASINOS Y RESTAURANTES                  ;D;S;S;N
+519561;HOTELES                                 ;D;S;S;N
+519565;PARQUEADEROS                            ;D;S;S;N
+519570;EMERGENCIA SANITARIA                    ;D;S;S;N
+519575;MEDICAMENTOS, ELEMENTOS BOTIQUIN        ;D;S;S;N
+519580;GASTOS NO DEDUCIBLES                    ;D;S;S;N
+519595;OTROS                                   ;D;S;S;N
+519597;TRASLADO A COSTOS DE SERVICIOS          ;D;S;S;N
+519599;AJUSTES POR INFLACION                   ;D;S;S;N
+52;OPERACIONALES DE VENTA                  ;D;S;N;N
+5205;GASTOS DE PERSONAL                      ;D;S;N;N
+520506;SUELDOS                                 ;D;S;S;N
+520515;REPARACIONES LOCATIVAS                  ;D;S;S;N
+520518;COMISION                                ;D;S;S;N
+520524;INCAPACIDADES                           ;D;S;S;N
+520527;AUXILIO DE TRANSPORTE                   ;D;S;S;N
+520530;CESANTIAS                               ;D;S;S;N
+520533;INTERESES SOBRE CESANTIAS               ;D;S;S;N
+520536;PRIMA DE SERVICIOS                      ;D;S;S;N
+520539;VACACIONES                              ;D;S;S;N
+520542;PRIMAS EXTRALEGALES                     ;D;S;S;N
+520551;DOTACION Y SUMINISTRO A TRABAJADORES    ;D;S;S;N
+520563;CAPACITACION AL PERSONAL                ;D;S;S;N
+520569;APORTES AL ISS                          ;D;S;S;N
+520572;APORTES CAJAS DE COMPENSACION FAMILIAR  ;D;S;S;N
+520575;APORTES ICBF                            ;D;S;S;N
+520578;APORTES SENA                            ;D;S;S;N
+520595;OTROS                                   ;D;S;S;N
+520599;AJUSTES POR INFLACION                   ;D;S;S;N
+5210;HONORARIOS                              ;D;S;N;N
+521010;REVISORIA FISCAL                        ;D;S;S;N
+521099;AJUSTES POR INFLACION                   ;D;S;S;N
+5215;IMPUESTOS                               ;D;S;N;N
+521505;INDUSTRIA Y COMERCIO                    ;D;S;S;N
+521515;A LA PROPIEDAD RAIZ                     ;D;S;S;N
+521540;DE VEHICULOS                            ;D;S;S;N
+521599;AJUSTES POR INFLACION                   ;D;S;S;N
+5235;SERVICIOS                               ;D;S;N;N
+523505;ASEO Y VIGILANCIA                       ;D;S;S;N
+523525;ACUEDUCTO Y ALCANTARILLADO              ;D;S;S;N
+523530;ENERGIA ELECTRICA                       ;D;S;S;N
+523540;CORREO, PORTES Y TELEGRAMAS             ;D;S;S;N
+523545;FAX Y TELEX                             ;D;S;S;N
+523550;TRANSPORTE, FLETES Y ACARREOS           ;D;S;S;N
+523555;GAS                                     ;D;S;S;N
+523560;PUBLICIDAD                              ;D;S;S;N
+523595;OTROS                                   ;D;S;S;N
+523599;AJUSTES POR INFLACION                   ;D;S;S;N
+5240;GASTOS LEGALES                          ;D;S;N;N
+524005;NOTARIALES                              ;D;S;S;N
+524010;REGISTRO MERCANTIL                      ;D;S;S;N
+524015;TRAMITES Y LICENCIAS                    ;D;S;S;N
+524095;OTROS                                   ;D;S;S;N
+524099;AJUSTES POR INFLACION                   ;D;S;S;N
+5245;MANTENIMIENTO Y REPARACIONES            ;D;S;N;N
+524520;EQUIPO DE OFICINA                       ;D;S;S;N
+524525;EQUIPO DE COMPUTACION Y COMUNICACION    ;D;S;S;N
+524599;AJUSTES POR INFLACION                   ;D;S;S;N
+5250;ADECUACION E INSTALACION                ;D;S;N;N
+525005;INSTALACIONES ELECTRICAS                ;D;S;S;N
+525095;OTROS                                   ;D;S;N;N
+52509501;IMPLEMENTOS PARA ADECUAR EVENTOS PROMOCI;D;S;S;N
+525099;AJUSTES POR INFLACION                   ;D;S;S;N
+5255;GASTOS DE VIAJE                         ;D;S;N;N
+525515;PASAJES AEREOS                          ;D;S;S;N
+525520;PASAJES TERRESTRES                      ;D;S;S;N
+525595;OTROS                                   ;D;S;S;N
+525599;AJUSTES POR INFLACION                   ;D;S;S;N
+5260;DEPRECIACIONES                          ;D;S;N;N
+526015;EQUIPO DE OFICINA                       ;D;S;S;N
+526020;EQUIPO DE COMPUTACION Y COMUNICACION    ;D;S;S;N
+526099;AJUSTES POR INFLACION                   ;D;S;S;N
+5295;DIVERSOS                                ;D;S;N;N
+529560;PUBLICIDAD Y PROPAGANDA                 ;D;S;S;N
+529599;AJUSTES POR INFLACION                   ;D;S;S;N
+53;NO OPERACIONALES                        ;D;S;N;N
+5305;FINANCIEROS                             ;D;S;N;N
+530505;GASTOS BANCARIOS                        ;D;S;N;N
+53050501;CUOTA DE MANEJO                         ;D;S;S;N
+53050502;IVA                                     ;D;S;S;N
+53050503;CUOTA MANEJO                            ;D;S;S;N
+53050504;CHEQUERA                                ;D;S;S;N
+53050505;COBRO DEPOSITOS LOCALES                 ;D;S;S;S
+53050506;OTROS                                   ;D;S;S;S
+53050540;FONDO NACIONAL DE GARANTIAS             ;D;S;S;N
+53050550;OTROS GASTOS ESTUDIO DE CREDITO         ;D;S;S;N
+530510;GMF                                     ;D;S;S;N
+530515;COMISIONES                              ;D;S;S;N
+530520;INTERESES                               ;D;S;N;N
+53052001;INTERESES MORATORIOS                    ;D;S;S;N
+53052002;INTERESES CREDITO                       ;D;S;S;S
+53052003;INTERESES SOBREGIRO                     ;D;S;S;N
+53052004;INTERESES                               ;D;S;S;N
+530535;DESCUENTOS COMERCIALES CONDICIONADOS    ;D;S;S;N
+530540;COMISION DATAFONO REDEBAN               ;D;S;S;N
+530595;GASTO FINANCIERO X CESION CONT. SISTECRE;D;S;S;N
+530599;AJUSTES POR INFLACION                   ;D;S;S;N
+5310;PERDIDA EN VENTA Y RETIRO DE BIENES     ;D;S;N;N
+531010;PERDIDA EN VENTA DE OTROS ACTIVOS       ;D;S;S;N
+531015;VENTA DE PROPIEDAD PLANTA Y EQUIPO      ;D;S;S;N
+531040;PERDIDAS POR SINIESTROS                 ;D;S;S;N
+531095;OTROS                                   ;D;S;S;N
+531099;AJUSTES POR INFLACION                   ;D;S;S;N
+5315;GASTOS EXTRAORDINARIOS                  ;D;S;N;N
+531520;IMPUESTOS ASUMIDOS                      ;D;S;S;N
+5395;GASTOS DIVERSOS                         ;D;S;N;N
+539520;SANCIONES                               ;D;S;S;N
+539525;DONACIONES                              ;D;S;S;N
+539552;FALTANTE CAJA GENERAL                   ;D;S;S;N
+539581;AJUSTE AL PESO                          ;D;S;S;N
+539595;OTROS                                   ;D;S;S;N
+539599;AJUSTES POR INFLACION                   ;D;S;S;N
+54;IMPUESTO DE RENTA                       ;D;S;N;N
+5405;IMPUESTO DE RENTA Y COMPLEMENTARIOS     ;D;S;N;N
+540505;IMPUESTO DE RENTA Y COMPLEMENTARIO      ;D;S;S;N
+59;GANANCIAS Y PERDIDAS                    ;D;S;N;N
+5905;GANANCIAS Y PERDIDAS                    ;D;S;N;N
+590505;GANANCIAS Y PERDIDAS                    ;D;S;S;N
+6;COSTOS                                  ;D;S;N;N
+61;COSTO DE VENTAS                         ;D;S;N;N
+6135;COSTO DE VENTAS                         ;D;S;N;N
+613542;COSTO DE VENTAS                         ;D;S;N;N
+61354201;COSTO DE VENTAS NO GRAVADADAS           ;D;S;S;N
+61354202;COSTO DE VENTAS GRAVADAS 5%             ;D;S;S;N
+61354203;COSTO DE VENTAS GRAVADAS 19%            ;D;S;S;N
+6155;ACTIVIDADES EMPRESARIALES               ;D;S;N;N
+615530;CONSULTORIA EN PROGRAMAS DE INFORMATICA ;D;S;N;N
+61553001;LICENCIAS PARA LA VENTA                 ;D;S;S;N
+6160;ENSE�ANZA                               ;D;S;N;N
+616005;ACTIVIDADES RELACIONADAS CON EDUCACION  ;D;S;S;N
+616099;AJUSTES POR INFLACION                   ;D;S;S;N
+62;COMPRAS                                 ;D;S;N;N
+6205;DE MERCANCIAS                           ;D;S;N;N
+620599;AJUSTES POR INFLACION                   ;D;S;S;N
+6225;DEVOLUCIONES EN COMPRAS                 ;C;S;N;N
+622599;AJUSTES POR INFLACION                   ;C;S;S;N
+7;COSTOS DE PRODUCCION O DE OPERACION     ;D;S;N;N
+72;MANO DE OBRA DIRECTA                    ;D;S;N;N
+7205;GASTOS DE PERSONAL                      ;D;S;N;N
+720506;SUELDOS                                 ;D;S;S;N
+720527;SUBSIDIO DE TRANSPORTE                  ;D;S;S;N
+720530;CESANTIAS                               ;D;S;S;N
+720533;INTERESES SOBRE CESANTIAS               ;D;S;S;N
+720536;PRIMA DE SERVICIOS                      ;D;S;S;N
+720539;VACACIONES                              ;D;S;S;N
+720542;PRIMA EXTRALEGAL DE HABITACION          ;D;S;S;N
+720543;PRIMA DE EXCLUSIVIDAD                   ;D;S;S;N
+720544;PRIMA DE VACACIONES                     ;D;S;S;N
+720545;SUBSIDIO DE ALIMENTACION                ;D;S;S;N
+720548;BONIFICACION ANUAL                      ;D;S;S;N
+720551;DOTACION Y SUMINISTRO A TRABAJADORES    ;D;S;S;N
+720554;SEGUROS                                 ;D;S;S;N
+720569;APORTES AL ISS                          ;D;S;S;N
+720571;APORTES A CAJA DE COMPENSACION          ;D;S;S;N
+720575;APORTES ICBF                            ;D;S;S;N
+720578;APORTES SENA                            ;D;S;S;N
+720581;APORTES FONDO DE EMPLEADOS              ;D;S;S;N
+720597;TRASLADO A COSTO VTAS Y PREST DE SERVICI;D;S;S;N
+720599;AJUSTES POR INFLACION                   ;D;S;S;N
+7210;HONORARIOS                              ;D;S;N;N
+721095;OTROS                                   ;D;S;S;N
+721097;TRASLADO A COSTO DE VTAS Y PREST DE SERV;D;S;S;N
+721099;AJUSTES POR INFLACION                   ;D;S;S;N
+73;COSTOS INDIRECTOS                       ;D;S;N;N
+7305;GASTOS DE PERSONAL                      ;D;S;N;N
+730506;SUELDOS                                 ;D;S;S;N
+730527;SUBSIDIO DE TRANSPORTE                  ;D;S;S;N
+730530;CESANTIAS                               ;D;S;S;N
+730533;INTERESES SOBRE CESANTIAS               ;D;S;S;N
+730536;PRIMA DE SERVICIOS                      ;D;S;S;N
+730539;VACACIONES                              ;D;S;S;N
+730542;PRIMA EXTRALEGAL DE HABITACION          ;D;S;S;N
+730543;PRIMA DE EXCLUSIVIDAD                   ;D;S;S;N
+730544;PRIMA DE VACACIONES                     ;D;S;S;N
+730545;SUBSIDIO DE ALIMENTACION                ;D;S;S;N
+730548;BONIFICACION ANUAL                      ;D;S;S;N
+730551;DOTACION Y SUMINISTRO A TRABAJADORES    ;D;S;S;N
+730554;SEGUROS                                 ;D;S;S;N
+730563;CAPACITACION AL PERSONAL                ;D;S;S;N
+730566;GASTOS DEPORTIVOS Y DE RECREACION       ;D;S;S;N
+730569;APORTES AL ISS                          ;D;S;S;N
+730571;APORTES A CAJAS DE COMPENSACION.        ;D;S;S;N
+730575;APORTES ICBF                            ;D;S;S;N
+730578;APORTES SENA                            ;D;S;S;N
+730581;APORTES FONDO DE EMPLEADOS              ;D;S;S;N
+730595;OTROS                                   ;D;S;S;N
+730597;TRASLADO A COSTO DE VTAS Y PREST DE SERV;D;S;S;N
+730599;AJUSTES POR INFLACION                   ;D;S;S;N
+7310;HONORARIOS                              ;D;S;N;N
+731095;OTROS                                   ;D;S;S;N
+731097;TRASLADO A COSTO DE VTAS Y PREST DE SERV;D;S;S;N
+731099;ALUSTES POR INFLACION                   ;D;S;S;N
+7315;IMPUESTOS                               ;D;S;N;N
+731540;DE VEHICULOS                            ;D;S;S;N
+7320;ARRENDANIENTOS                          ;D;S;N;N
+732010;CONSTRUCCCIONES Y EDIFICACIONES         ;D;S;S;N
+732095;OTROS                                   ;D;S;S;N
+732097;TRASLADO A COSTO DE VTAS Y DE PREST SERV;D;S;S;N
+7330;SEGUROS                                 ;D;S;N;N
+733005;MANEJO                                  ;D;S;S;N
+733010;CUMPLIMIENTO                            ;D;S;S;N
+733025;INCENDIO                                ;D;S;S;N
+733035;SUSTRACCION                             ;D;S;S;N
+733040;FLOTA Y EQUIPO DE TRANSPORTE            ;D;S;S;N
+733060;RESPONSABILIDAD CIVIL EXTRACONTRACTUAL  ;D;S;S;N
+733070;ROTURA DE MAQUINARIA                    ;D;S;S;N
+733095;OTROS                                   ;D;S;S;N
+733097;TRASLADO A COSTO VTAS Y PREST DE SERVIC ;D;S;S;N
+733099;AJUSTES POR INFLACION                   ;D;S;S;N
+7335;SERVICIOS                               ;D;S;N;N
+733520;PROCESAMIENTO ELECTRONICO DE DATOS      ;D;S;S;N
+733595;OTROS                                   ;D;S;S;N
+733597;TRASLADO A COSTO VTAS Y PREST DE SERVIC ;D;S;S;N
+733599;AJUSTES POR INFLACION                   ;D;S;S;N
+7345;MANTENIMIENTO Y REPARACIONES            ;D;S;N;N
+734510;CONSTRUCCIONES Y EDIFICACIONES          ;D;S;S;N
+734515;MAQUINARIA Y EQUIPO                     ;D;S;S;N
+734520;EQUIPO DE OFICINA                       ;D;S;S;N
+734525;EQUIPO DE COMPUTACION Y COMUNICACION    ;D;S;S;N
+734540;FLOTA Y EQUIPO DE TRANSPORTE            ;D;S;S;N
+734597;TRASLADO A COSTO  VTAS Y PREST DE SERVIC;D;S;S;N
+734599;AJUSTES POR INFLACION                   ;D;S;S;N
+7360;DEPRECIACIONES                          ;D;S;N;N
+736010;MAQUINARIA Y EQUIPO                     ;D;S;S;N
+736015;EQUIPO DE OFICINA                       ;D;S;S;N
+736020;EQUIPO DE COMPUTACION Y COMUNICACION    ;D;S;S;N
+736025;EQUIPO MEDICO Y CIENTIFICO              ;D;S;S;N
+736035;FLOTA Y EQUIPO DE TRANSPORTE            ;D;S;S;N
+736097;TRASLADO A COSTO VTAS Y PREST DE SERVIC ;D;S;S;N
+736099;AJUSTES POR INFLACION                   ;D;S;S;N
+7395;DIVERSOS                                ;D;S;N;N
+739510;LIBROS-SUSCRIP-PERIODICOS-REVISTAS      ;D;S;S;N
+739525;ELEMENTOS DE ASEO Y CAFETERIA           ;D;S;S;N
+739530;UTILES-PAPELERIA-FPTOCOPIAS             ;D;S;S;N
+739535;COMBUSTIBLES Y LUBRICANTES              ;D;S;S;N
+739545;TAXIS BUSES                             ;D;S;S;N
+739595;OTROS                                   ;D;S;S;N
+739597;TRASLADO A COSTO VTAS Y PREST DE SERVIC ;D;S;S;N
+739599;AJUSTES POR INFLACION                   ;D;S;S;N

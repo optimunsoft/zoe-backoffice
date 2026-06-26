@@ -1,0 +1,8 @@
+dist/
+node_modules/
+*.md
+.env*
+.git/
+.gitignore
+package-lock.json
+yarn.lock 

@@ -1,0 +1,5455 @@
+[
+    {
+      "code": "1",
+      "name": "Activo",
+      "type": "D",
+      "children": [
+        {
+          "code": "11",
+          "name": "Disponible",
+          "type": "D",
+          "children": [
+            {
+              "code": "1105",
+              "name": "Caja",
+              "type": "D",
+              "children": [
+                {
+                  "code": "110504",
+                  "name": "Caja c-10",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "110505",
+                  "name": "Caja general",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "110506",
+                  "name": "Caja creacion empresa",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "110510",
+                  "name": "Cajas menor",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1110",
+              "name": "Bancos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "111001",
+                  "name": "Nacionales",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "11100101",
+                      "name": "Bancolombia cta cte",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "111005",
+                  "name": "Moneda nacional",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1120",
+              "name": "Codes de ahorros",
+              "type": "D",
+              "children": [
+                {
+                  "code": "112005",
+                  "name": "Bancos",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "11200502",
+                      "name": "Davivienda cta ah. 108900116279",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "11200503",
+                      "name": "Fiduciaria superior 6024",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "112010",
+                  "name": "Corporaciones de ahorro y vivienda",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "12",
+          "name": "Inversiones",
+          "type": "D",
+          "children": [
+            {
+              "code": "1205",
+              "name": "Acciones",
+              "type": "D",
+              "children": []
+            },
+            {
+              "code": "1220",
+              "name": "Cedulas",
+              "type": "D",
+              "children": []
+            },
+            {
+              "code": "1225",
+              "name": "Certificados",
+              "type": "D",
+              "children": [
+                {
+                  "code": "122505",
+                  "name": "Certificados de deposito a termino",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "122515",
+                  "name": "Certificados de ahorros de valor const",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1245",
+              "name": "Derechos fiduciarios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "124505",
+                  "name": "Derechos fiiduciarios de inversion daviv",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1295",
+              "name": "Otras inversiones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "129501",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "129505",
+                  "name": "Aportes en cooperativas",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1299",
+              "name": "Provisiones",
+              "type": "C",
+              "children": []
+            }
+          ]
+        },
+        {
+          "code": "13",
+          "name": "Deudores",
+          "type": "D",
+          "children": [
+            {
+              "code": "1305",
+              "name": "Clientes",
+              "type": "D",
+              "children": [
+                {
+                  "code": "130505",
+                  "name": "Nacionales",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "130510",
+                  "name": "Cxc clientes alianza sistecredito",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1325",
+              "name": "Codes por cobrar a socios y accionista",
+              "type": "D",
+              "children": [
+                {
+                  "code": "132505",
+                  "name": "A socios",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "13250501",
+                      "name": "Prestamo a socios",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "1330",
+              "name": "Anticipos y avances",
+              "type": "D",
+              "children": [
+                {
+                  "code": "133005",
+                  "name": "A proveedores",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "133010",
+                  "name": "A contratistas",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "13301001",
+                      "name": "Para dise�o de paginas",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13301002",
+                      "name": "Arreglos locativos",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13301009",
+                      "name": "Otros",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "133015",
+                  "name": "Anticipo empleados",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "133020",
+                  "name": "Anticipo de vacaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "133025",
+                  "name": "A concesionarios",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1335",
+              "name": "Depositos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "133510",
+                  "name": "Para servicios",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1340",
+              "name": "Promesas de compra venta",
+              "type": "D",
+              "children": [
+                {
+                  "code": "134005",
+                  "name": "De bienes raices",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1345",
+              "name": "Ingresos por cobrar",
+              "type": "D",
+              "children": [
+                {
+                  "code": "134510",
+                  "name": "Intereses",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "134520",
+                  "name": "Honorarios",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1355",
+              "name": "Anticipo de imptos y contribuciones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "135505",
+                  "name": "Anticipo de renta",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "135510",
+                  "name": "Anticipo de impto de industria y cio",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "13551001",
+                      "name": "Anticipo de impto de industria y cio",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13551002",
+                      "name": "Anticipo de impto de industria y cio tar",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "135515",
+                  "name": "Anticipo de rte fte",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "13551501",
+                      "name": "Antcipo rete fte 2.5%",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13551502",
+                      "name": "Anticipo rete fte tarjetas",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13551503",
+                      "name": "Anticipo de rte fte 1%",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13551504",
+                      "name": "Honorarios 11%",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "135517",
+                  "name": "Iva retenido 15%",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "13551701",
+                      "name": "Iva retenido 15%",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13551702",
+                      "name": "Iva retenido 15% tarjetas",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "135518",
+                  "name": "Impuesto de industria y comercio retenid",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "13551801",
+                      "name": "Ant. ind y comercio norma anterior",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13551802",
+                      "name": "Ant. ind y cio x tarjetas credito",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13551803",
+                      "name": "Autoretencion ica",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13551804",
+                      "name": "Anticipo de impto ind y cio bga",
+                      "type": "D",
+                      "children": [
+                        {
+                          "code": "1355180401",
+                          "name": "Anticipo ind y cio bga (4.8 x 1000)",
+                          "type": "D",
+                          "children": []
+                        },
+                        {
+                          "code": "1355180402",
+                          "name": "Anticipo ind y cio x avisos y tableros",
+                          "type": "D",
+                          "children": []
+                        },
+                        {
+                          "code": "1355180403",
+                          "name": "Anticipo ind y cio x sobretasa b. (10%)",
+                          "type": "D",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "code": "13551805",
+                      "name": "Autorretencion de ica mun. bga",
+                      "type": "D",
+                      "children": [
+                        {
+                          "code": "1355180501",
+                          "name": "Autorretencion ica tarifa 4.8x1000",
+                          "type": "D",
+                          "children": []
+                        },
+                        {
+                          "code": "1355180502",
+                          "name": "Autorretencion avisos y tableros (15%)",
+                          "type": "D",
+                          "children": []
+                        },
+                        {
+                          "code": "1355180503",
+                          "name": "Autorretencion sobretasa b. (10%)",
+                          "type": "D",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": "135530",
+                  "name": "Impuestos descontables",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "135535",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "135575",
+                  "name": "Autorretencion cree",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "13557501",
+                      "name": "Autoretencion cree 0.4% por ventas",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "135595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1360",
+              "name": "Reclamaciones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "136095",
+                  "name": "Otras",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "13609501",
+                      "name": "Incapacidades",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "1365",
+              "name": "Codes por cobrar a trabajadores",
+              "type": "D",
+              "children": [
+                {
+                  "code": "136595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1370",
+              "name": "Prestamos a particulares",
+              "type": "D",
+              "children": [
+                {
+                  "code": "137001",
+                  "name": "Prestamo a terceros",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1380",
+              "name": "Deudores varios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "138095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "13809501",
+                      "name": "Particulares",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "13809502",
+                      "name": "Tarjetas datafono",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "138096",
+                  "name": "Licencia de maternidad",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1390",
+              "name": "Deudas de dificil cobro",
+              "type": "D",
+              "children": []
+            },
+            {
+              "code": "1399",
+              "name": "Provisiones",
+              "type": "C",
+              "children": []
+            }
+          ]
+        },
+        {
+          "code": "14",
+          "name": "Inventarios",
+          "type": "D",
+          "children": [
+            {
+              "code": "1430",
+              "name": "Productos terminados",
+              "type": "D",
+              "children": [
+                {
+                  "code": "143099",
+                  "name": "Ajuste por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1435",
+              "name": "Mercancias no fabricadas por la empresa",
+              "type": "D",
+              "children": [
+                {
+                  "code": "143542",
+                  "name": "Mercancias no fabricadas por la empresa",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "14354201",
+                      "name": "Mercancias no fabricadas por la empresa",
+                      "type": "D",
+                      "children": [
+                        {
+                          "code": "1435420101",
+                          "name": "Compras gravadas",
+                          "type": "D",
+                          "children": []
+                        },
+                        {
+                          "code": "1435420102",
+                          "name": "Compras no gravadas",
+                          "type": "D",
+                          "children": []
+                        },
+                        {
+                          "code": "1435420103",
+                          "name": "Compras gravadas del 5%",
+                          "type": "D",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "code": "14354202",
+                      "name": "Costo de ventas",
+                      "type": "D",
+                      "children": [
+                        {
+                          "code": "1435420201",
+                          "name": "Costo de ventas gravado",
+                          "type": "D",
+                          "children": []
+                        },
+                        {
+                          "code": "1435420202",
+                          "name": "Costo de ventas no gravado",
+                          "type": "D",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "1440",
+              "name": "Bienes raices",
+              "type": "D",
+              "children": [
+                {
+                  "code": "144099",
+                  "name": "Ajuste por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1450",
+              "name": "Terrenos",
+              "type": "D",
+              "children": []
+            },
+            {
+              "code": "1455",
+              "name": "Materiales repuestos y ascesorios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "145505",
+                  "name": "Lubricantes",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "145599",
+                  "name": "Ajuste por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "15",
+          "name": "Propiedades planta y equipo",
+          "type": "D",
+          "children": [
+            {
+              "code": "1504",
+              "name": "Terrenos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "150401",
+                  "name": "Lote 1.100 mts mesa de los santos",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1516",
+              "name": "Construcciones y edificaciones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "151605",
+                  "name": "Edificios",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "15160501",
+                      "name": "50% casa cra 14w no. 60-36 casa d-08",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "1520",
+              "name": "Maquinaria y equipo",
+              "type": "D",
+              "children": [
+                {
+                  "code": "152010",
+                  "name": "Maquinaria y quipo",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "15201001",
+                      "name": "Costo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "15201002",
+                      "name": "Ivas mayor valor costo",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "152099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1524",
+              "name": "Equipo de oficina",
+              "type": "D",
+              "children": [
+                {
+                  "code": "152405",
+                  "name": "Muebles y enseres",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "15240501",
+                      "name": "Costo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "15240502",
+                      "name": "Ivas mayor valor costo",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "152410",
+                  "name": "Equipos",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "15241001",
+                      "name": "Costo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "15241002",
+                      "name": "Ivas mayor valor costo",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "152415",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "152495",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "15249501",
+                      "name": "Costo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "15249502",
+                      "name": "Ivas mayor valor costo",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "152499",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1528",
+              "name": "Equipo de computo y comunicacion",
+              "type": "D",
+              "children": [
+                {
+                  "code": "152805",
+                  "name": "Equipo de procesamiento de datos",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "15280501",
+                      "name": "Costo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "15280502",
+                      "name": "Ivas mayor valor costo",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "152810",
+                  "name": "Equipo de telecomunicaciones",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "15281001",
+                      "name": "Costo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "15281002",
+                      "name": "Ivas mayor valor costo",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "152825",
+                  "name": "Lineas telefonicas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "152895",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "15289501",
+                      "name": "Costo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "15289502",
+                      "name": "Ivas mayor valor costo",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "1532",
+              "name": "Equipo medico cientifico",
+              "type": "D",
+              "children": [
+                {
+                  "code": "153215",
+                  "name": "Laboratorio",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "153299",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1540",
+              "name": "Flota y equipo de transporte",
+              "type": "D",
+              "children": [
+                {
+                  "code": "154005",
+                  "name": "Autos  camionetas y camperos",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "15400501",
+                      "name": "Costo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "15400502",
+                      "name": "Ivas mayor valor costo",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "154099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1592",
+              "name": "Depreciacion acumulada",
+              "type": "C",
+              "children": [
+                {
+                  "code": "159205",
+                  "name": "Construcciones y edificaciones",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159210",
+                  "name": "Maquinaria y equipo",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159215",
+                  "name": "Equipo de oficina",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159216",
+                  "name": "Construcciones y edificaciones",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159220",
+                  "name": "Maquinaria y equipo",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159224",
+                  "name": "Equipo de oficina",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159225",
+                  "name": "Equipo medico-cientifico",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159228",
+                  "name": "Equipo de computo y telecomunicaciones",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159235",
+                  "name": "Flota y equipo de transporte",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159240",
+                  "name": "Flota y equipo de transporte",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "159299",
+                  "name": "Ajustes por inflacion",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "16",
+          "name": "Intangibles",
+          "type": "D",
+          "children": [
+            {
+              "code": "1635",
+              "name": "Licencias",
+              "type": "D",
+              "children": [
+                {
+                  "code": "163501",
+                  "name": "Softland",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "17",
+          "name": "Diferidos",
+          "type": "D",
+          "children": [
+            {
+              "code": "1705",
+              "name": "Gastos pagados por anticipado",
+              "type": "D",
+              "children": [
+                {
+                  "code": "170501",
+                  "name": "Anticipos de compra",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "170505",
+                  "name": "Intereses",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "170520",
+                  "name": "Seguros y fianzas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "170595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "1710",
+              "name": "Cargos diferidos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "171016",
+                  "name": "Programas para computadores(software)",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "171020",
+                  "name": "Utiles y papeleria",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "171048",
+                  "name": "Elementos de aseo y cafeteria",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "171095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "171099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "18",
+          "name": "Otros activos",
+          "type": "D",
+          "children": [
+            {
+              "code": "1895",
+              "name": "Diversos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "189560",
+                  "name": "Elementos de roperia y lenceria",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "189595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "189599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "19",
+          "name": "Valorizaciones",
+          "type": "D",
+          "children": [
+            {
+              "code": "1910",
+              "name": "De propiedades",
+              "type": "D",
+              "children": [
+                {
+                  "code": "191008",
+                  "name": "Construcciones y edificaciones",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "name": "Pasivo",
+      "type": "C",
+      "children": [
+        {
+          "code": "21",
+          "name": "Obligaciones financieras",
+          "type": "C",
+          "children": [
+            {
+              "code": "2105",
+              "name": "Nacionales",
+              "type": "C",
+              "children": [
+                {
+                  "code": "210510",
+                  "name": "Pagares",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "21051001",
+                      "name": "Davivienda credito 1",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "21051002",
+                      "name": "Bancolombia rotativo",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "21051003",
+                      "name": "Davivienda credito #4029",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "21051004",
+                      "name": "Davivienda credito 220314",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "21051005",
+                      "name": "Credito davivienda #  228168",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "21051006",
+                      "name": "Credito davivienda #1732",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "21051007",
+                      "name": "Credito davivienda #0054",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "210515",
+                  "name": "Particulares",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "22",
+          "name": "Proveedores",
+          "type": "C",
+          "children": [
+            {
+              "code": "2205",
+              "name": "Nacionales",
+              "type": "C",
+              "children": [
+                {
+                  "code": "220501",
+                  "name": "Proveedores nacionales",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "23",
+          "name": "Codes por pagar",
+          "type": "C",
+          "children": [
+            {
+              "code": "2335",
+              "name": "Costos y gastos por pagar",
+              "type": "C",
+              "children": [
+                {
+                  "code": "233505",
+                  "name": "Costos y gastos por pagar",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233510",
+                  "name": "Legales",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233515",
+                  "name": "Libros,suscripciones,periodicos y rvista",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233520",
+                  "name": "Comisiones",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233525",
+                  "name": "Honorarios",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233530",
+                  "name": "Servicios tecnicos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233535",
+                  "name": "Servicios de mantenimiento",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233540",
+                  "name": "Arrendamientos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233545",
+                  "name": "Transportes fletes y acarreos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233550",
+                  "name": "Servicios publicos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233555",
+                  "name": "Seguros",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233560",
+                  "name": "Servicios de aseo y limpieza",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233565",
+                  "name": "Relaciones publicas y/o gtos represent.",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233570",
+                  "name": "Servicio de maquila",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "233595",
+                  "name": "Otros",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2345",
+              "name": "Acreedores oficiales",
+              "type": "C",
+              "children": [
+                {
+                  "code": "234515",
+                  "name": "Municipales",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2355",
+              "name": "Deudas con accionistas o socios",
+              "type": "C",
+              "children": [
+                {
+                  "code": "235510",
+                  "name": "Socios",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2357",
+              "name": "Deudas con directos",
+              "type": "C",
+              "children": []
+            },
+            {
+              "code": "2360",
+              "name": "Dividendos o participaciones por pagar",
+              "type": "C",
+              "children": [
+                {
+                  "code": "236010",
+                  "name": "Participaciones",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2365",
+              "name": "Retencion en la fuente",
+              "type": "C",
+              "children": [
+                {
+                  "code": "236505",
+                  "name": "Ingresos laborales",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23650501",
+                      "name": "Retencion por salarios",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236515",
+                  "name": "Honorarios",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23651501",
+                      "name": "Honorarios declarantes 11%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23651502",
+                      "name": "Honorarios no declarantes 10%",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236520",
+                  "name": "Comisiones",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23652001",
+                      "name": "Comisiones declarantes 11%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23652002",
+                      "name": "Comisiones no declarantes 10%",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236525",
+                  "name": "Servicios",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23652501",
+                      "name": "Servicios declarantes 4%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23652502",
+                      "name": "Servicios no declarantes 6%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23652503",
+                      "name": "Fletes y acarreos 1%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23652504",
+                      "name": "Servicios temporales 2%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23652505",
+                      "name": "Servicio x contrato de construccion y ob",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23652506",
+                      "name": "Puente",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23652507",
+                      "name": "Servicio x dise�o pagina web",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236530",
+                  "name": "Arrendamientos",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23653001",
+                      "name": "Arrendamientos de bienes muebles 4%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23653002",
+                      "name": "Arrendamiento de bienes inmuebles 3.5%",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236535",
+                  "name": "Intereses y r.f",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23653501",
+                      "name": "Intereses y rendimientos financieros 7%",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236540",
+                  "name": "Compras generales",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23654001",
+                      "name": "Compras generales (no declarantes) 3.5%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23654002",
+                      "name": "Compras generales (declarantes) 2.5%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23654003",
+                      "name": "Compra de combustible 0.1%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23654004",
+                      "name": "Compras no declarantes 3.5%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23654005",
+                      "name": "Compras a reg. simple 0.625%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23654006",
+                      "name": "Rete fte compras reg simple 1.25% (50% t",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236565",
+                  "name": "Por impuesto de timbre",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "236570",
+                  "name": "Otras retenciones",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23657005",
+                      "name": "Rentas de trabajo",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236575",
+                  "name": "Anticipo autorretencion cree 0.4",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23657501",
+                      "name": "Anticipo autorretencion cree 0.4 por ven",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236598",
+                  "name": "Retencion en la fuente por pagar",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23659805",
+                      "name": "Periodo actual",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "2367",
+              "name": "Impuesto a las ventas retenido",
+              "type": "C",
+              "children": [
+                {
+                  "code": "236701",
+                  "name": "Compras",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "236702",
+                  "name": "Servicios",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "236703",
+                  "name": "Arriendos",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2368",
+              "name": "Retencion por ica",
+              "type": "C",
+              "children": [
+                {
+                  "code": "236801",
+                  "name": "Rete ica compras de mercancias norma ant",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "236802",
+                  "name": "Rete ica por servicios norma anterior",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "236803",
+                  "name": "Rete ica por otros conceptos norma anter",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "236804",
+                  "name": "Retencion de ica practicada nueva norma",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23680401",
+                      "name": "Rete ica por compra de mercancia",
+                      "type": "C",
+                      "children": [
+                        {
+                          "code": "2368040101",
+                          "name": "Rete ica tarifa 4.8 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040102",
+                          "name": "Rete ica tarifa 5 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040103",
+                          "name": "Rete ica tarifa 5.2 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040104",
+                          "name": "Rete ica tarifa 6 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040105",
+                          "name": "Rete ica tarifa 7 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040106",
+                          "name": "Rete ica tarifa 11.04 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040107",
+                          "name": "Rete ica x compras 5.4 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040108",
+                          "name": "Rete ica tarifa 9 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040109",
+                          "name": "Rete ica por compras a tarifa del 7.2 x",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040110",
+                          "name": "Rete ica tarifa 2.2x1000",
+                          "type": "C",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "code": "23680402",
+                      "name": "Rete ica por servicios",
+                      "type": "C",
+                      "children": [
+                        {
+                          "code": "2368040201",
+                          "name": "Rete ica por servicios del 6x1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040202",
+                          "name": "Rete ica servicios tarifa 7.2 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040203",
+                          "name": "Rete ica por servicios del 4x1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040204",
+                          "name": "Servicios 5.4 x 1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040205",
+                          "name": "Sericios 9 x 1000",
+                          "type": "C",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "code": "23680403",
+                      "name": "Rete ica por otros conceptos",
+                      "type": "C",
+                      "children": [
+                        {
+                          "code": "2368040301",
+                          "name": "Rete ica por otros conceptos",
+                          "type": "C",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "code": "23680404",
+                      "name": "Otros conceptos",
+                      "type": "C",
+                      "children": [
+                        {
+                          "code": "2368040401",
+                          "name": "Rete ica x aviso y tableros (15%)",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368040402",
+                          "name": "Rete ica x sobretasa bomberil (10%)",
+                          "type": "C",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "code": "23680410",
+                      "name": "Rete ica tarifa 2.2x1000",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "236805",
+                  "name": "Autorretencion de ica",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23680501",
+                      "name": "Autorretencion x ventas (4,8x1000)",
+                      "type": "C",
+                      "children": [
+                        {
+                          "code": "2368050101",
+                          "name": "Autoreteica tarifa general 4,8x1000",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368050102",
+                          "name": "Autoreteica x aviso y tableros (15%)",
+                          "type": "C",
+                          "children": []
+                        },
+                        {
+                          "code": "2368050103",
+                          "name": "Autoreteica x sobretasa bomberil (10%)",
+                          "type": "C",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "2370",
+              "name": "Retenciones y aportes de nomina",
+              "type": "C",
+              "children": [
+                {
+                  "code": "237005",
+                  "name": "Entidades promotoras de salud",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23700502",
+                      "name": "Empleado (4%)",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "237006",
+                  "name": "Riesgos laborales",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23700601",
+                      "name": "Riesgos laborales sura (empleador)",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "237010",
+                  "name": "Aportes a parafiscales (empleador)",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23701001",
+                      "name": "Icbf",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23701002",
+                      "name": "Sena",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23701003",
+                      "name": "Cajas de compensacion",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "237045",
+                  "name": "Fondo de pensiones",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "23704501",
+                      "name": "Empleador (12%)",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23704502",
+                      "name": "Empleado (4%)",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "23704503",
+                      "name": "Fondo de solidaridad pensional",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "2380",
+              "name": "Acreedores varios",
+              "type": "C",
+              "children": [
+                {
+                  "code": "238001",
+                  "name": "Poliza general empresa",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "238002",
+                  "name": "Poliza vehiculo",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "238005",
+                  "name": "Ahorro empleados",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "238008",
+                  "name": "Reintegros por pagar",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "238030",
+                  "name": "Fondo de pensiones y/o cesantias",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "238095",
+                  "name": "Otros",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "24",
+          "name": "Impuestos gravamenes y tasas",
+          "type": "C",
+          "children": [
+            {
+              "code": "2404",
+              "name": "De renta y complementarios",
+              "type": "C",
+              "children": [
+                {
+                  "code": "240405",
+                  "name": "Vigencia fiscal corriente",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2408",
+              "name": "Impuesto a las ventas por pagar",
+              "type": "C",
+              "children": [
+                {
+                  "code": "240801",
+                  "name": "Iva generado",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "24080101",
+                      "name": "Generado por ventas 19%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "24080102",
+                      "name": "Generado por ventas 5%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "24080103",
+                      "name": "Por devoluciones en compras",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "240802",
+                  "name": "Iva descontable",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "24080201",
+                      "name": "Descontable por compras 19%",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "24080202",
+                      "name": "Descontable por arrendamiento b. inmuebl",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "24080203",
+                      "name": "Servicios gravados 19%",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "24080204",
+                      "name": "Devoluciones en ventas 19%",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "24080205",
+                      "name": "Iva descontable por servicios 19%",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "24080206",
+                      "name": "Iva descontable x compras 5%",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "24080207",
+                      "name": "Iva descontable 5%",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "240805",
+                  "name": "Iva por pagar",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "24080501",
+                      "name": "Vigencia fiscal",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "2412",
+              "name": "De industria y comercio",
+              "type": "C",
+              "children": [
+                {
+                  "code": "241205",
+                  "name": "Vigencia fiscal corriente",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2436",
+              "name": "De vehiculos",
+              "type": "C",
+              "children": []
+            }
+          ]
+        },
+        {
+          "code": "25",
+          "name": "Obligaciones laborales",
+          "type": "C",
+          "children": [
+            {
+              "code": "2505",
+              "name": "Salarios por pagar",
+              "type": "C",
+              "children": [
+                {
+                  "code": "250501",
+                  "name": "Salarios por pagar",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "250510",
+                  "name": "Sueldos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "250515",
+                  "name": "Auxilio de transporte",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2510",
+              "name": "Cesantias consolidadas",
+              "type": "C",
+              "children": [
+                {
+                  "code": "251001",
+                  "name": "Cesantias consolidadas",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "251010",
+                  "name": "Ley 50/90 y normas posteriores",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2515",
+              "name": "Intereses sobre cesantias",
+              "type": "C",
+              "children": [
+                {
+                  "code": "251505",
+                  "name": "Intereses sobre cesantias",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2520",
+              "name": "Prima de servicios",
+              "type": "C",
+              "children": [
+                {
+                  "code": "252005",
+                  "name": "Prima de servicios",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2525",
+              "name": "Vacaciones consolidadas",
+              "type": "C",
+              "children": [
+                {
+                  "code": "252505",
+                  "name": "Vacaciones",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2530",
+              "name": "Prestaciones extralegales",
+              "type": "C",
+              "children": [
+                {
+                  "code": "253015",
+                  "name": "Dotacion y suministros a trabajadores",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "26",
+          "name": "Pasivos estimados y provisiones",
+          "type": "C",
+          "children": [
+            {
+              "code": "2605",
+              "name": "Para costos y gastos",
+              "type": "C",
+              "children": [
+                {
+                  "code": "260535",
+                  "name": "Servicios publicos",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2610",
+              "name": "Para obligaciones laborales",
+              "type": "C",
+              "children": [
+                {
+                  "code": "261005",
+                  "name": "Cesantias",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "261010",
+                  "name": "Intereses sobre cesantias",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "261015",
+                  "name": "Vacaciones",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "261020",
+                  "name": "Prima de servicios",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2615",
+              "name": "Para obligaciones fiscales",
+              "type": "C",
+              "children": [
+                {
+                  "code": "261505",
+                  "name": "De renta y complementarios",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "261510",
+                  "name": "De industria y comercio",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "28",
+          "name": "Otros pasivos",
+          "type": "C",
+          "children": [
+            {
+              "code": "2805",
+              "name": "Anticipos y avances recibidos",
+              "type": "C",
+              "children": [
+                {
+                  "code": "280505",
+                  "name": "De clientes",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "280510",
+                  "name": "Sobre contratos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "280595",
+                  "name": "Otros",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "28059501",
+                      "name": "Consignaciones no identificadas",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "28059502",
+                      "name": "Anticipo empleados",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "2810",
+              "name": "Depositos recibidos",
+              "type": "C",
+              "children": [
+                {
+                  "code": "281005",
+                  "name": "Otros",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "281030",
+                  "name": "De manejo de bienes",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "2815",
+              "name": "Ingresos recibidos para terceros",
+              "type": "C",
+              "children": [
+                {
+                  "code": "281505",
+                  "name": "Valores recibidos para terceros-sistecre",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "name": "Patrimonio",
+      "type": "C",
+      "children": [
+        {
+          "code": "31",
+          "name": "Capital",
+          "type": "C",
+          "children": [
+            {
+              "code": "3105",
+              "name": "Capital suscrito y pagado",
+              "type": "C",
+              "children": [
+                {
+                  "code": "310505",
+                  "name": "Capital autorizado",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "3115",
+              "name": "Cuotas o partes de interes social",
+              "type": "C",
+              "children": [
+                {
+                  "code": "311505",
+                  "name": "Cuotas o partes de interes social",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "33",
+          "name": "Reservas",
+          "type": "C",
+          "children": [
+            {
+              "code": "3305",
+              "name": "Reservas obligatorias",
+              "type": "C",
+              "children": [
+                {
+                  "code": "330505",
+                  "name": "Reserva legal",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "3315",
+              "name": "Reservas ocasionales",
+              "type": "C",
+              "children": [
+                {
+                  "code": "331535",
+                  "name": "Para capital de trabajo",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "34",
+          "name": "Revalorizacion del patrimonio",
+          "type": "C",
+          "children": [
+            {
+              "code": "3405",
+              "name": "Ajustes por inflacion",
+              "type": "C",
+              "children": [
+                {
+                  "code": "340505",
+                  "name": "De capital social",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "340510",
+                  "name": "Cuotas o partes de interes social",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "340515",
+                  "name": "De reservas",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "340520",
+                  "name": "De resultados de ejercicios anteriores",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "3410",
+              "name": "De superavit de capital",
+              "type": "C",
+              "children": []
+            },
+            {
+              "code": "3415",
+              "name": "De reservas",
+              "type": "C",
+              "children": [
+                {
+                  "code": "341505",
+                  "name": "Obligatorias",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "341510",
+                  "name": "Estatutarias",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "36",
+          "name": "Resultados del ejercicio",
+          "type": "C",
+          "children": [
+            {
+              "code": "3605",
+              "name": "Utilidad del ejercicio",
+              "type": "C",
+              "children": [
+                {
+                  "code": "360505",
+                  "name": "Utilidad del ejercicio",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "3610",
+              "name": "Perdida del ejercicio",
+              "type": "C",
+              "children": [
+                {
+                  "code": "361001",
+                  "name": "Perdida del ejercicio",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "37",
+          "name": "Utilidades acumuladas",
+          "type": "C",
+          "children": [
+            {
+              "code": "3705",
+              "name": "Utilidades acumuladas",
+              "type": "C",
+              "children": [
+                {
+                  "code": "370505",
+                  "name": "Utilidades acumuladas",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "3710",
+              "name": "Perdidas acumuladas",
+              "type": "C",
+              "children": [
+                {
+                  "code": "371005",
+                  "name": "Perdidas acumuladas",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "38",
+          "name": "Superavit por valorizaciones",
+          "type": "C",
+          "children": [
+            {
+              "code": "3805",
+              "name": "De inversiones",
+              "type": "C",
+              "children": [
+                {
+                  "code": "380505",
+                  "name": "Acciones",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "3810",
+              "name": "De propiedades, planta y equipo",
+              "type": "C",
+              "children": [
+                {
+                  "code": "381004",
+                  "name": "Terrenos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "381008",
+                  "name": "Construcciones y edificaciones",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "381016",
+                  "name": "Equipo de oficina",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "381020",
+                  "name": "Equipo de computacion y comunicacion",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "name": "Ingresos",
+      "type": "C",
+      "children": [
+        {
+          "code": "41",
+          "name": "Operacionales",
+          "type": "C",
+          "children": [
+            {
+              "code": "4135",
+              "name": "Comercio al por mayor y por menor",
+              "type": "C",
+              "children": [
+                {
+                  "code": "413542",
+                  "name": "Venta  de materiales para construcc y or",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "41354201",
+                      "name": "Ventas gravadas 19%",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "41354202",
+                      "name": "Ventas excluidas",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "41354203",
+                      "name": "Ventas gravadas del 5%",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "4175",
+              "name": "Devoluciones en ventas",
+              "type": "D",
+              "children": [
+                {
+                  "code": "417501",
+                  "name": "Devoluciones en ventas",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "42",
+          "name": "No operacionales",
+          "type": "C",
+          "children": [
+            {
+              "code": "4210",
+              "name": "Financieros",
+              "type": "C",
+              "children": [
+                {
+                  "code": "421005",
+                  "name": "Intereses",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "42100501",
+                      "name": "Rendimientos codes de ahorro",
+                      "type": "C",
+                      "children": []
+                    },
+                    {
+                      "code": "42100502",
+                      "name": "Descuentos arriendo",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "421025",
+                  "name": "Financiacion",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "421040",
+                  "name": "Descuentos comerciales condicionados",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "421099",
+                  "name": "Ajustes por inflacion",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "4230",
+              "name": "Honorarios",
+              "type": "C",
+              "children": [
+                {
+                  "code": "423005",
+                  "name": "Revisoria fiscal",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "4245",
+              "name": "Utilidad en venta de propiedades planta",
+              "type": "C",
+              "children": [
+                {
+                  "code": "424516",
+                  "name": "Contrucciones y edificaciones",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "424520",
+                  "name": "Maquinaria y equipo",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "424524",
+                  "name": "Equipo de oficina",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "424528",
+                  "name": "Equipo de computacion y comunicacion",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "424540",
+                  "name": "Flota y equipo de transporte",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "4250",
+              "name": "Recuperaciones",
+              "type": "C",
+              "children": [
+                {
+                  "code": "425005",
+                  "name": "Reposicion de inventario",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "425010",
+                  "name": "Seguros",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "425030",
+                  "name": "Descuentos concedidos",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "42503001",
+                      "name": "Descuentos concedidos",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "425035",
+                  "name": "Reintegro provisiones",
+                  "type": "C",
+                  "children": [
+                    {
+                      "code": "42503501",
+                      "name": "Reintegro de costo x provision de ps",
+                      "type": "C",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "425050",
+                  "name": "Reintegro de otros costos y gastos",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "4255",
+              "name": "Indemnizaciones",
+              "type": "C",
+              "children": [
+                {
+                  "code": "425540",
+                  "name": "Por incapacidades e.p.s",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "4295",
+              "name": "Diversos",
+              "type": "C",
+              "children": [
+                {
+                  "code": "429505",
+                  "name": "Aprovechamientos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "429551",
+                  "name": "Excedentes c-10",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "429552",
+                  "name": "Excedentes caja",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "429567",
+                  "name": "Fotocopias-utiles-papeleria",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "429581",
+                  "name": "Ajuste al peso",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "429599",
+                  "name": "Ajustes por inflacion",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "47",
+          "name": "Ajustes por inflacion",
+          "type": "C",
+          "children": [
+            {
+              "code": "4705",
+              "name": "Correccion monetaria",
+              "type": "C",
+              "children": [
+                {
+                  "code": "470515",
+                  "name": "Propiedad planta y equipo (cr)",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "470525",
+                  "name": "Activos diferidos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "470530",
+                  "name": "Otros activos",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "470540",
+                  "name": "Patrimonio",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "470545",
+                  "name": "Depreciacion acumulada",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "470565",
+                  "name": "Ingresos operacionales",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "470570",
+                  "name": "Ingresos no operacionales",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "470575",
+                  "name": "Gastos operacionales",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "470585",
+                  "name": "Gastos no operacionales",
+                  "type": "C",
+                  "children": []
+                },
+                {
+                  "code": "470594",
+                  "name": "Costo de produccion o de operacion",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "name": "Gastos",
+      "type": "D",
+      "children": [
+        {
+          "code": "51",
+          "name": "Operacionales de admon",
+          "type": "D",
+          "children": [
+            {
+              "code": "5105",
+              "name": "Gastos de personal",
+              "type": "D",
+              "children": [
+                {
+                  "code": "510506",
+                  "name": "Sueldos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510518",
+                  "name": "Comisiones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510520",
+                  "name": "Incapacidades",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510524",
+                  "name": "Incapacidades asumidas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510527",
+                  "name": "Auxilio de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510530",
+                  "name": "Cesantias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510533",
+                  "name": "Intereses sobre cesantias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510536",
+                  "name": "Prima de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510539",
+                  "name": "Vacaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510542",
+                  "name": "Primas extralegales",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510543",
+                  "name": "Prima de exclusividad",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510544",
+                  "name": "Prima de vacaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510545",
+                  "name": "Auxilio no salarial",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510548",
+                  "name": "Bonificacion anual",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510550",
+                  "name": "Bonos reconocimiento empleados",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510551",
+                  "name": "Dotacion y suministro",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510554",
+                  "name": "Seguros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510563",
+                  "name": "Capacitacion al personal",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510566",
+                  "name": "Gastos deportivos y de recreacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510568",
+                  "name": "Administradora de riesgos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510569",
+                  "name": "Eps",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510570",
+                  "name": "Pensiones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510572",
+                  "name": "Comfenalco",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510575",
+                  "name": "Icbf",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510578",
+                  "name": "Sena",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510580",
+                  "name": "Iss independiente",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510581",
+                  "name": "Aportes fondo de empleados",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510584",
+                  "name": "Gastos medicos y drogas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510597",
+                  "name": "Traslado a costos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "510599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5110",
+              "name": "Honorarios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "511005",
+                  "name": "Junta directiva",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511010",
+                  "name": "Revisoria fiscal",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511015",
+                  "name": "Auditoria externa",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511025",
+                  "name": "Asesoria juridica",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511030",
+                  "name": "Asesoria financiera",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511035",
+                  "name": "Asesoria tecnica",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511040",
+                  "name": "Seguridad industrial",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "51109501",
+                      "name": "Asesoria contable",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51109502",
+                      "name": "Apoyo comercial",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51109503",
+                      "name": "Asesoria informatica y programacion",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "511097",
+                  "name": "Traslado a costos de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5115",
+              "name": "Impuestos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "511505",
+                  "name": "Industria y comercio",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511515",
+                  "name": "A la propiedad raiz",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511525",
+                  "name": "Valorizacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511540",
+                  "name": "De vehiculos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511545",
+                  "name": "Impuesto al consumo",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "511595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "51159501",
+                      "name": "Registro",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51159502",
+                      "name": "Iva asumido en gastos",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51159503",
+                      "name": "Impo consumo celulares",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51159504",
+                      "name": "Impuesto al consumo restaurantes",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51159505",
+                      "name": "Impuesto alumbrado publico",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51159506",
+                      "name": "Impoconsumo bolsas plasticas",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "511599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5120",
+              "name": "Arrendamientos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "512010",
+                  "name": "Construcciones y edificaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "512020",
+                  "name": "Maquinaria y equipo",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "512040",
+                  "name": "Flota y equipo de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "512095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "512097",
+                  "name": "Traslado a costos de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "512099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5125",
+              "name": "Contribuciones  y afiliaciones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "512505",
+                  "name": "Contribuciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "512510",
+                  "name": "Afiliaciones y sostenimiento",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "512599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5130",
+              "name": "Seguros",
+              "type": "D",
+              "children": [
+                {
+                  "code": "513005",
+                  "name": "Manejo",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513010",
+                  "name": "Seguro creditos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513020",
+                  "name": "Vida colectiva",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513025",
+                  "name": "Incendio",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513035",
+                  "name": "Sustraccion y hurto",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513040",
+                  "name": "Flota y equipo de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513045",
+                  "name": "Poliza general empresa",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513050",
+                  "name": "Seguro falabella",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513070",
+                  "name": "Rotura de maquinaria",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513097",
+                  "name": "Traslado a costos de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5135",
+              "name": "Servicios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "513505",
+                  "name": "Aseo y vigilancia",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513510",
+                  "name": "Administracion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513515",
+                  "name": "Asistencia tǹcnica",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513525",
+                  "name": "Acueducto y alcantarillado",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513530",
+                  "name": "Energ��a elǹctrica",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513535",
+                  "name": "Telǹfono",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513540",
+                  "name": "Mensajeria, envios y domicilios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513545",
+                  "name": "Fax y telex",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513550",
+                  "name": "Transporte fletes y acarreos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513555",
+                  "name": "Gas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "513595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "51359501",
+                      "name": "Descargues",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51359502",
+                      "name": "Maquila",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51359503",
+                      "name": "Por servicios auxiliar contable",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51359504",
+                      "name": "Prestacion servicios",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51359505",
+                      "name": "Pruebas psicotecnicas",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51359506",
+                      "name": "Examenes medicos ssgt",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "513599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5140",
+              "name": "Gastos legales",
+              "type": "D",
+              "children": [
+                {
+                  "code": "514005",
+                  "name": "Notariales",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514010",
+                  "name": "Registro mercantil",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514015",
+                  "name": "Tramites y licencias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "51409501",
+                      "name": "Certificados",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51409502",
+                      "name": "Otros",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "514099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5145",
+              "name": "Mantenimiento y reparaciones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "514510",
+                  "name": "Construcciones y edificaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514515",
+                  "name": "Maquinaria y equipo",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514520",
+                  "name": "Equipo de oficina",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514525",
+                  "name": "Equipo de computacion y comunicacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514540",
+                  "name": "Flota y equipo de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514597",
+                  "name": "Traslado a costos de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "514599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5150",
+              "name": "Adecuacion e instalacion",
+              "type": "D",
+              "children": [
+                {
+                  "code": "515005",
+                  "name": "Instalaciones electricas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "515006",
+                  "name": "Adecuacion refuerzo para burro",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "515010",
+                  "name": "Construcciones  y edificaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "515015",
+                  "name": "Reparaciones locativas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "515095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "515099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5155",
+              "name": "Gastos de viaje",
+              "type": "D",
+              "children": [
+                {
+                  "code": "515505",
+                  "name": "Alojamiento y manutencion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "515515",
+                  "name": "Pasajes aereos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "515520",
+                  "name": "Pasajes terrestres",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "515595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "51559501",
+                      "name": "Parqueaderos",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "51559502",
+                      "name": "Peajes",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "515599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5160",
+              "name": "Depreciacion acumulada",
+              "type": "D",
+              "children": [
+                {
+                  "code": "516005",
+                  "name": "Construcciones y edificacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "516010",
+                  "name": "Maquinaria y equipo",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "516015",
+                  "name": "Equipo de oficina",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "516020",
+                  "name": "Equipo de computacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "516025",
+                  "name": "Equipo medico y cientifico",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "516035",
+                  "name": "Flota y equipo de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "516040",
+                  "name": "Flota y equipo de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "516097",
+                  "name": "Traslado a costos de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "516099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5195",
+              "name": "Diversos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "519510",
+                  "name": "Libros-suscripc-periodicos y revistas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519520",
+                  "name": "Gastos de representacion y rel publicas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519525",
+                  "name": "Elementos de aseo y cafeteria",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519530",
+                  "name": "Utiles  papeleria y fotocopias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519535",
+                  "name": "Combustibles",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519540",
+                  "name": "Envases y empaque",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519545",
+                  "name": "Taxis y buses",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519550",
+                  "name": "Estampillas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519560",
+                  "name": "Casinos y restaurantes",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519561",
+                  "name": "Hoteles",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519565",
+                  "name": "Parqueaderos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519570",
+                  "name": "Emergencia sanitaria",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519575",
+                  "name": "Medicamentos, elementos botiquin",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519580",
+                  "name": "Gastos no deducibles",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519597",
+                  "name": "Traslado a costos de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "519599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "52",
+          "name": "Operacionales de venta",
+          "type": "D",
+          "children": [
+            {
+              "code": "5205",
+              "name": "Gastos de personal",
+              "type": "D",
+              "children": [
+                {
+                  "code": "520506",
+                  "name": "Sueldos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520515",
+                  "name": "Reparaciones locativas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520518",
+                  "name": "Comision",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520524",
+                  "name": "Incapacidades",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520527",
+                  "name": "Auxilio de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520530",
+                  "name": "Cesantias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520533",
+                  "name": "Intereses sobre cesantias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520536",
+                  "name": "Prima de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520539",
+                  "name": "Vacaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520542",
+                  "name": "Primas extralegales",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520551",
+                  "name": "Dotacion y suministro a trabajadores",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520563",
+                  "name": "Capacitacion al personal",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520569",
+                  "name": "Aportes al iss",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520572",
+                  "name": "Aportes cajas de compensacion familiar",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520575",
+                  "name": "Aportes icbf",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520578",
+                  "name": "Aportes sena",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "520599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5210",
+              "name": "Honorarios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "521010",
+                  "name": "Revisoria fiscal",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "521099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5215",
+              "name": "Impuestos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "521505",
+                  "name": "Industria y comercio",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "521515",
+                  "name": "A la propiedad raiz",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "521540",
+                  "name": "De vehiculos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "521599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5235",
+              "name": "Servicios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "523505",
+                  "name": "Aseo y vigilancia",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "523525",
+                  "name": "Acueducto y alcantarillado",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "523530",
+                  "name": "Energia electrica",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "523540",
+                  "name": "Correo, portes y telegramas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "523545",
+                  "name": "Fax y telex",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "523550",
+                  "name": "Transporte, fletes y acarreos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "523555",
+                  "name": "Gas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "523560",
+                  "name": "Publicidad",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "523595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "523599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5240",
+              "name": "Gastos legales",
+              "type": "D",
+              "children": [
+                {
+                  "code": "524005",
+                  "name": "Notariales",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "524010",
+                  "name": "Registro mercantil",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "524015",
+                  "name": "Tramites y licencias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "524095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "524099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5245",
+              "name": "Mantenimiento y reparaciones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "524520",
+                  "name": "Equipo de oficina",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "524525",
+                  "name": "Equipo de computacion y comunicacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "524599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5250",
+              "name": "Adecuacion e instalacion",
+              "type": "D",
+              "children": [
+                {
+                  "code": "525005",
+                  "name": "Instalaciones electricas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "525095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "52509501",
+                      "name": "Implementos para adecuar eventos promoci",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "525099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5255",
+              "name": "Gastos de viaje",
+              "type": "D",
+              "children": [
+                {
+                  "code": "525515",
+                  "name": "Pasajes aereos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "525520",
+                  "name": "Pasajes terrestres",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "525595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "525599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5260",
+              "name": "Depreciaciones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "526015",
+                  "name": "Equipo de oficina",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "526020",
+                  "name": "Equipo de computacion y comunicacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "526099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5295",
+              "name": "Diversos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "529560",
+                  "name": "Publicidad y propaganda",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "529599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "53",
+          "name": "No operacionales",
+          "type": "D",
+          "children": [
+            {
+              "code": "5305",
+              "name": "Financieros",
+              "type": "D",
+              "children": [
+                {
+                  "code": "530505",
+                  "name": "Gastos bancarios",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "53050501",
+                      "name": "Cuota de manejo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53050502",
+                      "name": "Iva",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53050503",
+                      "name": "Cuota manejo",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53050504",
+                      "name": "Chequera",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53050505",
+                      "name": "Cobro depositos locales",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53050506",
+                      "name": "Otros",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53050540",
+                      "name": "Fondo nacional de garantias",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53050550",
+                      "name": "Otros gastos estudio de credito",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "530510",
+                  "name": "Gmf",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "530515",
+                  "name": "Comisiones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "530520",
+                  "name": "Intereses",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "53052001",
+                      "name": "Intereses moratorios",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53052002",
+                      "name": "Intereses credito",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53052003",
+                      "name": "Intereses sobregiro",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "53052004",
+                      "name": "Intereses",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "code": "530535",
+                  "name": "Descuentos comerciales condicionados",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "530540",
+                  "name": "Comision datafono redeban",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "530595",
+                  "name": "Gasto financiero x cesion cont. sistecre",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "530599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5310",
+              "name": "Perdida en venta y retiro de bienes",
+              "type": "D",
+              "children": [
+                {
+                  "code": "531010",
+                  "name": "Perdida en venta de otros activos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "531015",
+                  "name": "Venta de propiedad planta y equipo",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "531040",
+                  "name": "Perdidas por siniestros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "531095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "531099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5315",
+              "name": "Gastos extraordinarios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "531520",
+                  "name": "Impuestos asumidos",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "5395",
+              "name": "Gastos diversos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "539520",
+                  "name": "Sanciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "539525",
+                  "name": "Donaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "539552",
+                  "name": "Faltante caja general",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "539581",
+                  "name": "Ajuste al peso",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "539595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "539599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "54",
+          "name": "Impuesto de renta",
+          "type": "D",
+          "children": [
+            {
+              "code": "5405",
+              "name": "Impuesto de renta y complementarios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "540505",
+                  "name": "Impuesto de renta y complementario",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "59",
+          "name": "Ganancias y perdidas",
+          "type": "D",
+          "children": [
+            {
+              "code": "5905",
+              "name": "Ganancias y perdidas",
+              "type": "D",
+              "children": [
+                {
+                  "code": "590505",
+                  "name": "Ganancias y perdidas",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "6",
+      "name": "Costos",
+      "type": "D",
+      "children": [
+        {
+          "code": "61",
+          "name": "Costo de ventas",
+          "type": "D",
+          "children": [
+            {
+              "code": "6135",
+              "name": "Costo de ventas",
+              "type": "D",
+              "children": [
+                {
+                  "code": "613542",
+                  "name": "Costo de ventas",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "61354201",
+                      "name": "Costo de ventas gravadas 19%",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "61354202",
+                      "name": "Costo de ventas no gravadadas",
+                      "type": "D",
+                      "children": []
+                    },
+                    {
+                      "code": "61354203",
+                      "name": "Costo gravado 5%",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "6155",
+              "name": "Actividades empresariales",
+              "type": "D",
+              "children": [
+                {
+                  "code": "615530",
+                  "name": "Consultoria en programas de informatica",
+                  "type": "D",
+                  "children": [
+                    {
+                      "code": "61553001",
+                      "name": "Licencias para la venta",
+                      "type": "D",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "code": "6160",
+              "name": "Ense�anza",
+              "type": "D",
+              "children": [
+                {
+                  "code": "616005",
+                  "name": "Actividades relacionadas con educacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "616099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "62",
+          "name": "Compras",
+          "type": "D",
+          "children": [
+            {
+              "code": "6205",
+              "name": "De mercancias",
+              "type": "D",
+              "children": [
+                {
+                  "code": "620599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "6225",
+              "name": "Devoluciones en compras",
+              "type": "C",
+              "children": [
+                {
+                  "code": "622599",
+                  "name": "Ajustes por inflacion",
+                  "type": "C",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "7",
+      "name": "Costos de produccion o de operacion",
+      "type": "D",
+      "children": [
+        {
+          "code": "72",
+          "name": "Mano de obra directa",
+          "type": "D",
+          "children": [
+            {
+              "code": "7205",
+              "name": "Gastos de personal",
+              "type": "D",
+              "children": [
+                {
+                  "code": "720506",
+                  "name": "Sueldos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720527",
+                  "name": "Subsidio de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720530",
+                  "name": "Cesantias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720533",
+                  "name": "Intereses sobre cesantias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720536",
+                  "name": "Prima de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720539",
+                  "name": "Vacaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720542",
+                  "name": "Prima extralegal de habitacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720543",
+                  "name": "Prima de exclusividad",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720544",
+                  "name": "Prima de vacaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720545",
+                  "name": "Subsidio de alimentacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720548",
+                  "name": "Bonificacion anual",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720551",
+                  "name": "Dotacion y suministro a trabajadores",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720554",
+                  "name": "Seguros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720569",
+                  "name": "Aportes al iss",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720571",
+                  "name": "Aportes a caja de compensacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720575",
+                  "name": "Aportes icbf",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720578",
+                  "name": "Aportes sena",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720581",
+                  "name": "Aportes fondo de empleados",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720597",
+                  "name": "Traslado a costo vtas y prest de servici",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "720599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "7210",
+              "name": "Honorarios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "721095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "721097",
+                  "name": "Traslado a costo de vtas y prest de serv",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "721099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "73",
+          "name": "Costos indirectos",
+          "type": "D",
+          "children": [
+            {
+              "code": "7305",
+              "name": "Gastos de personal",
+              "type": "D",
+              "children": [
+                {
+                  "code": "730506",
+                  "name": "Sueldos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730527",
+                  "name": "Subsidio de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730530",
+                  "name": "Cesantias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730533",
+                  "name": "Intereses sobre cesantias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730536",
+                  "name": "Prima de servicios",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730539",
+                  "name": "Vacaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730542",
+                  "name": "Prima extralegal de habitacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730543",
+                  "name": "Prima de exclusividad",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730544",
+                  "name": "Prima de vacaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730545",
+                  "name": "Subsidio de alimentacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730548",
+                  "name": "Bonificacion anual",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730551",
+                  "name": "Dotacion y suministro a trabajadores",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730554",
+                  "name": "Seguros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730563",
+                  "name": "Capacitacion al personal",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730566",
+                  "name": "Gastos deportivos y de recreacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730569",
+                  "name": "Aportes al iss",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730571",
+                  "name": "Aportes a cajas de compensacion.",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730575",
+                  "name": "Aportes icbf",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730578",
+                  "name": "Aportes sena",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730581",
+                  "name": "Aportes fondo de empleados",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730597",
+                  "name": "Traslado a costo de vtas y prest de serv",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "730599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "7310",
+              "name": "Honorarios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "731095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "731097",
+                  "name": "Traslado a costo de vtas y prest de serv",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "731099",
+                  "name": "Alustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "7315",
+              "name": "Impuestos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "731540",
+                  "name": "De vehiculos",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "7320",
+              "name": "Arrendanientos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "732010",
+                  "name": "Construccciones y edificaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "732095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "732097",
+                  "name": "Traslado a costo de vtas y de prest serv",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "7330",
+              "name": "Seguros",
+              "type": "D",
+              "children": [
+                {
+                  "code": "733005",
+                  "name": "Manejo",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733010",
+                  "name": "Cumplimiento",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733025",
+                  "name": "Incendio",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733035",
+                  "name": "Sustraccion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733040",
+                  "name": "Flota y equipo de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733060",
+                  "name": "Responsabilidad civil extracontractual",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733070",
+                  "name": "Rotura de maquinaria",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733095",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733097",
+                  "name": "Traslado a costo vtas y prest de servic",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "7335",
+              "name": "Servicios",
+              "type": "D",
+              "children": [
+                {
+                  "code": "733520",
+                  "name": "Procesamiento electronico de datos",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733597",
+                  "name": "Traslado a costo vtas y prest de servic",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "733599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "7345",
+              "name": "Mantenimiento y reparaciones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "734510",
+                  "name": "Construcciones y edificaciones",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "734515",
+                  "name": "Maquinaria y equipo",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "734520",
+                  "name": "Equipo de oficina",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "734525",
+                  "name": "Equipo de computacion y comunicacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "734540",
+                  "name": "Flota y equipo de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "734597",
+                  "name": "Traslado a costo  vtas y prest de servic",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "734599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "7360",
+              "name": "Depreciaciones",
+              "type": "D",
+              "children": [
+                {
+                  "code": "736010",
+                  "name": "Maquinaria y equipo",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "736015",
+                  "name": "Equipo de oficina",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "736020",
+                  "name": "Equipo de computacion y comunicacion",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "736025",
+                  "name": "Equipo medico y cientifico",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "736035",
+                  "name": "Flota y equipo de transporte",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "736097",
+                  "name": "Traslado a costo vtas y prest de servic",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "736099",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "code": "7395",
+              "name": "Diversos",
+              "type": "D",
+              "children": [
+                {
+                  "code": "739510",
+                  "name": "Libros-suscrip-periodicos-revistas",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "739525",
+                  "name": "Elementos de aseo y cafeteria",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "739530",
+                  "name": "Utiles-papeleria-fptocopias",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "739535",
+                  "name": "Combustibles y lubricantes",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "739545",
+                  "name": "Taxis buses",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "739595",
+                  "name": "Otros",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "739597",
+                  "name": "Traslado a costo vtas y prest de servic",
+                  "type": "D",
+                  "children": []
+                },
+                {
+                  "code": "739599",
+                  "name": "Ajustes por inflacion",
+                  "type": "D",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  

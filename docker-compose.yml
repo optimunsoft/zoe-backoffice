@@ -1,0 +1,20 @@
+services:
+  zoe-backoffice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zoe-backoffice:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5300:8080"
+    env_file:
+      - .env.production
+    networks:
+      zoe-internal:
+        aliases:
+          - zoe-backoffice
+
+networks:
+  zoe-internal:
+    external: true
+    name: zoe-internal
