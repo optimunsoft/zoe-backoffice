@@ -9,7 +9,7 @@ import { UpdateDemonstrationDto } from './dto/update-demonstration.dto';
 import { DemonstrationsService } from './demonstrations.service';
 import { Throttle } from '@nestjs/throttler';
 
-@Controller({ path: 'backoffice/demonstrations', version: '1' })
+@Controller({ path: 'demonstrations', version: '1' })
 export class DemonstrationsController {
   constructor(private readonly demonstrationsService: DemonstrationsService) {}
 
