@@ -47,6 +47,10 @@ interface EnvVarsI {
     MAILER_API_KEY: string;
     MAILER_HOST_ADDRESS: string;
 
+    OPENAI_API_KEY: string;
+    OPENAI_MODEL: string;
+    RUT_PDF_MAX_MB: number;
+
     AUTH0_DOMAIN: string;
     AUTH0_CUSTOM_DOMAIN: string;
     AUTH0_AUDIENCE: string;
@@ -84,6 +88,10 @@ const envSchema = Joi.object({
 
     MAILER_API_KEY: Joi.string().required() ?? '',
     MAILER_HOST_ADDRESS: Joi.string().required() ?? '',
+
+    OPENAI_API_KEY: Joi.string().required() ?? '',
+    OPENAI_MODEL: Joi.string().default('gpt-4.1-mini') ?? '',
+    RUT_PDF_MAX_MB: Joi.number().integer().positive().default(10) ?? '',
 
     AUTH0_DOMAIN: Joi.string().required() ?? '',
     AUTH0_CUSTOM_DOMAIN: Joi.string().required() ?? '',
@@ -135,6 +143,10 @@ export const envs = {
     
     mailer_api_key: envVars.MAILER_API_KEY,
     mailer_host_address: envVars.MAILER_HOST_ADDRESS,
+
+    openai_api_key: envVars.OPENAI_API_KEY,
+    openai_model: envVars.OPENAI_MODEL,
+    rut_pdf_max_mb: envVars.RUT_PDF_MAX_MB,
 
     auth0_domain: envVars.AUTH0_DOMAIN,
     auth0_custom_domain: envVars.AUTH0_CUSTOM_DOMAIN,

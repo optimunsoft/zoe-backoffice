@@ -1,5 +1,6 @@
 import {
     CoreCatalog,
+    CoreCatalogMatchDto,
     CoreCompanyListItemDto,
     CoreCompanyDto,
     CoreCompanyLogoDto,
@@ -14,6 +15,7 @@ import {
     SearchCoreUsersDto,
     SearchCoreCompaniesDto,
     SearchCoreUserListDto,
+    MatchCoreCatalogItemDto,
     UpsertCoreThirdPartyDto,
 } from '../dto/backoffice-core.dto';
 import { PaginatedResult } from 'src/shared/interfaces/PaginatedResult';
@@ -44,6 +46,7 @@ export interface IBackofficeCoreIntegration {
     resolveCatalogs(
         requests: Array<{ catalog: CoreCatalog; ids: string[] }>,
     ): Promise<CoreResolvedCatalogDto[]>;
+    matchCatalogs(requests: MatchCoreCatalogItemDto[]): Promise<CoreCatalogMatchDto[]>;
 }
 
 

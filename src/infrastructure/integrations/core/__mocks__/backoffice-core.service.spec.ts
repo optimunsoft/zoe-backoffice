@@ -101,6 +101,37 @@ describe('BackofficeCoreService', () => {
         }));
     });
 
+    it('calls CORE catalog match with extracted text values', async () => {
+        const response = [{
+            catalog: 'documentType',
+            input: { name: 'NIT' },
+            id: '11111111-1111-4111-8111-111111111111',
+            code: '31',
+            name: 'NIT',
+            matchedBy: 'name',
+            confidence: 1,
+        }];
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.matchCatalogs([
+            { catalog: 'documentType' as any, name: 'NIT' },
+        ])).resolves.toEqual(response);
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: 'http://core/api/v1/internal/common/catalogs/match',
+            method: 'POST',
+            data: {
+                items: [{ catalog: 'documentType', name: 'NIT' }],
+            },
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
     it('deduplicates and splits resolutions into batches of 500', async () => {
         const request = jest.fn().mockResolvedValue({
             data: { status: true, message: 'OK', response: [] },
@@ -148,5 +179,4 @@ describe('BackofficeCoreService', () => {
             .rejects.toBeInstanceOf(BadGatewayException);
     });
 });
-
 

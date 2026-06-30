@@ -12,6 +12,7 @@ import { AxiosRequestConfig } from 'axios';
 import { envs } from 'src/config/env.config';
 import {
     CoreCatalog,
+    CoreCatalogMatchDto,
     CoreCompanyListItemDto,
     CoreCompanyPageDto,
     CoreCompanyDto,
@@ -28,6 +29,7 @@ import {
     SearchCoreUsersDto,
     SearchCoreCompaniesDto,
     SearchCoreUserListDto,
+    MatchCoreCatalogItemDto,
     UpsertCoreThirdPartyDto,
 } from './dto/backoffice-core.dto';
 import { IBackofficeCoreIntegration } from './interfaces/backoffice-core.interface';
@@ -313,6 +315,30 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
             },
             CoreResolvedCatalogDto,
         );
+    }
+
+    /**
+     * Resuelve catalogos comunes desde CORE a partir de valores extraidos
+     * por texto o codigo. Se usa para convertir datos del RUT en IDs internos
+     * antes de precargar formularios administrativos.
+     *
+     * @param requests Catalogos con codigo, nombre y contexto opcional.
+     */
+    async matchCatalogs(requests: MatchCoreCatalogItemDto[]): Promise<CoreCatalogMatchDto[]> {
+        if (requests.length === 0) return [];
+
+        try {
+            return await this.requestDtoArray(
+                {
+                    url: '/api/v1/internal/common/catalogs/match',
+                    method: 'POST',
+                    data: { items: requests },
+                },
+                CoreCatalogMatchDto,
+            );
+        } catch (error: any) {
+            this.throwCoreError(error, 'No fue posible resolver los catalogos del RUT en CORE.');
+        }
     }
 
     /**

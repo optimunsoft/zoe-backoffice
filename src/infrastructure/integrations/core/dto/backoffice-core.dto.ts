@@ -5,6 +5,8 @@ import {
     IsEmail,
     IsEnum,
     IsInt,
+    IsNumber,
+    IsObject,
     IsOptional,
     IsString,
     IsUUID,
@@ -34,6 +36,38 @@ export class CoreResolvedCatalogDto {
 
     @IsString()
     name: string;
+}
+
+export class CoreCatalogMatchDto {
+    @IsEnum(CoreCatalog)
+    catalog: CoreCatalog;
+
+    @IsObject()
+    input: Record<string, string | undefined>;
+
+    @IsOptional()
+    @IsUUID()
+    id?: string;
+
+    @IsOptional()
+    @IsString()
+    code?: string;
+
+    @IsOptional()
+    @IsString()
+    name?: string;
+
+    @IsOptional()
+    @IsString()
+    matchedBy?: string;
+
+    @IsNumber()
+    @Min(0)
+    confidence: number;
+
+    @IsOptional()
+    @IsString()
+    unresolvedReason?: string;
 }
 
 export class CoreCatalogDto {
@@ -325,5 +359,13 @@ export interface SearchCoreUserListDto {
     page?: number;
     amount?: number;
     search?: string;
+}
+
+export interface MatchCoreCatalogItemDto {
+    catalog: CoreCatalog;
+    code?: string;
+    name?: string;
+    state?: string;
+    country?: string;
 }
 
