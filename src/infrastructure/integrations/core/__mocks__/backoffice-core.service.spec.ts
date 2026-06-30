@@ -7,7 +7,7 @@ jest.mock('src/config/env.config', () => ({
 }));
 
 import { BadGatewayException, BadRequestException } from '@nestjs/common';
-import { BackofficeCoreService } from './backoffice-core.service';
+import { BackofficeCoreService } from '../backoffice-core.service';
 
 describe('BackofficeCoreService', () => {
     const user = {
