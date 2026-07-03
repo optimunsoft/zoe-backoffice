@@ -69,6 +69,191 @@ describe('BackofficeCoreService', () => {
         }));
     });
 
+    it('creates a company in CORE with owner user and internal credentials', async () => {
+        const payload = {
+            ownerUserId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+            businessNatureId: '22222222-2222-4222-8222-222222222222',
+            taxResponsibilityId: '33333333-3333-4333-8333-333333333333',
+            vatRegimeId: null,
+            documentTypeId: '44444444-4444-4444-8444-444444444444',
+            documentNumber: '900123456',
+            businessName: 'Zoe SAS',
+            email: 'admin@zoe.test',
+            municipalityId: '55555555-5555-4555-8555-555555555555',
+            address: 'Street 1',
+        };
+        const response = {
+            id: '11111111-1111-4111-8111-111111111111',
+            businessNatureId: payload.businessNatureId,
+            taxResponsibilityId: payload.taxResponsibilityId,
+            vatRegimeId: null,
+            documentTypeId: payload.documentTypeId,
+            apiKey: 'encrypted-api-key',
+            documentNumber: payload.documentNumber,
+            businessName: payload.businessName,
+            email: payload.email,
+            municipalityId: payload.municipalityId,
+            address: payload.address,
+            createdAt: '2026-01-01T00:00:00.000Z',
+            updatedAt: '2026-01-02T00:00:00.000Z',
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.createCompany(payload)).resolves.toMatchObject({
+            id: response.id,
+            apiKey: 'encrypted-api-key',
+            documentNumber: '900123456',
+        });
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/companies/create',
+            method: 'POST',
+            data: payload,
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
+    it('calls CORE extended company list with location filters', async () => {
+        const response = {
+            data: [{
+                id: '11111111-1111-4111-8111-111111111111',
+                businessNatureId: '22222222-2222-4222-8222-222222222222',
+                taxResponsibilityId: '33333333-3333-4333-8333-333333333333',
+                vatRegimeId: null,
+                documentTypeId: '44444444-4444-4444-8444-444444444444',
+                documentNumber: '900123456',
+                businessName: 'Zoe SAS',
+                tradeName: 'Zoe',
+                email: 'admin@zoe.test',
+                logoName: null,
+                apiKey: 'encrypted-api-key',
+                address: 'Street 1',
+                timezone: 'America/Bogota',
+                municipality: {
+                    id: '55555555-5555-4555-8555-555555555555',
+                    code: '05001',
+                    name: 'Medellin',
+                    state: {
+                        id: '66666666-6666-4666-8666-666666666666',
+                        code: '05',
+                        name: 'Antioquia',
+                    },
+                },
+                roles: [{
+                    id: '88888888-8888-4888-8888-888888888888',
+                    name: 'Operador',
+                }],
+                users: [{
+                    id: '77777777-7777-4777-8777-777777777777',
+                    userType: 'SUBUSUARIO',
+                    email: 'sub@zoe.test',
+                    firstName: 'Sub',
+                    lastName: 'User',
+                    isActive: true,
+                    isDeleted: false,
+                    isOwner: false,
+                    roles: [{
+                        id: '88888888-8888-4888-8888-888888888888',
+                        name: 'Operador',
+                    }],
+                }],
+                createdAt: '2026-01-01T00:00:00.000Z',
+                updatedAt: '2026-01-02T00:00:00.000Z',
+            }],
+            total: 1,
+            page: 1,
+            amount: 10,
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.searchCompaniesExtended({
+            page: 1,
+            amount: 10,
+            search: 'zoe',
+            municipalityId: '55555555-5555-4555-8555-555555555555',
+            stateId: '66666666-6666-4666-8666-666666666666',
+        })).resolves.toMatchObject({
+            data: [{
+                apiKey: 'encrypted-api-key',
+                municipality: {
+                    state: {
+                        name: 'Antioquia',
+                    },
+                },
+                roles: [{
+                    id: '88888888-8888-4888-8888-888888888888',
+                    name: 'Operador',
+                }],
+                users: [{
+                    roles: [{
+                        id: '88888888-8888-4888-8888-888888888888',
+                        name: 'Operador',
+                    }],
+                }],
+            }],
+        });
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/companies/list-extended',
+            method: 'GET',
+            params: {
+                page: 1,
+                amount: 10,
+                search: 'zoe',
+                municipalityId: '55555555-5555-4555-8555-555555555555',
+                stateId: '66666666-6666-4666-8666-666666666666',
+            },
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
+    it('calls CORE company role detail with permissions', async () => {
+        const response = {
+            id: '88888888-8888-4888-8888-888888888888',
+            name: 'Operador',
+            description: 'Opera',
+            isSystem: false,
+            permissions: [{
+                id: '99999999-9999-4999-8999-999999999999',
+                module: 'core',
+                resource: 'companies',
+                action: 'read',
+                name: 'Leer empresas',
+                description: null,
+            }],
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.findCompanyRole(
+            '11111111-1111-4111-8111-111111111111',
+            '88888888-8888-4888-8888-888888888888',
+        )).resolves.toMatchObject({
+            id: '88888888-8888-4888-8888-888888888888',
+            permissions: [{ resource: 'companies' }],
+        });
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/companies/11111111-1111-4111-8111-111111111111/roles/88888888-8888-4888-8888-888888888888',
+            method: 'GET',
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
     it('calls CORE user list with search and internal credentials', async () => {
         const response = {
             data: [],
@@ -179,4 +364,3 @@ describe('BackofficeCoreService', () => {
             .rejects.toBeInstanceOf(BadGatewayException);
     });
 });
-

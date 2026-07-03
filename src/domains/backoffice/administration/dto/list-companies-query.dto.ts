@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString, IsUUID } from 'class-validator';
 import { SearchCoreCompaniesDto } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
 import { PaginationQueryDto } from 'src/shared/dto/pagination-query.dto';
 
@@ -6,6 +6,12 @@ export class ListCompaniesQueryDto extends PaginationQueryDto implements SearchC
   @IsOptional()
   @IsString()
   search?: string;
+
+  @IsOptional()
+  @IsUUID()
+  municipalityId?: string;
+
+  @IsOptional()
+  @IsUUID()
+  stateId?: string;
 }
-
-

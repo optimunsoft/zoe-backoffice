@@ -1,9 +1,12 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { envs } from 'src/config/env.config';
 import {
+    CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
-    CoreCompanyListItemDto,
+    CoreCompanyExtendedListItemDto,
+    CoreCompanyRoleDetailDto,
+    CoreCompanySummaryDto,
     CoreUserListItemDto,
     MatchCoreCatalogItemDto,
     SearchCoreCompaniesDto,
@@ -26,8 +29,16 @@ export class AdministrationService {
 
     async listCompanies(
         query: SearchCoreCompaniesDto,
-    ): Promise<PaginatedResult<CoreCompanyListItemDto>> {
-        return this.coreIntegration.searchCompanies(query);
+    ): Promise<PaginatedResult<CoreCompanyExtendedListItemDto>> {
+        return this.coreIntegration.searchCompaniesExtended(query);
+    }
+
+    async createCompany(dto: CreateCoreCompanyDto): Promise<CoreCompanySummaryDto> {
+        return this.coreIntegration.createCompany(dto);
+    }
+
+    async findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto> {
+        return this.coreIntegration.findCompanyRole(companyId, roleId);
     }
 
     async listUsers(
@@ -157,5 +168,3 @@ export class AdministrationService {
     }
 
 }
-
-

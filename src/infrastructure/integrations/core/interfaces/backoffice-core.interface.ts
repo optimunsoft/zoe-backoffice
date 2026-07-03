@@ -1,9 +1,13 @@
 import {
+    CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
+    CoreCompanyExtendedListItemDto,
     CoreCompanyListItemDto,
     CoreCompanyDto,
     CoreCompanyLogoDto,
+    CoreCompanyRoleDetailDto,
+    CoreCompanySummaryDto,
     CoreResolvedCatalogDto,
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
@@ -26,7 +30,10 @@ export interface IBackofficeCoreIntegration {
     companyExists(companyId: string, sessionKey: string): Promise<boolean>;
     findCompanyById(companyId: string): Promise<CoreCompanyDto | null>;
     getCompanyLogo(companyId: string, returnBase64?: boolean): Promise<CoreCompanyLogoDto>;
+    createCompany(data: CreateCoreCompanyDto): Promise<CoreCompanySummaryDto>;
     searchCompanies(params: SearchCoreCompaniesDto): Promise<PaginatedResult<CoreCompanyListItemDto>>;
+    searchCompaniesExtended(params: SearchCoreCompaniesDto): Promise<PaginatedResult<CoreCompanyExtendedListItemDto>>;
+    findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto>;
     searchUserList(params: SearchCoreUserListDto): Promise<PaginatedResult<CoreUserListItemDto>>;
     findCompanyOwner(companyId: string): Promise<CoreUserDto | null>;
     resolveUsers(ids: string[]): Promise<CoreUserDto[]>;

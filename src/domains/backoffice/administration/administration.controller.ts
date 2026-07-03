@@ -1,8 +1,11 @@
-import { Controller, Get, Post, Query, UploadedFile as UploadedFileDecorator, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UploadedFile as UploadedFileDecorator, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UseAuth } from 'src/infrastructure/security/decorators/use-auth.decorator';
 import {
-    CoreCompanyListItemDto,
+    CreateCoreCompanyDto,
+    CoreCompanyExtendedListItemDto,
+    CoreCompanyRoleDetailDto,
+    CoreCompanySummaryDto,
     CoreUserListItemDto,
 } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
 import { PaginatedResult } from 'src/shared/interfaces/PaginatedResult';
@@ -16,12 +19,48 @@ import { RutExtractionResultDto } from './dto/rut-extraction-result.dto';
 export class AdministrationController {
     constructor(private readonly administrationService: AdministrationService) { }
 
+    /**
+     * Lista empresas para administracion con informacion extendida liviana.
+     *
+     * @param query Filtros de busqueda, ubicacion y paginacion.
+     * @returns Pagina de empresas con ubicacion, roles resumidos y usuarios asociados.
+     */
     @Get('companies/list')
     @UseAuth('admin')
     async listCompanies(
         @Query() query: ListCompaniesQueryDto,
-    ): Promise<PaginatedResult<CoreCompanyListItemDto>> {
+    ): Promise<PaginatedResult<CoreCompanyExtendedListItemDto>> {
         return this.administrationService.listCompanies(query);
+    }
+
+    /**
+     * Crea una empresa desde administracion y la asocia a un usuario propietario.
+     *
+     * @param dto Datos base de empresa y usuario propietario.
+     * @returns Resumen de la empresa creada en CORE.
+     */
+    @Post('companies/create')
+    @UseAuth('admin')
+    async createCompany(
+        @Body() dto: CreateCoreCompanyDto,
+    ): Promise<CoreCompanySummaryDto> {
+        return this.administrationService.createCompany(dto);
+    }
+
+    /**
+     * Consulta el detalle de un rol de empresa con sus permisos.
+     *
+     * @param companyId Identificador de la empresa propietaria del rol.
+     * @param roleId Identificador del rol a consultar.
+     * @returns Detalle del rol con metadata y permisos asociados.
+     */
+    @Get('companies/:companyId/roles/:roleId')
+    @UseAuth('admin')
+    async findCompanyRole(
+        @Param('companyId') companyId: string,
+        @Param('roleId') roleId: string,
+    ): Promise<CoreCompanyRoleDetailDto> {
+        return this.administrationService.findCompanyRole(companyId, roleId);
     }
 
     @Post('companies/rut/extract')
@@ -59,5 +98,3 @@ export class AdministrationController {
         return this.administrationService.listUsers(query);
     }
 }
-
-

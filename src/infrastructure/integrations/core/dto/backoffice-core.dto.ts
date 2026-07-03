@@ -181,6 +181,252 @@ export class CoreCompanyPageDto implements PaginatedResult<CoreCompanyListItemDt
     @IsInt() @Min(1) amount: number;
 }
 
+export class CreateCoreCompanyDto {
+    @IsUUID()
+    ownerUserId: string;
+
+    @IsUUID()
+    businessNatureId: string;
+
+    @IsUUID()
+    taxResponsibilityId: string;
+
+    @IsOptional()
+    @IsUUID()
+    vatRegimeId?: string | null;
+
+    @IsUUID()
+    documentTypeId: string;
+
+    @IsString()
+    documentNumber: string;
+
+    @IsOptional() @IsString() businessName?: string | null;
+    @IsOptional() @IsString() tradeName?: string | null;
+    @IsOptional() @IsString() firstName?: string | null;
+    @IsOptional() @IsString() middleName?: string | null;
+    @IsOptional() @IsString() lastName?: string | null;
+    @IsOptional() @IsString() secondLastName?: string | null;
+    @IsOptional() @IsEmail() email?: string | null;
+    @IsOptional() @IsString() accountantName?: string | null;
+    @IsOptional() @IsString() professionalCard?: string | null;
+
+    @IsUUID()
+    municipalityId: string;
+
+    @IsOptional()
+    @IsString()
+    address?: string | null;
+}
+
+export class CoreCompanySummaryDto {
+    @IsUUID()
+    id: string;
+
+    @IsUUID()
+    businessNatureId: string;
+
+    @IsUUID()
+    taxResponsibilityId: string;
+
+    @IsOptional()
+    @IsUUID()
+    vatRegimeId?: string | null;
+
+    @IsUUID()
+    documentTypeId: string;
+
+    @IsString()
+    documentNumber: string;
+
+    @IsOptional()
+    @IsString()
+    apiKey?: string | null;
+
+    @IsOptional() @IsString() businessName?: string | null;
+    @IsOptional() @IsString() firstName?: string | null;
+    @IsOptional() @IsString() middleName?: string | null;
+    @IsOptional() @IsString() lastName?: string | null;
+    @IsOptional() @IsString() secondLastName?: string | null;
+    @IsOptional() @IsEmail() email?: string | null;
+    @IsOptional() @IsString() accountantName?: string | null;
+    @IsOptional() @IsString() professionalCard?: string | null;
+    @IsOptional() @IsString() logoName?: string | null;
+
+    @IsUUID()
+    municipalityId: string;
+
+    @IsOptional()
+    @IsString()
+    address?: string | null;
+
+    @IsString()
+    createdAt: string;
+
+    @IsString()
+    updatedAt: string;
+}
+
+export class CoreCompanyLocationDto {
+    @IsUUID()
+    id: string;
+
+    @IsString()
+    code: string;
+
+    @IsString()
+    name: string;
+}
+
+export class CoreCompanyMunicipalityDto extends CoreCompanyLocationDto {
+    @IsOptional()
+    @ValidateNested()
+    @Type(() => CoreCompanyLocationDto)
+    state?: CoreCompanyLocationDto | null;
+}
+
+export class CoreCompanyPermissionDto {
+    @IsUUID()
+    id: string;
+
+    @IsString()
+    module: string;
+
+    @IsString()
+    resource: string;
+
+    @IsString()
+    action: string;
+
+    @IsString()
+    name: string;
+
+    @IsOptional()
+    @IsString()
+    description?: string | null;
+}
+
+export class CoreCompanyRoleSummaryDto {
+    @IsUUID()
+    id: string;
+
+    @IsString()
+    name: string;
+}
+
+export class CoreCompanyRoleDetailDto {
+    @IsUUID()
+    id: string;
+
+    @IsString()
+    name: string;
+
+    @IsOptional()
+    @IsString()
+    description?: string | null;
+
+    @IsBoolean()
+    isSystem: boolean;
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreCompanyPermissionDto)
+    permissions: CoreCompanyPermissionDto[];
+}
+
+export class CoreCompanyUserDto {
+    @IsUUID()
+    id: string;
+
+    @IsString()
+    userType: string;
+
+    @IsOptional() @IsEmail() email?: string | null;
+    @IsOptional() @IsString() firstName?: string | null;
+    @IsOptional() @IsString() lastName?: string | null;
+
+    @IsBoolean()
+    isActive: boolean;
+
+    @IsBoolean()
+    isDeleted: boolean;
+
+    @IsBoolean()
+    isOwner: boolean;
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreCompanyRoleSummaryDto)
+    roles: CoreCompanyRoleSummaryDto[];
+}
+
+export class CoreCompanyExtendedListItemDto {
+    @IsUUID()
+    id: string;
+
+    @IsUUID()
+    businessNatureId: string;
+
+    @IsUUID()
+    taxResponsibilityId: string;
+
+    @IsOptional()
+    @IsUUID()
+    vatRegimeId?: string | null;
+
+    @IsUUID()
+    documentTypeId: string;
+
+    @IsString()
+    documentNumber: string;
+
+    @IsOptional() @IsString() businessName?: string | null;
+    @IsOptional() @IsString() tradeName?: string | null;
+    @IsOptional() @IsString() firstName?: string | null;
+    @IsOptional() @IsString() middleName?: string | null;
+    @IsOptional() @IsString() lastName?: string | null;
+    @IsOptional() @IsString() secondLastName?: string | null;
+    @IsOptional() @IsEmail() email?: string | null;
+    @IsOptional() @IsString() accountantName?: string | null;
+    @IsOptional() @IsString() professionalCard?: string | null;
+    @IsOptional() @IsString() logoName?: string | null;
+    @IsOptional() @IsString() apiKey?: string | null;
+    @IsOptional() @IsString() address?: string | null;
+    @IsOptional() @IsString() timezone?: string | null;
+
+    @IsOptional()
+    @ValidateNested()
+    @Type(() => CoreCompanyMunicipalityDto)
+    municipality?: CoreCompanyMunicipalityDto | null;
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreCompanyRoleSummaryDto)
+    roles: CoreCompanyRoleSummaryDto[];
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreCompanyUserDto)
+    users: CoreCompanyUserDto[];
+
+    @IsString()
+    createdAt: string;
+
+    @IsString()
+    updatedAt: string;
+}
+
+export class CoreCompanyExtendedPageDto implements PaginatedResult<CoreCompanyExtendedListItemDto> {
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreCompanyExtendedListItemDto)
+    data: CoreCompanyExtendedListItemDto[];
+
+    @IsInt() @Min(0) total: number;
+    @IsInt() @Min(1) page: number;
+    @IsInt() @Min(1) amount: number;
+}
+
 export class CoreUserDto {
     @IsUUID()
     id: string;
@@ -353,6 +599,8 @@ export interface SearchCoreCompaniesDto {
     page?: number;
     amount?: number;
     search?: string;
+    municipalityId?: string;
+    stateId?: string;
 }
 
 export interface SearchCoreUserListDto {

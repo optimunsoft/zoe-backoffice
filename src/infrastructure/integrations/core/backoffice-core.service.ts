@@ -11,12 +11,17 @@ import { validateOrReject } from 'class-validator';
 import { AxiosRequestConfig } from 'axios';
 import { envs } from 'src/config/env.config';
 import {
+    CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
+    CoreCompanyExtendedListItemDto,
+    CoreCompanyExtendedPageDto,
     CoreCompanyListItemDto,
     CoreCompanyPageDto,
     CoreCompanyDto,
     CoreCompanyLogoDto,
+    CoreCompanyRoleDetailDto,
+    CoreCompanySummaryDto,
     CoreResolvedCatalogDto,
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
@@ -101,6 +106,22 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
     }
 
     /**
+     * Crea una empresa en CORE asociandola al usuario propietario indicado.
+     *
+     * @param data Datos base de la empresa y usuario propietario.
+     */
+    async createCompany(data: CreateCoreCompanyDto): Promise<CoreCompanySummaryDto> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/companies/create',
+                method: 'POST',
+                data,
+            },
+            CoreCompanySummaryDto,
+        );
+    }
+
+    /**
      * Lista empresas desde CORE para las vistas administrativas de backoffice.
      *
      * @param params Filtros, texto libre y paginacion.
@@ -116,6 +137,40 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 headers: { 'x-api-key': envs.api_key_internal_core.trim() },
             },
             CoreCompanyPageDto,
+        );
+    }
+
+    /**
+     * Lista empresas desde CORE con relaciones de usuarios, ubicacion y RBAC.
+     *
+     * @param params Filtros, texto libre y paginacion.
+     */
+    async searchCompaniesExtended(
+        params: SearchCoreCompaniesDto,
+    ): Promise<PaginatedResult<CoreCompanyExtendedListItemDto>> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/companies/list-extended',
+                method: 'GET',
+                params,
+            },
+            CoreCompanyExtendedPageDto,
+        );
+    }
+
+    /**
+     * Consulta un rol de empresa con sus permisos desde CORE.
+     *
+     * @param companyId Identificador de la empresa.
+     * @param roleId Identificador del rol.
+     */
+    async findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/companies/${companyId}/roles/${roleId}`,
+                method: 'GET',
+            },
+            CoreCompanyRoleDetailDto,
         );
     }
 
