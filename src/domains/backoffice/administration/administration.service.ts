@@ -11,6 +11,8 @@ import {
     MatchCoreCatalogItemDto,
     SearchCoreCompaniesDto,
     SearchCoreUserListDto,
+    UpdateCoreCompanyDto,
+    UpdateCoreCompanyStatusDto,
 } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
 import { BACKOFFICE_CORE_INTEGRATION, IBackofficeCoreIntegration } from 'src/infrastructure/integrations/core/interfaces/backoffice-core.interface';
 import { DOCUMENT_EXTRACTION_INTEGRATION, IDocumentExtractionIntegration } from 'src/infrastructure/integrations/openai/interfaces/document-extraction.interface';
@@ -35,6 +37,14 @@ export class AdministrationService {
 
     async createCompany(dto: CreateCoreCompanyDto): Promise<CoreCompanySummaryDto> {
         return this.coreIntegration.createCompany(dto);
+    }
+
+    async updateCompany(companyId: string, dto: UpdateCoreCompanyDto): Promise<CoreCompanySummaryDto> {
+        return this.coreIntegration.updateCompany(companyId, dto);
+    }
+
+    async updateCompanyStatus(companyId: string, dto: UpdateCoreCompanyStatusDto): Promise<CoreCompanySummaryDto> {
+        return this.coreIntegration.updateCompanyStatus(companyId, dto);
     }
 
     async findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto> {

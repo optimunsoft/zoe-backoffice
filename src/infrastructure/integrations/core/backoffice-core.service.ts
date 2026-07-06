@@ -36,6 +36,8 @@ import {
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
     UpsertCoreThirdPartyDto,
+    UpdateCoreCompanyDto,
+    UpdateCoreCompanyStatusDto,
 } from './dto/backoffice-core.dto';
 import { IBackofficeCoreIntegration } from './interfaces/backoffice-core.interface';
 import { InternalCoreResponse } from './interfaces/internal-core-response.interface';
@@ -115,6 +117,40 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
             {
                 url: '/api/v1/internal/core/companies/create',
                 method: 'POST',
+                data,
+            },
+            CoreCompanySummaryDto,
+        );
+    }
+
+    /**
+     * Edita una empresa en CORE sin gestionar su estado activo/inactivo.
+     *
+     * @param companyId Identificador de la empresa.
+     * @param data Datos editables de la empresa.
+     */
+    async updateCompany(companyId: string, data: UpdateCoreCompanyDto): Promise<CoreCompanySummaryDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/companies/edit/${companyId}`,
+                method: 'PUT',
+                data,
+            },
+            CoreCompanySummaryDto,
+        );
+    }
+
+    /**
+     * Cambia el estado activo/inactivo de una empresa en CORE.
+     *
+     * @param companyId Identificador de la empresa.
+     * @param data Estado deseado de la empresa.
+     */
+    async updateCompanyStatus(companyId: string, data: UpdateCoreCompanyStatusDto): Promise<CoreCompanySummaryDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/companies/${companyId}/status`,
+                method: 'PATCH',
                 data,
             },
             CoreCompanySummaryDto,

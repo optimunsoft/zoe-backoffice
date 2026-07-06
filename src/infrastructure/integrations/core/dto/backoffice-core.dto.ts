@@ -97,6 +97,7 @@ export class CoreCompanyDto {
     @IsUUID()
     id: string;
 
+    @IsOptional() @IsBoolean() active?: boolean;
     @IsOptional() @IsString() businessName?: string | null;
     @IsOptional() @IsString() tradeName?: string | null;
     @IsString() documentNumber: string;
@@ -143,6 +144,10 @@ export class CoreCompanyListItemDto {
 
     @IsUUID()
     municipalityId: string;
+
+    @IsOptional()
+    @IsBoolean()
+    active?: boolean;
 
     @IsString()
     documentNumber: string;
@@ -219,6 +224,51 @@ export class CreateCoreCompanyDto {
     address?: string | null;
 }
 
+export class UpdateCoreCompanyDto {
+    @IsOptional()
+    @IsUUID()
+    businessNatureId?: string | null;
+
+    @IsOptional()
+    @IsUUID()
+    taxResponsibilityId?: string | null;
+
+    @IsOptional()
+    @IsUUID()
+    vatRegimeId?: string | null;
+
+    @IsOptional()
+    @IsUUID()
+    documentTypeId?: string | null;
+
+    @IsOptional()
+    @IsString()
+    documentNumber?: string | null;
+
+    @IsOptional() @IsString() businessName?: string | null;
+    @IsOptional() @IsString() tradeName?: string | null;
+    @IsOptional() @IsString() firstName?: string | null;
+    @IsOptional() @IsString() middleName?: string | null;
+    @IsOptional() @IsString() lastName?: string | null;
+    @IsOptional() @IsString() secondLastName?: string | null;
+    @IsOptional() @IsEmail() email?: string | null;
+    @IsOptional() @IsString() accountantName?: string | null;
+    @IsOptional() @IsString() professionalCard?: string | null;
+
+    @IsOptional()
+    @IsUUID()
+    municipalityId?: string | null;
+
+    @IsOptional()
+    @IsString()
+    address?: string | null;
+}
+
+export class UpdateCoreCompanyStatusDto {
+    @IsBoolean()
+    active: unknown;
+}
+
 export class CoreCompanySummaryDto {
     @IsUUID()
     id: string;
@@ -235,6 +285,10 @@ export class CoreCompanySummaryDto {
 
     @IsUUID()
     documentTypeId: string;
+
+    @IsOptional()
+    @IsBoolean()
+    active?: boolean;
 
     @IsString()
     documentNumber: string;
@@ -376,6 +430,10 @@ export class CoreCompanyExtendedListItemDto {
 
     @IsUUID()
     documentTypeId: string;
+
+    @IsOptional()
+    @IsBoolean()
+    active?: boolean;
 
     @IsString()
     documentNumber: string;

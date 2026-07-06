@@ -21,6 +21,8 @@ import {
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
     UpsertCoreThirdPartyDto,
+    UpdateCoreCompanyDto,
+    UpdateCoreCompanyStatusDto,
 } from '../dto/backoffice-core.dto';
 import { PaginatedResult } from 'src/shared/interfaces/PaginatedResult';
 
@@ -31,6 +33,8 @@ export interface IBackofficeCoreIntegration {
     findCompanyById(companyId: string): Promise<CoreCompanyDto | null>;
     getCompanyLogo(companyId: string, returnBase64?: boolean): Promise<CoreCompanyLogoDto>;
     createCompany(data: CreateCoreCompanyDto): Promise<CoreCompanySummaryDto>;
+    updateCompany(companyId: string, data: UpdateCoreCompanyDto): Promise<CoreCompanySummaryDto>;
+    updateCompanyStatus(companyId: string, data: UpdateCoreCompanyStatusDto): Promise<CoreCompanySummaryDto>;
     searchCompanies(params: SearchCoreCompaniesDto): Promise<PaginatedResult<CoreCompanyListItemDto>>;
     searchCompaniesExtended(params: SearchCoreCompaniesDto): Promise<PaginatedResult<CoreCompanyExtendedListItemDto>>;
     findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto>;

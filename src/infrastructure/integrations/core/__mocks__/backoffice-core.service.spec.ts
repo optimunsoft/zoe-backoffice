@@ -118,6 +118,90 @@ describe('BackofficeCoreService', () => {
         }));
     });
 
+    it('updates a company in CORE with internal credentials', async () => {
+        const companyId = '11111111-1111-4111-8111-111111111111';
+        const payload = {
+            businessNatureId: '22222222-2222-4222-8222-222222222222',
+            taxResponsibilityId: '33333333-3333-4333-8333-333333333333',
+            vatRegimeId: null,
+            documentTypeId: '44444444-4444-4444-8444-444444444444',
+            documentNumber: '900123456',
+            businessName: 'Zoe Actualizada SAS',
+            email: 'admin@zoe.test',
+            municipalityId: '55555555-5555-4555-8555-555555555555',
+            address: 'Street 2',
+        };
+        const response = {
+            id: companyId,
+            businessNatureId: payload.businessNatureId,
+            taxResponsibilityId: payload.taxResponsibilityId,
+            vatRegimeId: null,
+            documentTypeId: payload.documentTypeId,
+            documentNumber: payload.documentNumber,
+            businessName: payload.businessName,
+            email: payload.email,
+            municipalityId: payload.municipalityId,
+            address: payload.address,
+            createdAt: '2026-01-01T00:00:00.000Z',
+            updatedAt: '2026-01-02T00:00:00.000Z',
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.updateCompany(companyId, payload)).resolves.toMatchObject({
+            id: companyId,
+            documentNumber: '900123456',
+            businessName: 'Zoe Actualizada SAS',
+        });
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: `http://core/api/v1/internal/core/companies/edit/${companyId}`,
+            method: 'PUT',
+            data: payload,
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
+    it('updates company status in CORE with internal credentials', async () => {
+        const companyId = '11111111-1111-4111-8111-111111111111';
+        const payload = { active: false };
+        const response = {
+            id: companyId,
+            businessNatureId: '22222222-2222-4222-8222-222222222222',
+            taxResponsibilityId: '33333333-3333-4333-8333-333333333333',
+            vatRegimeId: null,
+            documentTypeId: '44444444-4444-4444-8444-444444444444',
+            active: false,
+            documentNumber: '900123456',
+            businessName: 'Zoe SAS',
+            municipalityId: '55555555-5555-4555-8555-555555555555',
+            createdAt: '2026-01-01T00:00:00.000Z',
+            updatedAt: '2026-01-02T00:00:00.000Z',
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.updateCompanyStatus(companyId, payload)).resolves.toMatchObject({
+            id: companyId,
+            active: false,
+        });
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: `http://core/api/v1/internal/core/companies/${companyId}/status`,
+            method: 'PATCH',
+            data: payload,
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
     it('calls CORE extended company list with location filters', async () => {
         const response = {
             data: [{

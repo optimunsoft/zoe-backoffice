@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, UploadedFile as UploadedFileDecorator, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Patch, Post, Put, Query, UploadedFile as UploadedFileDecorator, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UseAuth } from 'src/infrastructure/security/decorators/use-auth.decorator';
 import {
@@ -7,6 +7,8 @@ import {
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreUserListItemDto,
+    UpdateCoreCompanyDto,
+    UpdateCoreCompanyStatusDto,
 } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
 import { PaginatedResult } from 'src/shared/interfaces/PaginatedResult';
 import { UploadedFile } from 'src/shared/interfaces/uploaded-file.interface';
@@ -45,6 +47,38 @@ export class AdministrationController {
         @Body() dto: CreateCoreCompanyDto,
     ): Promise<CoreCompanySummaryDto> {
         return this.administrationService.createCompany(dto);
+    }
+
+    /**
+     * Edita una empresa desde administracion sin gestionar su estado activo.
+     *
+     * @param companyId Identificador de la empresa a editar.
+     * @param dto Datos editables de empresa.
+     * @returns Resumen de la empresa editada en CORE.
+     */
+    @Put('companies/edit/:companyId')
+    @UseAuth('admin')
+    async updateCompany(
+        @Param('companyId') companyId: string,
+        @Body() dto: UpdateCoreCompanyDto,
+    ): Promise<CoreCompanySummaryDto> {
+        return this.administrationService.updateCompany(companyId, dto);
+    }
+
+    /**
+     * Cambia el estado activo/inactivo de una empresa desde administracion.
+     *
+     * @param companyId Identificador de la empresa.
+     * @param dto Estado deseado de la empresa.
+     * @returns Resumen de la empresa actualizada en CORE.
+     */
+    @Patch('companies/:companyId/status')
+    @UseAuth('admin')
+    async updateCompanyStatus(
+        @Param('companyId', ParseUUIDPipe) companyId: string,
+        @Body() dto: UpdateCoreCompanyStatusDto,
+    ): Promise<CoreCompanySummaryDto> {
+        return this.administrationService.updateCompanyStatus(companyId, dto);
     }
 
     /**
