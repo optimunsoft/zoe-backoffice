@@ -1,4 +1,5 @@
 import {
+    AssignCoreCompanyUserDto,
     CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
@@ -8,6 +9,7 @@ import {
     CoreCompanyLogoDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
+    CoreCompanyUserAssignmentDto,
     CoreResolvedCatalogDto,
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
@@ -20,6 +22,7 @@ import {
     SearchCoreCompaniesDto,
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
+    UnassignCoreCompanyUserDto,
     UpsertCoreThirdPartyDto,
     UpdateCoreCompanyDto,
     UpdateCoreCompanyStatusDto,
@@ -35,6 +38,8 @@ export interface IBackofficeCoreIntegration {
     createCompany(data: CreateCoreCompanyDto): Promise<CoreCompanySummaryDto>;
     updateCompany(companyId: string, data: UpdateCoreCompanyDto): Promise<CoreCompanySummaryDto>;
     updateCompanyStatus(companyId: string, data: UpdateCoreCompanyStatusDto): Promise<CoreCompanySummaryDto>;
+    assignCompanyUser(data: AssignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto>;
+    unassignCompanyUser(data: UnassignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto>;
     searchCompanies(params: SearchCoreCompaniesDto): Promise<PaginatedResult<CoreCompanyListItemDto>>;
     searchCompaniesExtended(params: SearchCoreCompaniesDto): Promise<PaginatedResult<CoreCompanyExtendedListItemDto>>;
     findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto>;

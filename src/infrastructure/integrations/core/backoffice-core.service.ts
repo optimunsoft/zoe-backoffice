@@ -11,6 +11,7 @@ import { validateOrReject } from 'class-validator';
 import { AxiosRequestConfig } from 'axios';
 import { envs } from 'src/config/env.config';
 import {
+    AssignCoreCompanyUserDto,
     CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
@@ -22,6 +23,7 @@ import {
     CoreCompanyLogoDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
+    CoreCompanyUserAssignmentDto,
     CoreResolvedCatalogDto,
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
@@ -35,6 +37,7 @@ import {
     SearchCoreCompaniesDto,
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
+    UnassignCoreCompanyUserDto,
     UpsertCoreThirdPartyDto,
     UpdateCoreCompanyDto,
     UpdateCoreCompanyStatusDto,
@@ -154,6 +157,42 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 data,
             },
             CoreCompanySummaryDto,
+        );
+    }
+
+    /**
+     * Asocia un usuario a una empresa en CORE.
+     *
+     * @param data Identificadores de empresa/usuario y marca de propietario.
+     */
+    async assignCompanyUser(data: AssignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/companies/users/assign',
+                method: 'POST',
+                data: {
+                    companyId: data.companyId,
+                    userId: data.userId,
+                    is_owner: data.isOwner,
+                },
+            },
+            CoreCompanyUserAssignmentDto,
+        );
+    }
+
+    /**
+     * Desasocia un usuario de una empresa en CORE.
+     *
+     * @param data Identificadores de empresa y usuario.
+     */
+    async unassignCompanyUser(data: UnassignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/companies/users/unassign',
+                method: 'POST',
+                data,
+            },
+            CoreCompanyUserAssignmentDto,
         );
     }
 

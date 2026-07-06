@@ -269,6 +269,50 @@ export class UpdateCoreCompanyStatusDto {
     active: unknown;
 }
 
+export class AssignCoreCompanyUserDto {
+    @IsUUID()
+    companyId: string;
+
+    @IsUUID()
+    userId: string;
+
+    @IsOptional()
+    @IsBoolean()
+    isOwner?: boolean;
+}
+
+export class AssignCoreCompanyUserRequestDto {
+    @IsUUID()
+    companyId: string;
+
+    @IsUUID()
+    userId: string;
+
+    @IsOptional()
+    @IsBoolean()
+    is_owner?: boolean;
+}
+
+export class UnassignCoreCompanyUserDto {
+    @IsUUID()
+    companyId: string;
+
+    @IsUUID()
+    userId: string;
+}
+
+export class CoreCompanyUserAssignmentDto {
+    @IsUUID()
+    companyId: string;
+
+    @IsUUID()
+    userId: string;
+
+    @IsOptional()
+    @IsBoolean()
+    isOwner?: boolean;
+}
+
 export class CoreCompanySummaryDto {
     @IsUUID()
     id: string;

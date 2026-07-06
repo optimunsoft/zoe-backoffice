@@ -202,6 +202,64 @@ describe('BackofficeCoreService', () => {
         }));
     });
 
+    it('assigns a user to a company in CORE with internal credentials', async () => {
+        const payload = {
+            companyId: '11111111-1111-4111-8111-111111111111',
+            userId: '22222222-2222-4222-8222-222222222222',
+            isOwner: true,
+        };
+        const response = {
+            companyId: payload.companyId,
+            userId: payload.userId,
+            isOwner: true,
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.assignCompanyUser(payload)).resolves.toEqual(response);
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/companies/users/assign',
+            method: 'POST',
+            data: {
+                companyId: payload.companyId,
+                userId: payload.userId,
+                is_owner: true,
+            },
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
+    it('unassigns a user from a company in CORE with internal credentials', async () => {
+        const payload = {
+            companyId: '11111111-1111-4111-8111-111111111111',
+            userId: '22222222-2222-4222-8222-222222222222',
+        };
+        const response = {
+            companyId: payload.companyId,
+            userId: payload.userId,
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.unassignCompanyUser(payload)).resolves.toEqual(response);
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/companies/users/unassign',
+            method: 'POST',
+            data: payload,
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
     it('calls CORE extended company list with location filters', async () => {
         const response = {
             data: [{

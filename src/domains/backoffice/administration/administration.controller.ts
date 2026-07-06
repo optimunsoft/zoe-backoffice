@@ -2,11 +2,14 @@ import { Body, Controller, Get, Param, ParseUUIDPipe, Patch, Post, Put, Query, U
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UseAuth } from 'src/infrastructure/security/decorators/use-auth.decorator';
 import {
+    AssignCoreCompanyUserRequestDto,
     CreateCoreCompanyDto,
     CoreCompanyExtendedListItemDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
+    CoreCompanyUserAssignmentDto,
     CoreUserListItemDto,
+    UnassignCoreCompanyUserDto,
     UpdateCoreCompanyDto,
     UpdateCoreCompanyStatusDto,
 } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
@@ -79,6 +82,38 @@ export class AdministrationController {
         @Body() dto: UpdateCoreCompanyStatusDto,
     ): Promise<CoreCompanySummaryDto> {
         return this.administrationService.updateCompanyStatus(companyId, dto);
+    }
+
+    /**
+     * Asocia un usuario a una empresa desde administracion.
+     *
+     * @param dto Identificadores de empresa/usuario y marca de propietario.
+     * @returns Relacion creada o actualizada en CORE.
+     */
+    @Post('companies/users/assign')
+    @UseAuth('admin')
+    async assignCompanyUser(
+        @Body() dto: AssignCoreCompanyUserRequestDto,
+    ): Promise<CoreCompanyUserAssignmentDto> {
+        return this.administrationService.assignCompanyUser({
+            companyId: dto.companyId,
+            userId: dto.userId,
+            isOwner: dto.is_owner,
+        });
+    }
+
+    /**
+     * Desasocia un usuario de una empresa desde administracion.
+     *
+     * @param dto Identificadores de empresa y usuario.
+     * @returns Relacion removida en CORE.
+     */
+    @Post('companies/users/unassign')
+    @UseAuth('admin')
+    async unassignCompanyUser(
+        @Body() dto: UnassignCoreCompanyUserDto,
+    ): Promise<CoreCompanyUserAssignmentDto> {
+        return this.administrationService.unassignCompanyUser(dto);
     }
 
     /**

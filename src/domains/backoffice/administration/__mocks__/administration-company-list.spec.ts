@@ -9,7 +9,12 @@ jest.mock('src/config/env.config', () => ({
 import { AdministrationController } from '../administration.controller';
 import { AdministrationService } from '../administration.service';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
-import { UpdateCoreCompanyStatusDto } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
+import {
+  AssignCoreCompanyUserDto,
+  AssignCoreCompanyUserRequestDto,
+  UnassignCoreCompanyUserDto,
+  UpdateCoreCompanyStatusDto,
+} from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
 
 describe('Administration company list', () => {
   it('delegates company list to CORE extended search', async () => {
@@ -127,6 +132,44 @@ describe('Administration company list', () => {
     expect(coreIntegration.updateCompanyStatus).toHaveBeenCalledWith(companyId, dto);
   });
 
+  it('delegates user-company assignment to CORE integration', async () => {
+    const dto = {
+      companyId: '11111111-1111-4111-8111-111111111111',
+      userId: '22222222-2222-4222-8222-222222222222',
+      isOwner: true,
+    };
+    const response = {
+      companyId: dto.companyId,
+      userId: dto.userId,
+      isOwner: true,
+    };
+    const coreIntegration = {
+      assignCompanyUser: jest.fn().mockResolvedValue(response),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any);
+
+    await expect(service.assignCompanyUser(dto)).resolves.toBe(response);
+    expect(coreIntegration.assignCompanyUser).toHaveBeenCalledWith(dto);
+  });
+
+  it('delegates user-company unassignment to CORE integration', async () => {
+    const dto = {
+      companyId: '11111111-1111-4111-8111-111111111111',
+      userId: '22222222-2222-4222-8222-222222222222',
+    };
+    const response = {
+      companyId: dto.companyId,
+      userId: dto.userId,
+    };
+    const coreIntegration = {
+      unassignCompanyUser: jest.fn().mockResolvedValue(response),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any);
+
+    await expect(service.unassignCompanyUser(dto)).resolves.toBe(response);
+    expect(coreIntegration.unassignCompanyUser).toHaveBeenCalledWith(dto);
+  });
+
   it('delegates controller company list to administration service', async () => {
     const response = { data: [], total: 0, page: 1, amount: 10 };
     const service = {
@@ -216,6 +259,48 @@ describe('Administration company list', () => {
     expect(service.updateCompanyStatus).toHaveBeenCalledWith(companyId, dto);
   });
 
+  it('delegates controller user-company assignment to administration service', async () => {
+    const dto = {
+      companyId: '11111111-1111-4111-8111-111111111111',
+      userId: '22222222-2222-4222-8222-222222222222',
+      is_owner: true,
+    };
+    const response = {
+      companyId: dto.companyId,
+      userId: dto.userId,
+      isOwner: true,
+    };
+    const service = {
+      assignCompanyUser: jest.fn().mockResolvedValue(response),
+    };
+    const controller = new AdministrationController(service as any);
+
+    await expect(controller.assignCompanyUser(dto)).resolves.toBe(response);
+    expect(service.assignCompanyUser).toHaveBeenCalledWith({
+      companyId: dto.companyId,
+      userId: dto.userId,
+      isOwner: true,
+    });
+  });
+
+  it('delegates controller user-company unassignment to administration service', async () => {
+    const dto = {
+      companyId: '11111111-1111-4111-8111-111111111111',
+      userId: '22222222-2222-4222-8222-222222222222',
+    };
+    const response = {
+      companyId: dto.companyId,
+      userId: dto.userId,
+    };
+    const service = {
+      unassignCompanyUser: jest.fn().mockResolvedValue(response),
+    };
+    const controller = new AdministrationController(service as any);
+
+    await expect(controller.unassignCompanyUser(dto)).resolves.toBe(response);
+    expect(service.unassignCompanyUser).toHaveBeenCalledWith(dto);
+  });
+
   it('validates company status update DTO strictly', async () => {
     const pipe = new ValidationPipe({
       whitelist: true,
@@ -242,6 +327,62 @@ describe('Administration company list', () => {
     await expect(pipe.transform(
       { active: true, businessName: 'Zoe SAS' },
       { type: 'body', metatype: UpdateCoreCompanyStatusDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+  });
+
+  it('validates user-company assignment DTO strictly', async () => {
+    const pipe = new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    });
+
+    await expect(pipe.transform(
+      {
+        companyId: '11111111-1111-4111-8111-111111111111',
+        userId: '22222222-2222-4222-8222-222222222222',
+        is_owner: true,
+      },
+      { type: 'body', metatype: AssignCoreCompanyUserRequestDto },
+    )).resolves.toMatchObject({ is_owner: true });
+
+    await expect(pipe.transform(
+      {
+        companyId: '11111111-1111-4111-8111-111111111111',
+        userId: '22222222-2222-4222-8222-222222222222',
+        isOwner: true,
+      },
+      { type: 'body', metatype: AssignCoreCompanyUserRequestDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+  });
+
+  it('validates user-company unassignment DTO strictly', async () => {
+    const pipe = new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    });
+
+    await expect(pipe.transform(
+      {
+        companyId: '11111111-1111-4111-8111-111111111111',
+        userId: '22222222-2222-4222-8222-222222222222',
+      },
+      { type: 'body', metatype: UnassignCoreCompanyUserDto },
+    )).resolves.toMatchObject({
+      companyId: '11111111-1111-4111-8111-111111111111',
+      userId: '22222222-2222-4222-8222-222222222222',
+    });
+
+    await expect(pipe.transform(
+      {
+        companyId: '11111111-1111-4111-8111-111111111111',
+        userId: '22222222-2222-4222-8222-222222222222',
+        is_owner: false,
+      },
+      { type: 'body', metatype: UnassignCoreCompanyUserDto },
     )).rejects.toBeInstanceOf(BadRequestException);
   });
 

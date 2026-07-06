@@ -1,16 +1,19 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { envs } from 'src/config/env.config';
 import {
+    AssignCoreCompanyUserDto,
     CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
     CoreCompanyExtendedListItemDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
+    CoreCompanyUserAssignmentDto,
     CoreUserListItemDto,
     MatchCoreCatalogItemDto,
     SearchCoreCompaniesDto,
     SearchCoreUserListDto,
+    UnassignCoreCompanyUserDto,
     UpdateCoreCompanyDto,
     UpdateCoreCompanyStatusDto,
 } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
@@ -45,6 +48,14 @@ export class AdministrationService {
 
     async updateCompanyStatus(companyId: string, dto: UpdateCoreCompanyStatusDto): Promise<CoreCompanySummaryDto> {
         return this.coreIntegration.updateCompanyStatus(companyId, dto);
+    }
+
+    async assignCompanyUser(dto: AssignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto> {
+        return this.coreIntegration.assignCompanyUser(dto);
+    }
+
+    async unassignCompanyUser(dto: UnassignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto> {
+        return this.coreIntegration.unassignCompanyUser(dto);
     }
 
     async findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto> {
