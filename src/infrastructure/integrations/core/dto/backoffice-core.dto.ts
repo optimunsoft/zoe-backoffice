@@ -313,6 +313,109 @@ export class CoreCompanyUserAssignmentDto {
     isOwner?: boolean;
 }
 
+export class AssignCoreCompanyModuleDto {
+    @IsUUID()
+    companyId: string;
+
+    @IsBoolean()
+    active: boolean;
+}
+
+export class CoreCompanyModuleAssignmentDto {
+    @IsUUID()
+    moduleId: string;
+
+    @IsUUID()
+    companyId: string;
+
+    @IsEnum(['ACTIVO', 'INACTIVO', 'SOLO_LECTURA'])
+    status: 'ACTIVO' | 'INACTIVO' | 'SOLO_LECTURA';
+
+    @IsBoolean()
+    active: boolean;
+
+    @IsString()
+    createdAt: string;
+
+    @IsString()
+    updatedAt: string;
+}
+
+export class CoreModuleDto {
+    @IsUUID()
+    id: string;
+
+    @IsString()
+    code: string;
+
+    @IsString()
+    name: string;
+
+    @IsOptional()
+    @IsString()
+    description?: string | null;
+
+    @IsOptional()
+    @IsString()
+    price?: string | null;
+
+    @IsString()
+    createdAt: string;
+
+    @IsString()
+    updatedAt: string;
+}
+
+export class CoreModulePageDto implements PaginatedResult<CoreModuleDto> {
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreModuleDto)
+    data: CoreModuleDto[];
+
+    @IsInt() @Min(0) total: number;
+    @IsInt() @Min(1) page: number;
+    @IsInt() @Min(1) amount: number;
+}
+
+export class CreateCoreModuleDto {
+    @IsString()
+    code: string;
+
+    @IsString()
+    name: string;
+
+    @IsOptional()
+    @IsString()
+    description?: string | null;
+
+    @IsOptional()
+    @IsString()
+    price?: string | null;
+}
+
+export class UpdateCoreModuleDto {
+    @IsOptional()
+    @IsString()
+    code?: string;
+
+    @IsOptional()
+    @IsString()
+    name?: string;
+
+    @IsOptional()
+    @IsString()
+    description?: string | null;
+
+    @IsOptional()
+    @IsString()
+    price?: string | null;
+}
+
+export class CoreModuleDeleteDto {
+    @IsUUID()
+    id: string;
+}
+
 export class CoreCompanySummaryDto {
     @IsUUID()
     id: string;
@@ -909,6 +1012,12 @@ export interface SearchCoreCompaniesDto {
     stateId?: string;
 }
 
+export interface SearchCoreModulesDto {
+    page?: number;
+    amount?: number;
+    search?: string;
+}
+
 export interface SearchCoreUserListDto {
     page?: number;
     amount?: number;
@@ -929,4 +1038,3 @@ export interface MatchCoreCatalogItemDto {
     state?: string;
     country?: string;
 }
-

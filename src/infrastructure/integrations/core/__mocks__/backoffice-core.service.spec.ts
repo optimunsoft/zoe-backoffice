@@ -260,6 +260,153 @@ describe('BackofficeCoreService', () => {
         }));
     });
 
+    it('assigns a module to a company in CORE with internal credentials', async () => {
+        const moduleId = '33333333-3333-4333-8333-333333333333';
+        const payload = {
+            companyId: '11111111-1111-4111-8111-111111111111',
+            active: true,
+        };
+        const response = {
+            moduleId,
+            companyId: payload.companyId,
+            status: 'ACTIVO',
+            active: true,
+            createdAt: '2026-01-01T00:00:00.000Z',
+            updatedAt: '2026-01-02T00:00:00.000Z',
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.assignCompanyModule(moduleId, payload)).resolves.toEqual(response);
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: `http://core/api/v1/internal/core/modules/${moduleId}/companies`,
+            method: 'PATCH',
+            data: payload,
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
+    it('rejects invalid company module assignment responses', async () => {
+        const request = jest.fn().mockResolvedValue({
+            data: {
+                status: true,
+                message: 'OK',
+                response: {
+                    moduleId: 'invalid',
+                    companyId: '11111111-1111-4111-8111-111111111111',
+                    status: 'ACTIVO',
+                    active: true,
+                    createdAt: '2026-01-01T00:00:00.000Z',
+                    updatedAt: '2026-01-02T00:00:00.000Z',
+                },
+            },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.assignCompanyModule(
+            '33333333-3333-4333-8333-333333333333',
+            {
+                companyId: '11111111-1111-4111-8111-111111111111',
+                active: true,
+            },
+        )).rejects.toBeInstanceOf(BadGatewayException);
+    });
+
+    it('calls CORE module CRUD endpoints with internal credentials', async () => {
+        const moduleId = '33333333-3333-4333-8333-333333333333';
+        const moduleResponse = {
+            id: moduleId,
+            code: 'ACC',
+            name: 'Accounting',
+            description: 'Accounting module',
+            price: '100.00',
+            createdAt: '2026-01-01T00:00:00.000Z',
+            updatedAt: '2026-01-02T00:00:00.000Z',
+        };
+        const pageResponse = {
+            data: [moduleResponse],
+            total: 1,
+            page: 1,
+            amount: 10,
+        };
+        const request = jest.fn()
+            .mockResolvedValueOnce({ data: { status: true, message: 'OK', response: pageResponse } })
+            .mockResolvedValueOnce({ data: { status: true, message: 'OK', response: moduleResponse } })
+            .mockResolvedValueOnce({ data: { status: true, message: 'OK', response: moduleResponse } })
+            .mockResolvedValueOnce({ data: { status: true, message: 'OK', response: { ...moduleResponse, name: 'Finance' } } })
+            .mockResolvedValueOnce({ data: { status: true, message: 'OK', response: { id: moduleId } } });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+        const createPayload = {
+            code: 'ACC',
+            name: 'Accounting',
+            description: 'Accounting module',
+            price: '100.00',
+        };
+        const updatePayload = { name: 'Finance' };
+
+        await expect(service.searchModules({ page: 1, amount: 10, search: 'acc' })).resolves.toEqual(pageResponse);
+        await expect(service.findModuleById(moduleId)).resolves.toEqual(moduleResponse);
+        await expect(service.createModule(createPayload)).resolves.toEqual(moduleResponse);
+        await expect(service.updateModule(moduleId, updatePayload)).resolves.toMatchObject({ name: 'Finance' });
+        await expect(service.deleteModule(moduleId)).resolves.toEqual({ id: moduleId });
+
+        expect(request).toHaveBeenNthCalledWith(1, expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/modules/list',
+            method: 'GET',
+            params: { page: 1, amount: 10, search: 'acc' },
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+        expect(request).toHaveBeenNthCalledWith(2, expect.objectContaining({
+            url: `http://core/api/v1/internal/core/modules/${moduleId}`,
+            method: 'GET',
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+        expect(request).toHaveBeenNthCalledWith(3, expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/modules/create',
+            method: 'POST',
+            data: createPayload,
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+        expect(request).toHaveBeenNthCalledWith(4, expect.objectContaining({
+            url: `http://core/api/v1/internal/core/modules/edit/${moduleId}`,
+            method: 'PUT',
+            data: updatePayload,
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+        expect(request).toHaveBeenNthCalledWith(5, expect.objectContaining({
+            url: `http://core/api/v1/internal/core/modules/delete/${moduleId}`,
+            method: 'DELETE',
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+    });
+
+    it('rejects invalid module responses', async () => {
+        const request = jest.fn().mockResolvedValue({
+            data: {
+                status: true,
+                message: 'OK',
+                response: {
+                    id: 'invalid',
+                    code: 'ACC',
+                    name: 'Accounting',
+                    createdAt: '2026-01-01T00:00:00.000Z',
+                    updatedAt: '2026-01-02T00:00:00.000Z',
+                },
+            },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.createModule({
+            code: 'ACC',
+            name: 'Accounting',
+        })).rejects.toBeInstanceOf(BadGatewayException);
+    });
+
     it('calls CORE extended company list with location filters', async () => {
         const response = {
             data: [{

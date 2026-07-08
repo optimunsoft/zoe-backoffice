@@ -12,6 +12,7 @@ import { AxiosRequestConfig } from 'axios';
 import { envs } from 'src/config/env.config';
 import {
     AssignCoreCompanyUserDto,
+    AssignCoreCompanyModuleDto,
     CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
@@ -21,9 +22,13 @@ import {
     CoreCompanyPageDto,
     CoreCompanyDto,
     CoreCompanyLogoDto,
+    CoreCompanyModuleAssignmentDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreCompanyUserAssignmentDto,
+    CoreModuleDeleteDto,
+    CoreModuleDto,
+    CoreModulePageDto,
     CoreResolvedCatalogDto,
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
@@ -35,10 +40,12 @@ import {
     CoreUserListItemDto,
     CoreUserListPageDto,
     CoreUserPageDto,
+    CreateCoreModuleDto,
     CreateCoreUserDto,
     SearchCoreThirdPartiesDto,
     SearchCoreUsersDto,
     SearchCoreCompaniesDto,
+    SearchCoreModulesDto,
     SearchCoreUserExtendedListDto,
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
@@ -46,6 +53,7 @@ import {
     UpsertCoreThirdPartyDto,
     UpdateCoreAccountDemoDto,
     UpdateCoreCompanyDto,
+    UpdateCoreModuleDto,
     UpdateCoreCompanyStatusDto,
     UpdateCoreUserDto,
     UpdateCoreUserStatusDto,
@@ -201,6 +209,103 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 data,
             },
             CoreCompanyUserAssignmentDto,
+        );
+    }
+
+    /**
+     * Asocia o desactiva un modulo para una empresa en CORE.
+     *
+     * @param moduleId Identificador del modulo.
+     * @param data Identificador de empresa y estado activo deseado.
+     */
+    async assignCompanyModule(
+        moduleId: string,
+        data: AssignCoreCompanyModuleDto,
+    ): Promise<CoreCompanyModuleAssignmentDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/modules/${moduleId}/companies`,
+                method: 'PATCH',
+                data,
+            },
+            CoreCompanyModuleAssignmentDto,
+        );
+    }
+
+    /**
+     * Lista modulos desde CORE para administracion.
+     *
+     * @param params Texto libre y paginacion.
+     */
+    async searchModules(params: SearchCoreModulesDto): Promise<PaginatedResult<CoreModuleDto>> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/modules/list',
+                method: 'GET',
+                params,
+            },
+            CoreModulePageDto,
+        );
+    }
+
+    /**
+     * Consulta un modulo por identificador.
+     *
+     * @param moduleId Identificador del modulo.
+     */
+    async findModuleById(moduleId: string): Promise<CoreModuleDto | null> {
+        return this.findById(
+            `/api/v1/internal/core/modules/${moduleId}`,
+            CoreModuleDto,
+            'No fue posible consultar el modulo en CORE.',
+        );
+    }
+
+    /**
+     * Crea un modulo en CORE.
+     *
+     * @param data Datos del modulo.
+     */
+    async createModule(data: CreateCoreModuleDto): Promise<CoreModuleDto> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/modules/create',
+                method: 'POST',
+                data,
+            },
+            CoreModuleDto,
+        );
+    }
+
+    /**
+     * Edita un modulo en CORE.
+     *
+     * @param moduleId Identificador del modulo.
+     * @param data Datos editables.
+     */
+    async updateModule(moduleId: string, data: UpdateCoreModuleDto): Promise<CoreModuleDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/modules/edit/${moduleId}`,
+                method: 'PUT',
+                data,
+            },
+            CoreModuleDto,
+        );
+    }
+
+    /**
+     * Elimina un modulo sin asignaciones en CORE.
+     *
+     * @param moduleId Identificador del modulo.
+     */
+    async deleteModule(moduleId: string): Promise<CoreModuleDeleteDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/modules/delete/${moduleId}`,
+                method: 'DELETE',
+            },
+            CoreModuleDeleteDto,
         );
     }
 

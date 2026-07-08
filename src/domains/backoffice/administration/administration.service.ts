@@ -2,24 +2,31 @@ import { BadRequestException, ForbiddenException, Inject, Injectable } from '@ne
 import { envs } from 'src/config/env.config';
 import {
     AssignCoreCompanyUserDto,
+    AssignCoreCompanyModuleDto,
     CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
     CoreCompanyExtendedListItemDto,
+    CoreCompanyModuleAssignmentDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreCompanyUserAssignmentDto,
+    CoreModuleDeleteDto,
+    CoreModuleDto,
     CoreUserAccountDto,
     CoreUserExtendedListItemDto,
     CoreUserListItemDto,
     CreateCoreUserDto,
+    CreateCoreModuleDto,
     MatchCoreCatalogItemDto,
     SearchCoreCompaniesDto,
+    SearchCoreModulesDto,
     SearchCoreUserExtendedListDto,
     SearchCoreUserListDto,
     UnassignCoreCompanyUserDto,
     UpdateCoreAccountDemoDto,
     UpdateCoreCompanyDto,
+    UpdateCoreModuleDto,
     UpdateCoreCompanyStatusDto,
     UpdateCoreUserDto,
     UpdateCoreUserStatusDto,
@@ -67,6 +74,33 @@ export class AdministrationService {
     async unassignCompanyUser(dto: UnassignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto> {
         await this.ensureAssignableCompanyUser(dto.userId);
         return this.coreIntegration.unassignCompanyUser(dto);
+    }
+
+    async assignCompanyModule(
+        moduleId: string,
+        dto: AssignCoreCompanyModuleDto,
+    ): Promise<CoreCompanyModuleAssignmentDto> {
+        return this.coreIntegration.assignCompanyModule(moduleId, dto);
+    }
+
+    async listModules(query: SearchCoreModulesDto): Promise<PaginatedResult<CoreModuleDto>> {
+        return this.coreIntegration.searchModules(query);
+    }
+
+    async findModuleById(moduleId: string): Promise<CoreModuleDto | null> {
+        return this.coreIntegration.findModuleById(moduleId);
+    }
+
+    async createModule(dto: CreateCoreModuleDto): Promise<CoreModuleDto> {
+        return this.coreIntegration.createModule(dto);
+    }
+
+    async updateModule(moduleId: string, dto: UpdateCoreModuleDto): Promise<CoreModuleDto> {
+        return this.coreIntegration.updateModule(moduleId, dto);
+    }
+
+    async deleteModule(moduleId: string): Promise<CoreModuleDeleteDto> {
+        return this.coreIntegration.deleteModule(moduleId);
     }
 
     async findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto> {

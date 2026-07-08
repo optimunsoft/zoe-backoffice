@@ -1,19 +1,26 @@
-import { Body, Controller, Get, Param, ParseUUIDPipe, Patch, Post, Put, Query, Req, UploadedFile as UploadedFileDecorator, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, Query, Req, UploadedFile as UploadedFileDecorator, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UseAuth } from 'src/infrastructure/security/decorators/use-auth.decorator';
 import {
     AssignCoreCompanyUserRequestDto,
+    AssignCoreCompanyModuleDto,
     CreateCoreCompanyDto,
     CoreCompanyExtendedListItemDto,
+    CoreCompanyModuleAssignmentDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreCompanyUserAssignmentDto,
+    CoreModuleDeleteDto,
+    CoreModuleDto,
     CoreUserAccountDto,
     CoreUserExtendedListItemDto,
     CreateCoreUserDto,
+    CreateCoreModuleDto,
+    SearchCoreModulesDto,
     UnassignCoreCompanyUserDto,
     UpdateCoreAccountDemoDto,
     UpdateCoreCompanyDto,
+    UpdateCoreModuleDto,
     UpdateCoreCompanyStatusDto,
     UpdateCoreUserDto,
     UpdateCoreUserStatusDto,
@@ -119,6 +126,94 @@ export class AdministrationController {
         @Body() dto: UnassignCoreCompanyUserDto,
     ): Promise<CoreCompanyUserAssignmentDto> {
         return this.administrationService.unassignCompanyUser(dto);
+    }
+
+    /**
+     * Asocia o desactiva un modulo para una empresa desde administracion.
+     *
+     * @param moduleId Identificador del modulo.
+     * @param dto Identificador de empresa y estado activo deseado.
+     * @returns Asignacion del modulo a la empresa en CORE.
+     */
+    @Patch('modules/:moduleId/companies')
+    @UseAuth('admin')
+    async assignCompanyModule(
+        @Param('moduleId', ParseUUIDPipe) moduleId: string,
+        @Body() dto: AssignCoreCompanyModuleDto,
+    ): Promise<CoreCompanyModuleAssignmentDto> {
+        return this.administrationService.assignCompanyModule(moduleId, dto);
+    }
+
+    /**
+     * Lista modulos para administracion.
+     *
+     * @param query Texto libre y paginacion.
+     * @returns Pagina de modulos registrados en CORE.
+     */
+    @Get('modules/list')
+    @UseAuth('admin')
+    async listModules(
+        @Query() query: SearchCoreModulesDto,
+    ): Promise<PaginatedResult<CoreModuleDto>> {
+        return this.administrationService.listModules(query);
+    }
+
+    /**
+     * Crea un modulo desde administracion.
+     *
+     * @param dto Datos del modulo.
+     * @returns Modulo creado en CORE.
+     */
+    @Post('modules/create')
+    @UseAuth('admin')
+    async createModule(
+        @Body() dto: CreateCoreModuleDto,
+    ): Promise<CoreModuleDto> {
+        return this.administrationService.createModule(dto);
+    }
+
+    /**
+     * Consulta un modulo por identificador.
+     *
+     * @param moduleId Identificador del modulo.
+     * @returns Modulo encontrado o `null` cuando CORE no lo encuentra.
+     */
+    @Get('modules/:moduleId')
+    @UseAuth('admin')
+    async findModuleById(
+        @Param('moduleId', ParseUUIDPipe) moduleId: string,
+    ): Promise<CoreModuleDto | null> {
+        return this.administrationService.findModuleById(moduleId);
+    }
+
+    /**
+     * Edita un modulo desde administracion.
+     *
+     * @param moduleId Identificador del modulo.
+     * @param dto Datos editables del modulo.
+     * @returns Modulo actualizado en CORE.
+     */
+    @Put('modules/edit/:moduleId')
+    @UseAuth('admin')
+    async updateModule(
+        @Param('moduleId', ParseUUIDPipe) moduleId: string,
+        @Body() dto: UpdateCoreModuleDto,
+    ): Promise<CoreModuleDto> {
+        return this.administrationService.updateModule(moduleId, dto);
+    }
+
+    /**
+     * Elimina un modulo sin asignaciones desde administracion.
+     *
+     * @param moduleId Identificador del modulo.
+     * @returns Identificador del modulo eliminado.
+     */
+    @Delete('modules/delete/:moduleId')
+    @UseAuth('admin')
+    async deleteModule(
+        @Param('moduleId', ParseUUIDPipe) moduleId: string,
+    ): Promise<CoreModuleDeleteDto> {
+        return this.administrationService.deleteModule(moduleId);
     }
 
     /**

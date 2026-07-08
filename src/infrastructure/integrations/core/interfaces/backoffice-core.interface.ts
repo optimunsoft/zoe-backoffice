@@ -1,4 +1,5 @@
 import {
+    AssignCoreCompanyModuleDto,
     AssignCoreCompanyUserDto,
     CreateCoreCompanyDto,
     CoreCatalog,
@@ -7,9 +8,12 @@ import {
     CoreCompanyListItemDto,
     CoreCompanyDto,
     CoreCompanyLogoDto,
+    CoreCompanyModuleAssignmentDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreCompanyUserAssignmentDto,
+    CoreModuleDeleteDto,
+    CoreModuleDto,
     CoreResolvedCatalogDto,
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
@@ -19,12 +23,14 @@ import {
     CoreUserDto,
     CoreUserListItemDto,
     CoreUserPageDto,
+    CreateCoreModuleDto,
     CreateCoreUserDto,
     UpdateCoreUserDto,
     UpdateCoreUserStatusDto,
     SearchCoreThirdPartiesDto,
     SearchCoreUsersDto,
     SearchCoreCompaniesDto,
+    SearchCoreModulesDto,
     SearchCoreUserExtendedListDto,
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
@@ -32,6 +38,7 @@ import {
     UpsertCoreThirdPartyDto,
     UpdateCoreAccountDemoDto,
     UpdateCoreCompanyDto,
+    UpdateCoreModuleDto,
     UpdateCoreCompanyStatusDto,
 } from '../dto/backoffice-core.dto';
 import { PaginatedResult } from 'src/shared/interfaces/PaginatedResult';
@@ -47,6 +54,12 @@ export interface IBackofficeCoreIntegration {
     updateCompanyStatus(companyId: string, data: UpdateCoreCompanyStatusDto): Promise<CoreCompanySummaryDto>;
     assignCompanyUser(data: AssignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto>;
     unassignCompanyUser(data: UnassignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto>;
+    assignCompanyModule(moduleId: string, data: AssignCoreCompanyModuleDto): Promise<CoreCompanyModuleAssignmentDto>;
+    searchModules(params: SearchCoreModulesDto): Promise<PaginatedResult<CoreModuleDto>>;
+    findModuleById(moduleId: string): Promise<CoreModuleDto | null>;
+    createModule(data: CreateCoreModuleDto): Promise<CoreModuleDto>;
+    updateModule(moduleId: string, data: UpdateCoreModuleDto): Promise<CoreModuleDto>;
+    deleteModule(moduleId: string): Promise<CoreModuleDeleteDto>;
     searchCompanies(params: SearchCoreCompaniesDto): Promise<PaginatedResult<CoreCompanyListItemDto>>;
     searchCompaniesExtended(params: SearchCoreCompaniesDto): Promise<PaginatedResult<CoreCompanyExtendedListItemDto>>;
     findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto>;
