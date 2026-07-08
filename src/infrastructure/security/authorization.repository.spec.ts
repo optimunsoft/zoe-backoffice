@@ -39,7 +39,7 @@ describe('AuthorizationRepository', () => {
         )).resolves.toBe(true);
 
         expect(dataSource.query.mock.calls[0][0]).toContain('core.is_related');
-        expect(dataSource.query.mock.calls[1][0]).toContain('core.is_owner');
+        expect(dataSource.query.mock.calls[1][0]).toContain('core.isOwner');
         expect(dataSource.query.mock.calls[2][0]).toContain('core.has_permission');
     });
 });

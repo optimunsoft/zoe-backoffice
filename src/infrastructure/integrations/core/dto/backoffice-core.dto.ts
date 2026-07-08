@@ -290,7 +290,7 @@ export class AssignCoreCompanyUserRequestDto {
 
     @IsOptional()
     @IsBoolean()
-    is_owner?: boolean;
+    isOwner?: boolean;
 }
 
 export class UnassignCoreCompanyUserDto {

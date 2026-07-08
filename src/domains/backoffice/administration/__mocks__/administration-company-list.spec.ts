@@ -148,12 +148,30 @@ describe('Administration company list', () => {
       isOwner: true,
     };
     const coreIntegration = {
+      findUserById: jest.fn().mockResolvedValue({ id: dto.userId, userType: 'USUARIO' }),
       assignCompanyUser: jest.fn().mockResolvedValue(response),
     };
     const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
 
     await expect(service.assignCompanyUser(dto)).resolves.toBe(response);
+    expect(coreIntegration.findUserById).toHaveBeenCalledWith(dto.userId);
     expect(coreIntegration.assignCompanyUser).toHaveBeenCalledWith(dto);
+  });
+
+  it('rejects user-company assignment for sub-users', async () => {
+    const dto = {
+      companyId: '11111111-1111-4111-8111-111111111111',
+      userId: '22222222-2222-4222-8222-222222222222',
+      isOwner: false,
+    };
+    const coreIntegration = {
+      findUserById: jest.fn().mockResolvedValue({ id: dto.userId, userType: 'SUBUSUARIO' }),
+      assignCompanyUser: jest.fn(),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+
+    await expect(service.assignCompanyUser(dto)).rejects.toBeInstanceOf(BadRequestException);
+    expect(coreIntegration.assignCompanyUser).not.toHaveBeenCalled();
   });
 
   it('delegates user-company unassignment to CORE integration', async () => {
@@ -166,11 +184,13 @@ describe('Administration company list', () => {
       userId: dto.userId,
     };
     const coreIntegration = {
+      findUserById: jest.fn().mockResolvedValue({ id: dto.userId, userType: 'USUARIO' }),
       unassignCompanyUser: jest.fn().mockResolvedValue(response),
     };
     const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
 
     await expect(service.unassignCompanyUser(dto)).resolves.toBe(response);
+    expect(coreIntegration.findUserById).toHaveBeenCalledWith(dto.userId);
     expect(coreIntegration.unassignCompanyUser).toHaveBeenCalledWith(dto);
   });
 
@@ -267,7 +287,7 @@ describe('Administration company list', () => {
     const dto = {
       companyId: '11111111-1111-4111-8111-111111111111',
       userId: '22222222-2222-4222-8222-222222222222',
-      is_owner: true,
+      isOwner: true,
     };
     const response = {
       companyId: dto.companyId,
@@ -346,16 +366,16 @@ describe('Administration company list', () => {
       {
         companyId: '11111111-1111-4111-8111-111111111111',
         userId: '22222222-2222-4222-8222-222222222222',
-        is_owner: true,
+        isOwner: true,
       },
       { type: 'body', metatype: AssignCoreCompanyUserRequestDto },
-    )).resolves.toMatchObject({ is_owner: true });
+    )).resolves.toMatchObject({ isOwner: true });
 
     await expect(pipe.transform(
       {
         companyId: '11111111-1111-4111-8111-111111111111',
         userId: '22222222-2222-4222-8222-222222222222',
-        isOwner: true,
+        is_owner: true,
       },
       { type: 'body', metatype: AssignCoreCompanyUserRequestDto },
     )).rejects.toBeInstanceOf(BadRequestException);
@@ -384,7 +404,7 @@ describe('Administration company list', () => {
       {
         companyId: '11111111-1111-4111-8111-111111111111',
         userId: '22222222-2222-4222-8222-222222222222',
-        is_owner: false,
+        isOwner: false,
       },
       { type: 'body', metatype: UnassignCoreCompanyUserDto },
     )).rejects.toBeInstanceOf(BadRequestException);
@@ -699,4 +719,3 @@ describe('Administration company list', () => {
     )).rejects.toBeInstanceOf(BadRequestException);
   });
 });
-

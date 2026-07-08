@@ -226,7 +226,7 @@ describe('BackofficeCoreService', () => {
             data: {
                 companyId: payload.companyId,
                 userId: payload.userId,
-                is_owner: true,
+                isOwner: true,
             },
             headers: {
                 'x-api-key-internal': 'secret',
@@ -684,6 +684,22 @@ describe('BackofficeCoreService', () => {
 
         await expect(service.upsertThirdParty({}))
             .rejects.toBeInstanceOf(BadRequestException);
+    });
+
+    it('preserves bad request errors returned by CORE requests', async () => {
+        const response = { status: 400, data: { message: 'Usuario invalido' } };
+        const request = jest.fn().mockRejectedValue({ response });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.assignCompanyUser({
+            companyId: '11111111-1111-4111-8111-111111111111',
+            userId: '22222222-2222-4222-8222-222222222222',
+            isOwner: false,
+        })).rejects.toMatchObject({
+            response: {
+                message: 'Usuario invalido',
+            },
+        });
     });
 
     it('rejects invalid DTO responses', async () => {

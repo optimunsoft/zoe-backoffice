@@ -103,7 +103,7 @@ export class AdministrationController {
         return this.administrationService.assignCompanyUser({
             companyId: dto.companyId,
             userId: dto.userId,
-            isOwner: dto.is_owner,
+            isOwner: dto.isOwner,
         });
     }
 

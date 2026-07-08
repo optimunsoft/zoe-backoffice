@@ -181,7 +181,7 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 data: {
                     companyId: data.companyId,
                     userId: data.userId,
-                    is_owner: data.isOwner,
+                    isOwner: data.isOwner,
                 },
             },
             CoreCompanyUserAssignmentDto,
@@ -662,16 +662,23 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
      * API key, y extrae `response` del envelope estandar de la aplicacion.
      */
     private async request<T>(config: AxiosRequestConfig): Promise<T> {
-        const { data } = await this.httpService.axiosRef.request<InternalCoreResponse<T>>({
-            ...config,
-            url: `${envs.api_url_internal_core}${config.url}`,
-            timeout: envs.internal_timeout_ms,
-            headers: {
-                ...config.headers,
-                'x-api-key-internal': envs.api_key_internal_core.trim(),
-            },
-        });
-        return data.response;
+        try {
+            const { data } = await this.httpService.axiosRef.request<InternalCoreResponse<T>>({
+                ...config,
+                url: `${envs.api_url_internal_core}${config.url}`,
+                timeout: envs.internal_timeout_ms,
+                headers: {
+                    ...config.headers,
+                    'x-api-key-internal': envs.api_key_internal_core.trim(),
+                },
+            });
+            return data.response;
+        } catch (error: any) {
+            if (error?.response?.status === 400) {
+                throw new BadRequestException(error.response.data);
+            }
+            throw error;
+        }
     }
 
     /**

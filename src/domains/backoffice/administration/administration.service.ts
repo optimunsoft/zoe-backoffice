@@ -60,10 +60,12 @@ export class AdministrationService {
     }
 
     async assignCompanyUser(dto: AssignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto> {
+        await this.ensureAssignableCompanyUser(dto.userId);
         return this.coreIntegration.assignCompanyUser(dto);
     }
 
     async unassignCompanyUser(dto: UnassignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto> {
+        await this.ensureAssignableCompanyUser(dto.userId);
         return this.coreIntegration.unassignCompanyUser(dto);
     }
 
@@ -277,6 +279,17 @@ export class AdministrationService {
 
     private isOptimunsoftEmail(email: string): boolean {
         return email.trim().toLowerCase().endsWith('@optimunsoft.co');
+    }
+
+    private async ensureAssignableCompanyUser(userId: string): Promise<void> {
+        const user = await this.coreIntegration.findUserById(userId);
+        if (!user) {
+            throw new BadRequestException('El usuario no existe en CORE.');
+        }
+
+        if (user.userType !== 'USUARIO') {
+            throw new BadRequestException('Solo se pueden asociar o desasociar usuarios tipo USUARIO a empresas.');
+        }
     }
 
 }
