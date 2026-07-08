@@ -28,19 +28,27 @@ import {
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
     CoreThirdPartyUpsertResultDto,
+    CoreUserAccountDto,
+    CoreUserExtendedListItemDto,
+    CoreUserExtendedPageDto,
     CoreUserDto,
     CoreUserListItemDto,
     CoreUserListPageDto,
     CoreUserPageDto,
+    CreateCoreUserDto,
     SearchCoreThirdPartiesDto,
     SearchCoreUsersDto,
     SearchCoreCompaniesDto,
+    SearchCoreUserExtendedListDto,
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
     UnassignCoreCompanyUserDto,
     UpsertCoreThirdPartyDto,
+    UpdateCoreAccountDemoDto,
     UpdateCoreCompanyDto,
     UpdateCoreCompanyStatusDto,
+    UpdateCoreUserDto,
+    UpdateCoreUserStatusDto,
 } from './dto/backoffice-core.dto';
 import { IBackofficeCoreIntegration } from './interfaces/backoffice-core.interface';
 import { InternalCoreResponse } from './interfaces/internal-core-response.interface';
@@ -264,6 +272,104 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 params,
             },
             CoreUserListPageDto,
+        );
+    }
+
+    /**
+     * Lista usuarios desde CORE con cuenta, empresas y sesiones.
+     *
+     * @param params Filtros, texto libre y paginacion.
+     */
+    async searchUserListExtended(
+        params: SearchCoreUserExtendedListDto,
+    ): Promise<PaginatedResult<CoreUserExtendedListItemDto>> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/users/list-extended',
+                method: 'GET',
+                params,
+            },
+            CoreUserExtendedPageDto,
+        );
+    }
+
+    /**
+     * Consulta el detalle enriquecido de un usuario en CORE.
+     *
+     * @param userId Identificador del usuario.
+     */
+    async findUserById(userId: string): Promise<CoreUserExtendedListItemDto | null> {
+        return this.findById(
+            `/api/v1/internal/core/users/${userId}`,
+            CoreUserExtendedListItemDto,
+            'No fue posible consultar el usuario en CORE.',
+        );
+    }
+
+    /**
+     * Crea un usuario ROOT en CORE y Auth0.
+     *
+     * @param data Datos del usuario ROOT.
+     */
+    async createUser(data: CreateCoreUserDto): Promise<CoreUserExtendedListItemDto> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/users/create',
+                method: 'POST',
+                data,
+            },
+            CoreUserExtendedListItemDto,
+        );
+    }
+
+    /**
+     * Edita un usuario ROOT en CORE.
+     *
+     * @param userId Identificador del usuario.
+     * @param data Datos editables.
+     */
+    async updateUser(userId: string, data: UpdateCoreUserDto): Promise<CoreUserExtendedListItemDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/users/edit/${userId}`,
+                method: 'PUT',
+                data,
+            },
+            CoreUserExtendedListItemDto,
+        );
+    }
+
+    /**
+     * Cambia el estado activo/inactivo de un usuario ROOT en CORE.
+     *
+     * @param userId Identificador del usuario.
+     * @param data Estado deseado.
+     */
+    async updateUserStatus(userId: string, data: UpdateCoreUserStatusDto): Promise<CoreUserExtendedListItemDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/users/${userId}/status`,
+                method: 'PATCH',
+                data,
+            },
+            CoreUserExtendedListItemDto,
+        );
+    }
+
+    /**
+     * Cambia la marca demo de una cuenta en CORE.
+     *
+     * @param accountId Identificador de la cuenta.
+     * @param data Estado demo deseado.
+     */
+    async updateAccountDemo(accountId: string, data: UpdateCoreAccountDemoDto): Promise<CoreUserAccountDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/accounts/${accountId}/demo`,
+                method: 'PATCH',
+                data,
+            },
+            CoreUserAccountDto,
         );
     }
 

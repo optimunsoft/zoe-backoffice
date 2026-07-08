@@ -601,6 +601,10 @@ export class CoreUserListItemDto {
     @IsBoolean()
     isAdmin: boolean;
 
+    @IsOptional()
+    @IsEnum(['ADMINISTRADOR', 'OPERARIO'])
+    backofficeRole?: 'ADMINISTRADOR' | 'OPERARIO' | null;
+
     @IsArray()
     @ValidateNested({ each: true })
     @Type(() => CoreUserCompanyListItemDto)
@@ -622,6 +626,206 @@ export class CoreUserListPageDto implements PaginatedResult<CoreUserListItemDto>
     @IsInt() @Min(0) total: number;
     @IsInt() @Min(1) page: number;
     @IsInt() @Min(1) amount: number;
+}
+
+export class CoreUserAccountDto {
+    @IsUUID()
+    id: string;
+
+    @IsString()
+    code: string;
+
+    @IsBoolean()
+    isActive: boolean;
+
+    @IsBoolean()
+    isDeleted: boolean;
+
+    @IsBoolean()
+    isDemo: boolean;
+
+    @IsString()
+    createdAt: string;
+
+    @IsString()
+    updatedAt: string;
+}
+
+export class CoreUserSessionDto {
+    @IsUUID()
+    id: string;
+
+    @IsString()
+    loginAt: string;
+
+    @IsOptional()
+    @IsString()
+    logoutAt?: string | null;
+
+    @IsOptional()
+    @IsString()
+    device?: string | null;
+
+    @IsOptional()
+    @IsString()
+    browser?: string | null;
+
+    @IsOptional()
+    @IsString()
+    operatingSystem?: string | null;
+
+    @IsOptional()
+    @IsString()
+    ip?: string | null;
+
+    @IsOptional()
+    @IsString()
+    country?: string | null;
+
+    @IsOptional()
+    @IsString()
+    city?: string | null;
+
+    @IsInt()
+    @Min(0)
+    refreshCount: number;
+
+    @IsOptional()
+    @IsString()
+    accessExpiresAt?: string | null;
+
+    @IsOptional()
+    @IsString()
+    refreshExpiresAt?: string | null;
+
+    @IsBoolean()
+    revoked: boolean;
+
+    @IsOptional()
+    @IsString()
+    revokedAt?: string | null;
+}
+
+export class CoreUserExtendedListItemDto extends CoreUserListItemDto {
+    @IsOptional()
+    @ValidateNested()
+    @Type(() => CoreUserAccountDto)
+    account?: CoreUserAccountDto | null;
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreUserSessionDto)
+    sessions: CoreUserSessionDto[];
+}
+
+export class CoreUserExtendedPageDto implements PaginatedResult<CoreUserExtendedListItemDto> {
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreUserExtendedListItemDto)
+    data: CoreUserExtendedListItemDto[];
+
+    @IsInt() @Min(0) total: number;
+    @IsInt() @Min(1) page: number;
+    @IsInt() @Min(1) amount: number;
+}
+
+export class CreateCoreUserDto {
+    @IsEmail()
+    email: string;
+
+    @IsString()
+    password: string;
+
+    @IsString()
+    firstName: string;
+
+    @IsString()
+    lastName: string;
+
+    @IsUUID()
+    municipalityId: string;
+
+    @IsString()
+    birthDate: string;
+
+    @IsOptional()
+    @IsString()
+    phonePrefix?: string;
+
+    @IsOptional()
+    @IsString()
+    phoneNumber?: string;
+
+    @IsBoolean()
+    isAdmin: boolean;
+
+    @IsOptional()
+    @IsEnum(['ADMINISTRADOR', 'OPERARIO'])
+    backofficeRole?: 'ADMINISTRADOR' | 'OPERARIO';
+
+    @IsOptional()
+    @IsBoolean()
+    isVerified?: boolean;
+
+    @IsOptional()
+    @IsBoolean()
+    isDemo?: boolean;
+
+    @IsOptional()
+    @IsEnum(['USUARIO', 'SUBUSUARIO'])
+    userType?: 'USUARIO' | 'SUBUSUARIO';
+
+    @IsOptional()
+    @IsEnum(['USUARIO', 'SUBUSUARIO'])
+    type?: 'USUARIO' | 'SUBUSUARIO';
+}
+
+export class UpdateCoreUserDto {
+    @IsOptional()
+    @IsEmail()
+    email?: string;
+
+    @IsOptional()
+    @IsString()
+    firstName?: string;
+
+    @IsOptional()
+    @IsString()
+    lastName?: string;
+
+    @IsOptional()
+    @IsString()
+    username?: string;
+
+    @IsOptional()
+    @IsUUID()
+    municipalityId?: string;
+
+    @IsOptional()
+    @IsString()
+    birthDate?: string;
+
+    @IsOptional()
+    @IsBoolean()
+    isAdmin?: boolean;
+
+    @IsOptional()
+    @IsEnum(['ADMINISTRADOR', 'OPERARIO'])
+    backofficeRole?: 'ADMINISTRADOR' | 'OPERARIO';
+
+    @IsOptional()
+    @IsBoolean()
+    isVerified?: boolean;
+}
+
+export class UpdateCoreUserStatusDto {
+    @IsBoolean()
+    active: unknown;
+}
+
+export class UpdateCoreAccountDemoDto {
+    @IsBoolean()
+    isDemo: unknown;
 }
 
 export class CoreThirdPartyDto {
@@ -709,6 +913,13 @@ export interface SearchCoreUserListDto {
     page?: number;
     amount?: number;
     search?: string;
+}
+
+export interface SearchCoreUserExtendedListDto extends SearchCoreUserListDto {
+    companyId?: string;
+    isAdmin?: boolean;
+    isDemo?: boolean;
+    type?: 'USUARIO' | 'SUBUSUARIO';
 }
 
 export interface MatchCoreCatalogItemDto {

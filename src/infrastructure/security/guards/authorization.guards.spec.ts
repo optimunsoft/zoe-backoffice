@@ -3,6 +3,7 @@ import { Reflector } from '@nestjs/core';
 import { CompanyPermissionGuard } from './company-permission.guard';
 import { CompanyRelatedGuard } from './company-related.guard';
 import { IsAdminGuard } from './is-admin.guard';
+import { BackofficeAdminGuard } from './backoffice-admin.guard';
 
 const context = (request: any) => ({
     switchToHttp: () => ({ getRequest: () => request }),
@@ -95,5 +96,33 @@ describe('Accounting authorization guards', () => {
         }))).rejects.toBeInstanceOf(ForbiddenException);
 
         expect(repository.isAdminEmail).toHaveBeenCalledWith('user@example.com');
+    });
+
+    it('allows operator role assignments without elevated backoffice role check', async () => {
+        const repository = {
+            isBackofficeAdministratorEmail: jest.fn(),
+        };
+        const guard = new BackofficeAdminGuard(repository as any);
+
+        await expect(guard.canActivate(context({
+            user: { email: 'operator@example.com' },
+            body: { backofficeRole: 'OPERARIO' },
+        }))).resolves.toBe(true);
+
+        expect(repository.isBackofficeAdministratorEmail).not.toHaveBeenCalled();
+    });
+
+    it('requires backoffice administrator when assigning administrator role', async () => {
+        const repository = {
+            isBackofficeAdministratorEmail: jest.fn().mockResolvedValue(false),
+        };
+        const guard = new BackofficeAdminGuard(repository as any);
+
+        await expect(guard.canActivate(context({
+            user: { email: 'operator@example.com' },
+            body: { backofficeRole: 'ADMINISTRADOR' },
+        }))).rejects.toBeInstanceOf(ForbiddenException);
+
+        expect(repository.isBackofficeAdministratorEmail).toHaveBeenCalledWith('operator@example.com');
     });
 });

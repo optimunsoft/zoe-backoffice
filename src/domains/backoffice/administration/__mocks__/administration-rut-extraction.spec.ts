@@ -45,7 +45,7 @@ describe('Administration RUT extraction', () => {
         confidence: 1,
       }]),
     };
-    const service = new AdministrationService(coreIntegration as any, documentExtraction as any);
+    const service = new AdministrationService(coreIntegration as any, documentExtraction as any, {} as any);
 
     await expect(service.extractCompanyRut(validFile)).resolves.toMatchObject({
       prefill: {
@@ -65,7 +65,7 @@ describe('Administration RUT extraction', () => {
 
   it('rejects missing files', async () => {
     const documentExtraction = { extractRutPrefillFromPdf: jest.fn(), extractRutFullFromPdf: jest.fn() };
-    const service = new AdministrationService({} as any, documentExtraction as any);
+    const service = new AdministrationService({} as any, documentExtraction as any, {} as any);
 
     await expect(service.extractCompanyRut()).rejects.toBeInstanceOf(BadRequestException);
     expect(documentExtraction.extractRutPrefillFromPdf).not.toHaveBeenCalled();
@@ -73,7 +73,7 @@ describe('Administration RUT extraction', () => {
 
   it('rejects files without a PDF signature', async () => {
     const documentExtraction = { extractRutPrefillFromPdf: jest.fn(), extractRutFullFromPdf: jest.fn() };
-    const service = new AdministrationService({} as any, documentExtraction as any);
+    const service = new AdministrationService({} as any, documentExtraction as any, {} as any);
 
     await expect(service.extractCompanyRut({
       ...validFile,
@@ -84,7 +84,7 @@ describe('Administration RUT extraction', () => {
 
   it('rejects files larger than the configured limit', async () => {
     const documentExtraction = { extractRutPrefillFromPdf: jest.fn(), extractRutFullFromPdf: jest.fn() };
-    const service = new AdministrationService({} as any, documentExtraction as any);
+    const service = new AdministrationService({} as any, documentExtraction as any, {} as any);
 
     await expect(service.extractCompanyRut({
       ...validFile,

@@ -5,6 +5,7 @@ import {
     PermissionMeta,
 } from './require-permission.decorator';
 import { ApiKeyGuard } from '../guards/api-key.guard';
+import { BackofficeAdminGuard } from '../guards/backoffice-admin.guard';
 import { CompanyOwnerGuard } from '../guards/company-owner.guard';
 import { CompanyPermissionGuard } from '../guards/company-permission.guard';
 import { CompanyRelatedGuard } from '../guards/company-related.guard';
@@ -12,7 +13,7 @@ import { IsAdminGuard } from '../guards/is-admin.guard';
 import { RegisteredGuard } from '../guards/registered.guard';
 import { UserRootGuard } from '../guards/user-root.guard';
 
-type Mode = 'jwt' | 'registered' | 'admin' | 'user-root' | 'owner' | 'related' | 'perm' | 'api-key';
+type Mode = 'jwt' | 'registered' | 'admin' | 'backoffice-admin' | 'user-root' | 'owner' | 'related' | 'perm' | 'api-key';
 
 export function UseAuth(mode: Mode, permission?: PermissionMeta) {
     switch (mode) {
@@ -22,6 +23,8 @@ export function UseAuth(mode: Mode, permission?: PermissionMeta) {
             return applyDecorators(UseGuards(RegisteredGuard));
         case 'admin':
             return applyDecorators(UseGuards(RegisteredGuard, IsAdminGuard));
+        case 'backoffice-admin':
+            return applyDecorators(UseGuards(RegisteredGuard, IsAdminGuard, BackofficeAdminGuard));
         case 'user-root':
             return applyDecorators(UseGuards(RegisteredGuard, UserRootGuard));
         case 'owner':

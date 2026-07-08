@@ -1,4 +1,4 @@
-jest.mock('src/config/env.config', () => ({
+﻿jest.mock('src/config/env.config', () => ({
   envs: {
     api_url_internal_core: 'http://core',
     api_key_internal_core: 'secret',
@@ -8,13 +8,17 @@ jest.mock('src/config/env.config', () => ({
 
 import { AdministrationController } from '../administration.controller';
 import { AdministrationService } from '../administration.service';
-import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, ValidationPipe } from '@nestjs/common';
 import {
   AssignCoreCompanyUserDto,
   AssignCoreCompanyUserRequestDto,
+  CreateCoreUserDto,
   UnassignCoreCompanyUserDto,
+  UpdateCoreAccountDemoDto,
   UpdateCoreCompanyStatusDto,
+  UpdateCoreUserStatusDto,
 } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
+import { ListUsersExtendedQueryDto } from '../dto/list-users-extended-query.dto';
 
 describe('Administration company list', () => {
   it('delegates company list to CORE extended search', async () => {
@@ -22,7 +26,7 @@ describe('Administration company list', () => {
     const coreIntegration = {
       searchCompaniesExtended: jest.fn().mockResolvedValue(response),
     };
-    const service = new AdministrationService(coreIntegration as any, {} as any);
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
     const query = {
       page: 1,
       amount: 10,
@@ -45,7 +49,7 @@ describe('Administration company list', () => {
     const coreIntegration = {
       findCompanyRole: jest.fn().mockResolvedValue(response),
     };
-    const service = new AdministrationService(coreIntegration as any, {} as any);
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
 
     await expect(service.findCompanyRole(
       '11111111-1111-4111-8111-111111111111',
@@ -77,7 +81,7 @@ describe('Administration company list', () => {
     const coreIntegration = {
       createCompany: jest.fn().mockResolvedValue(response),
     };
-    const service = new AdministrationService(coreIntegration as any, {} as any);
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
 
     await expect(service.createCompany(dto)).resolves.toBe(response);
     expect(coreIntegration.createCompany).toHaveBeenCalledWith(dto);
@@ -102,7 +106,7 @@ describe('Administration company list', () => {
     const coreIntegration = {
       updateCompany: jest.fn().mockResolvedValue(response),
     };
-    const service = new AdministrationService(coreIntegration as any, {} as any);
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
 
     await expect(service.updateCompany(companyId, dto)).resolves.toBe(response);
     expect(coreIntegration.updateCompany).toHaveBeenCalledWith(companyId, dto);
@@ -126,7 +130,7 @@ describe('Administration company list', () => {
     const coreIntegration = {
       updateCompanyStatus: jest.fn().mockResolvedValue(response),
     };
-    const service = new AdministrationService(coreIntegration as any, {} as any);
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
 
     await expect(service.updateCompanyStatus(companyId, dto)).resolves.toBe(response);
     expect(coreIntegration.updateCompanyStatus).toHaveBeenCalledWith(companyId, dto);
@@ -146,7 +150,7 @@ describe('Administration company list', () => {
     const coreIntegration = {
       assignCompanyUser: jest.fn().mockResolvedValue(response),
     };
-    const service = new AdministrationService(coreIntegration as any, {} as any);
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
 
     await expect(service.assignCompanyUser(dto)).resolves.toBe(response);
     expect(coreIntegration.assignCompanyUser).toHaveBeenCalledWith(dto);
@@ -164,7 +168,7 @@ describe('Administration company list', () => {
     const coreIntegration = {
       unassignCompanyUser: jest.fn().mockResolvedValue(response),
     };
-    const service = new AdministrationService(coreIntegration as any, {} as any);
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
 
     await expect(service.unassignCompanyUser(dto)).resolves.toBe(response);
     expect(coreIntegration.unassignCompanyUser).toHaveBeenCalledWith(dto);
@@ -407,4 +411,292 @@ describe('Administration company list', () => {
       '88888888-8888-4888-8888-888888888888',
     );
   });
+
+  it('delegates extended user list to CORE integration', async () => {
+    const response = { data: [], total: 0, page: 1, amount: 10 };
+    const coreIntegration = {
+      searchUserListExtended: jest.fn().mockResolvedValue(response),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+    const query = {
+      page: 1,
+      amount: 10,
+      search: 'ada',
+      companyId: '11111111-1111-4111-8111-111111111111',
+      isAdmin: true,
+      isDemo: true,
+      type: 'USUARIO' as const,
+    };
+
+    await expect(service.listUsersExtended(query)).resolves.toBe(response);
+    expect(coreIntegration.searchUserListExtended).toHaveBeenCalledWith(query);
+  });
+
+  it('delegates user CRUD operations to CORE integration', async () => {
+    const userId = '11111111-1111-4111-8111-111111111111';
+    const response = { id: userId };
+    const coreIntegration = {
+      findUserById: jest.fn().mockResolvedValue(response),
+      createUser: jest.fn().mockResolvedValue(response),
+      updateUser: jest.fn().mockResolvedValue(response),
+      updateUserStatus: jest.fn().mockResolvedValue(response),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+    const createDto = {
+      email: 'ada@optimunsoft.co',
+      password: 'TemporalPassword123!',
+      firstName: 'Ada',
+      lastName: 'Lovelace',
+      municipalityId: '22222222-2222-4222-8222-222222222222',
+      birthDate: '1990-05-21',
+      isAdmin: true,
+      backofficeRole: 'OPERARIO' as const,
+    };
+
+    await expect(service.findUserById(userId)).resolves.toBe(response);
+    await expect(service.createUser({ email: 'admin@example.com' }, createDto)).resolves.toBe(response);
+    await expect(service.updateUser({ email: 'admin@example.com' }, userId, { firstName: 'Ada' })).resolves.toBe(response);
+    await expect(service.updateUserStatus(userId, { active: false })).resolves.toBe(response);
+
+    expect(coreIntegration.findUserById).toHaveBeenCalledWith(userId);
+    expect(coreIntegration.createUser).toHaveBeenCalledWith(createDto);
+    expect(coreIntegration.updateUser).toHaveBeenCalledWith(userId, { firstName: 'Ada' });
+    expect(coreIntegration.updateUserStatus).toHaveBeenCalledWith(userId, { active: false });
+  });
+
+  it('rejects administrator role assignment when actor is not backoffice administrator', async () => {
+    const coreIntegration = {
+      createUser: jest.fn(),
+    };
+    const authorizationRepository = {
+      isBackofficeAdministratorEmail: jest.fn().mockResolvedValue(false),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, authorizationRepository as any);
+
+    await expect(service.createUser(
+      { email: 'operator@example.com' },
+      {
+        email: 'ada@optimunsoft.co',
+        password: 'TemporalPassword123!',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        municipalityId: '22222222-2222-4222-8222-222222222222',
+        birthDate: '1990-05-21',
+        isAdmin: true,
+        backofficeRole: 'ADMINISTRADOR',
+      },
+    )).rejects.toBeInstanceOf(ForbiddenException);
+    expect(coreIntegration.createUser).not.toHaveBeenCalled();
+  });
+
+  it('rejects admin users without backoffice role or optimunsoft email', async () => {
+    const coreIntegration = {
+      createUser: jest.fn(),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+    const baseDto = {
+      email: 'ada@optimunsoft.co',
+      password: 'TemporalPassword123!',
+      firstName: 'Ada',
+      lastName: 'Lovelace',
+      municipalityId: '22222222-2222-4222-8222-222222222222',
+      birthDate: '1990-05-21',
+      isAdmin: true,
+    };
+
+    await expect(service.createUser(
+      { email: 'admin@example.com' },
+      baseDto,
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(service.createUser(
+      { email: 'admin@example.com' },
+      {
+        ...baseDto,
+        email: 'ada@example.com',
+        backofficeRole: 'OPERARIO',
+      },
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    expect(coreIntegration.createUser).not.toHaveBeenCalled();
+  });
+
+  it('delegates account demo updates to CORE integration', async () => {
+    const accountId = '22222222-2222-4222-8222-222222222222';
+    const response = {
+      id: accountId,
+      code: '00000001',
+      isActive: true,
+      isDeleted: false,
+      isDemo: true,
+      createdAt: '2026-01-01T00:00:00.000Z',
+      updatedAt: '2026-01-02T00:00:00.000Z',
+    };
+    const coreIntegration = {
+      updateAccountDemo: jest.fn().mockResolvedValue(response),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+
+    await expect(service.updateAccountDemo(accountId, { isDemo: true })).resolves.toBe(response);
+    expect(coreIntegration.updateAccountDemo).toHaveBeenCalledWith(accountId, { isDemo: true });
+  });
+
+  it('delegates controller user CRUD endpoints to administration service', async () => {
+    const userId = '11111111-1111-4111-8111-111111111111';
+    const response = { id: userId };
+    const service = {
+      listUsersExtended: jest.fn().mockResolvedValue({ data: [], total: 0, page: 1, amount: 10 }),
+      findUserById: jest.fn().mockResolvedValue(response),
+      createUser: jest.fn().mockResolvedValue(response),
+      updateUser: jest.fn().mockResolvedValue(response),
+      updateUserStatus: jest.fn().mockResolvedValue(response),
+    };
+    const controller = new AdministrationController(service as any);
+    const query = { page: 1, amount: 10, search: 'ada' };
+    const createDto = {
+      email: 'ada@optimunsoft.co',
+      password: 'TemporalPassword123!',
+      firstName: 'Ada',
+      lastName: 'Lovelace',
+      municipalityId: '22222222-2222-4222-8222-222222222222',
+      birthDate: '1990-05-21',
+      isAdmin: true,
+      backofficeRole: 'OPERARIO' as const,
+    };
+
+    await expect(controller.listUsersExtended(query)).resolves.toEqual({ data: [], total: 0, page: 1, amount: 10 });
+    await expect(controller.findUserById(userId)).resolves.toBe(response);
+    await expect(controller.createUser({ user: { email: 'admin@example.com' } }, createDto)).resolves.toBe(response);
+    await expect(controller.updateUser({ user: { email: 'admin@example.com' } }, userId, { firstName: 'Ada' })).resolves.toBe(response);
+    await expect(controller.updateUserStatus(userId, { active: false })).resolves.toBe(response);
+
+    expect(service.listUsersExtended).toHaveBeenCalledWith(query);
+    expect(service.findUserById).toHaveBeenCalledWith(userId);
+    expect(service.createUser).toHaveBeenCalledWith({ email: 'admin@example.com' }, createDto);
+    expect(service.updateUser).toHaveBeenCalledWith({ email: 'admin@example.com' }, userId, { firstName: 'Ada' });
+    expect(service.updateUserStatus).toHaveBeenCalledWith(userId, { active: false });
+  });
+
+  it('delegates controller account demo endpoint to administration service', async () => {
+    const accountId = '22222222-2222-4222-8222-222222222222';
+    const response = {
+      id: accountId,
+      code: '00000001',
+      isActive: true,
+      isDeleted: false,
+      isDemo: false,
+      createdAt: '2026-01-01T00:00:00.000Z',
+      updatedAt: '2026-01-02T00:00:00.000Z',
+    };
+    const service = {
+      updateAccountDemo: jest.fn().mockResolvedValue(response),
+    };
+    const controller = new AdministrationController(service as any);
+
+    await expect(controller.updateAccountDemo(accountId, { isDemo: false })).resolves.toBe(response);
+    expect(service.updateAccountDemo).toHaveBeenCalledWith(accountId, { isDemo: false });
+  });
+
+  it('validates extended user list query DTO', async () => {
+    const pipe = new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    });
+
+    await expect(pipe.transform(
+      {
+        page: '1',
+        amount: '10',
+        search: 'ada',
+        companyId: '11111111-1111-4111-8111-111111111111',
+        isAdmin: 'true',
+        isDemo: 'false',
+        type: 'USUARIO',
+      },
+      { type: 'query', metatype: ListUsersExtendedQueryDto },
+    )).resolves.toMatchObject({
+      page: 1,
+      amount: 10,
+      isAdmin: true,
+      isDemo: false,
+      type: 'USUARIO',
+    });
+
+    await expect(pipe.transform(
+      { type: 'ROOT' },
+      { type: 'query', metatype: ListUsersExtendedQueryDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+  });
+
+  it('validates user create and status DTOs strictly', async () => {
+    const pipe = new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    });
+
+    await expect(pipe.transform(
+      {
+        email: 'ada@optimunsoft.co',
+        password: 'TemporalPassword123!',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        municipalityId: '22222222-2222-4222-8222-222222222222',
+        birthDate: '1990-05-21',
+        isAdmin: true,
+        backofficeRole: 'ADMINISTRADOR',
+      },
+      { type: 'body', metatype: CreateCoreUserDto },
+    )).resolves.toMatchObject({
+      email: 'ada@optimunsoft.co',
+      backofficeRole: 'ADMINISTRADOR',
+    });
+
+    await expect(pipe.transform(
+      {
+        email: 'ada@optimunsoft.co',
+        password: 'TemporalPassword123!',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        municipalityId: '22222222-2222-4222-8222-222222222222',
+        birthDate: '1990-05-21',
+        isAdmin: true,
+        backofficeRole: 'ROOT',
+      },
+      { type: 'body', metatype: CreateCoreUserDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(pipe.transform(
+      { active: false },
+      { type: 'body', metatype: UpdateCoreUserStatusDto },
+    )).resolves.toMatchObject({ active: false });
+
+    await expect(pipe.transform(
+      { active: 'false' },
+      { type: 'body', metatype: UpdateCoreUserStatusDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+  });
+
+  it('validates account demo update DTO strictly', async () => {
+    const pipe = new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    });
+
+    await expect(pipe.transform(
+      { isDemo: true },
+      { type: 'body', metatype: UpdateCoreAccountDemoDto },
+    )).resolves.toMatchObject({ isDemo: true });
+
+    await expect(pipe.transform(
+      { isDemo: 'false' },
+      { type: 'body', metatype: UpdateCoreAccountDemoDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+  });
 });
+

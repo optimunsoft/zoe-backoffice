@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Inject, Injectable } from '@nestjs/common';
 import { envs } from 'src/config/env.config';
 import {
     AssignCoreCompanyUserDto,
@@ -9,16 +9,24 @@ import {
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreCompanyUserAssignmentDto,
+    CoreUserAccountDto,
+    CoreUserExtendedListItemDto,
     CoreUserListItemDto,
+    CreateCoreUserDto,
     MatchCoreCatalogItemDto,
     SearchCoreCompaniesDto,
+    SearchCoreUserExtendedListDto,
     SearchCoreUserListDto,
     UnassignCoreCompanyUserDto,
+    UpdateCoreAccountDemoDto,
     UpdateCoreCompanyDto,
     UpdateCoreCompanyStatusDto,
+    UpdateCoreUserDto,
+    UpdateCoreUserStatusDto,
 } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
 import { BACKOFFICE_CORE_INTEGRATION, IBackofficeCoreIntegration } from 'src/infrastructure/integrations/core/interfaces/backoffice-core.interface';
 import { DOCUMENT_EXTRACTION_INTEGRATION, IDocumentExtractionIntegration } from 'src/infrastructure/integrations/openai/interfaces/document-extraction.interface';
+import { AuthorizationRepository } from 'src/infrastructure/security/authorization.repository';
 import { PaginatedResult } from 'src/shared/interfaces/PaginatedResult';
 import { UploadedFile } from 'src/shared/interfaces/uploaded-file.interface';
 import { CompanyPrefillResultDto, RutExtractionRawDto, RutExtractionResultDto } from './dto/rut-extraction-result.dto';
@@ -30,6 +38,7 @@ export class AdministrationService {
         private readonly coreIntegration: IBackofficeCoreIntegration,
         @Inject(DOCUMENT_EXTRACTION_INTEGRATION)
         private readonly documentExtraction: IDocumentExtractionIntegration,
+        private readonly authorizationRepository: AuthorizationRepository,
     ) { }
 
     async listCompanies(
@@ -66,6 +75,37 @@ export class AdministrationService {
         query: SearchCoreUserListDto,
     ): Promise<PaginatedResult<CoreUserListItemDto>> {
         return this.coreIntegration.searchUserList(query);
+    }
+
+    async listUsersExtended(
+        query: SearchCoreUserExtendedListDto,
+    ): Promise<PaginatedResult<CoreUserExtendedListItemDto>> {
+        return this.coreIntegration.searchUserListExtended(query);
+    }
+
+    async findUserById(userId: string): Promise<CoreUserExtendedListItemDto | null> {
+        return this.coreIntegration.findUserById(userId);
+    }
+
+    async createUser(actor: { email?: string } | undefined, dto: CreateCoreUserDto): Promise<CoreUserExtendedListItemDto> {
+        this.validateBackofficeAdministratorPayload(dto);
+        await this.ensureCanAssignBackofficeAdministrator(actor, dto.backofficeRole);
+        return this.coreIntegration.createUser(dto);
+    }
+
+    async updateUser(actor: { email?: string } | undefined, userId: string, dto: UpdateCoreUserDto): Promise<CoreUserExtendedListItemDto> {
+        const currentUser = await this.findUserForBackofficeValidation(userId, dto);
+        this.validateBackofficeAdministratorPayload(dto, currentUser);
+        await this.ensureCanAssignBackofficeAdministrator(actor, dto.backofficeRole);
+        return this.coreIntegration.updateUser(userId, dto);
+    }
+
+    async updateUserStatus(userId: string, dto: UpdateCoreUserStatusDto): Promise<CoreUserExtendedListItemDto> {
+        return this.coreIntegration.updateUserStatus(userId, dto);
+    }
+
+    async updateAccountDemo(accountId: string, dto: UpdateCoreAccountDemoDto): Promise<CoreUserAccountDto> {
+        return this.coreIntegration.updateAccountDemo(accountId, dto);
     }
 
     async extractCompanyRut(file?: UploadedFile): Promise<RutExtractionResultDto> {
@@ -186,6 +226,57 @@ export class AdministrationService {
                 ],
             },
         };
+    }
+
+    private async ensureCanAssignBackofficeAdministrator(
+        actor: { email?: string } | undefined,
+        requestedRole?: 'ADMINISTRADOR' | 'OPERARIO',
+    ): Promise<void> {
+        if (requestedRole !== 'ADMINISTRADOR') return;
+
+        if (!actor?.email) {
+            throw new ForbiddenException('Usuario no autenticado.');
+        }
+
+        const isBackofficeAdministrator = await this.authorizationRepository
+            .isBackofficeAdministratorEmail(actor.email);
+
+        if (!isBackofficeAdministrator) {
+            throw new ForbiddenException('No tienes permisos para esta accion.');
+        }
+    }
+
+    private async findUserForBackofficeValidation(
+        userId: string,
+        dto: UpdateCoreUserDto,
+    ): Promise<CoreUserExtendedListItemDto | null> {
+        const mustResolveCurrentUser = dto.isAdmin !== undefined
+            || dto.backofficeRole !== undefined
+            || dto.email !== undefined;
+
+        return mustResolveCurrentUser ? this.coreIntegration.findUserById(userId) : null;
+    }
+
+    private validateBackofficeAdministratorPayload(
+        dto: CreateCoreUserDto | UpdateCoreUserDto,
+        currentUser?: CoreUserExtendedListItemDto | null,
+    ): void {
+        const nextIsAdmin = dto.isAdmin ?? currentUser?.isAdmin ?? false;
+        if (!nextIsAdmin) return;
+
+        const nextBackofficeRole = dto.backofficeRole ?? currentUser?.backofficeRole;
+        if (!nextBackofficeRole) {
+            throw new BadRequestException('Los usuarios administradores deben tener un rol de backoffice.');
+        }
+
+        const nextEmail = dto.email ?? currentUser?.email;
+        if (!nextEmail || !this.isOptimunsoftEmail(nextEmail)) {
+            throw new BadRequestException('Los usuarios administradores deben usar un correo @optimunsoft.co.');
+        }
+    }
+
+    private isOptimunsoftEmail(email: string): boolean {
+        return email.trim().toLowerCase().endsWith('@optimunsoft.co');
     }
 
 }

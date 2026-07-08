@@ -14,16 +14,23 @@ import {
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
     CoreThirdPartyUpsertResultDto,
+    CoreUserAccountDto,
+    CoreUserExtendedListItemDto,
     CoreUserDto,
     CoreUserListItemDto,
     CoreUserPageDto,
+    CreateCoreUserDto,
+    UpdateCoreUserDto,
+    UpdateCoreUserStatusDto,
     SearchCoreThirdPartiesDto,
     SearchCoreUsersDto,
     SearchCoreCompaniesDto,
+    SearchCoreUserExtendedListDto,
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
     UnassignCoreCompanyUserDto,
     UpsertCoreThirdPartyDto,
+    UpdateCoreAccountDemoDto,
     UpdateCoreCompanyDto,
     UpdateCoreCompanyStatusDto,
 } from '../dto/backoffice-core.dto';
@@ -44,6 +51,12 @@ export interface IBackofficeCoreIntegration {
     searchCompaniesExtended(params: SearchCoreCompaniesDto): Promise<PaginatedResult<CoreCompanyExtendedListItemDto>>;
     findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto>;
     searchUserList(params: SearchCoreUserListDto): Promise<PaginatedResult<CoreUserListItemDto>>;
+    searchUserListExtended(params: SearchCoreUserExtendedListDto): Promise<PaginatedResult<CoreUserExtendedListItemDto>>;
+    findUserById(userId: string): Promise<CoreUserExtendedListItemDto | null>;
+    createUser(data: CreateCoreUserDto): Promise<CoreUserExtendedListItemDto>;
+    updateUser(userId: string, data: UpdateCoreUserDto): Promise<CoreUserExtendedListItemDto>;
+    updateUserStatus(userId: string, data: UpdateCoreUserStatusDto): Promise<CoreUserExtendedListItemDto>;
+    updateAccountDemo(accountId: string, data: UpdateCoreAccountDemoDto): Promise<CoreUserAccountDto>;
     findCompanyOwner(companyId: string): Promise<CoreUserDto | null>;
     resolveUsers(ids: string[]): Promise<CoreUserDto[]>;
     searchUsers(params: SearchCoreUsersDto): Promise<CoreUserPageDto>;

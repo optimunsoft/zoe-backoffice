@@ -428,6 +428,200 @@ describe('BackofficeCoreService', () => {
         }));
     });
 
+    it('calls CORE extended user list with filters and internal credentials', async () => {
+        const response = {
+            data: [{
+                id: '11111111-1111-4111-8111-111111111111',
+                label: 'Ada Lovelace',
+                firstName: 'Ada',
+                lastName: 'Lovelace',
+                email: 'ada@example.com',
+                username: 'ada',
+                userType: 'USUARIO',
+                isActive: true,
+                isVerified: true,
+                isAdmin: true,
+                backofficeRole: 'ADMINISTRADOR',
+                account: {
+                    id: '22222222-2222-4222-8222-222222222222',
+                    code: '00000001',
+                    isActive: true,
+                    isDeleted: false,
+                    isDemo: false,
+                    createdAt: '2026-01-01T00:00:00.000Z',
+                    updatedAt: '2026-01-02T00:00:00.000Z',
+                },
+                companies: [],
+                sessions: [],
+                createdAt: '2026-01-01T00:00:00.000Z',
+                updatedAt: '2026-01-02T00:00:00.000Z',
+            }],
+            total: 1,
+            page: 1,
+            amount: 10,
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.searchUserListExtended({
+            page: 1,
+            amount: 10,
+            search: 'ada',
+            companyId: '33333333-3333-4333-8333-333333333333',
+            isAdmin: true,
+            isDemo: false,
+            type: 'USUARIO',
+        })).resolves.toMatchObject({
+            data: [{
+                backofficeRole: 'ADMINISTRADOR',
+                account: { code: '00000001' },
+                sessions: [],
+            }],
+        });
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/users/list-extended',
+            method: 'GET',
+            params: {
+                page: 1,
+                amount: 10,
+                search: 'ada',
+                companyId: '33333333-3333-4333-8333-333333333333',
+                isAdmin: true,
+                isDemo: false,
+                type: 'USUARIO',
+            },
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
+    it('calls CORE user detail with internal credentials', async () => {
+        const userId = '11111111-1111-4111-8111-111111111111';
+        const response = {
+            id: userId,
+            label: 'Ada Lovelace',
+            firstName: 'Ada',
+            lastName: 'Lovelace',
+            email: 'ada@example.com',
+            username: 'ada',
+            userType: 'USUARIO',
+            isActive: true,
+            isVerified: true,
+            isAdmin: true,
+            backofficeRole: 'ADMINISTRADOR',
+            account: null,
+            companies: [],
+            sessions: [],
+            createdAt: '2026-01-01T00:00:00.000Z',
+            updatedAt: '2026-01-02T00:00:00.000Z',
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.findUserById(userId)).resolves.toMatchObject({ id: userId });
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: `http://core/api/v1/internal/core/users/${userId}`,
+            method: 'GET',
+            headers: {
+                'x-api-key-internal': 'secret',
+            },
+        }));
+    });
+
+    it('creates, updates and changes user status in CORE with internal credentials', async () => {
+        const userId = '11111111-1111-4111-8111-111111111111';
+        const response = {
+            id: userId,
+            label: 'Ada Lovelace',
+            firstName: 'Ada',
+            lastName: 'Lovelace',
+            email: 'ada@example.com',
+            username: 'ada',
+            userType: 'USUARIO',
+            isActive: true,
+            isVerified: true,
+            isAdmin: true,
+            backofficeRole: 'OPERARIO',
+            account: null,
+            companies: [],
+            sessions: [],
+            createdAt: '2026-01-01T00:00:00.000Z',
+            updatedAt: '2026-01-02T00:00:00.000Z',
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+        const createPayload = {
+            email: 'ada@example.com',
+            password: 'TemporalPassword123!',
+            firstName: 'Ada',
+            lastName: 'Lovelace',
+            municipalityId: '33333333-3333-4333-8333-333333333333',
+            birthDate: '1990-05-21',
+            isAdmin: true,
+            backofficeRole: 'OPERARIO' as const,
+        };
+
+        await expect(service.createUser(createPayload)).resolves.toMatchObject({ id: userId });
+        await expect(service.updateUser(userId, { firstName: 'Ada', backofficeRole: 'OPERARIO' })).resolves.toMatchObject({ id: userId });
+        await expect(service.updateUserStatus(userId, { active: false })).resolves.toMatchObject({ id: userId });
+
+        expect(request).toHaveBeenNthCalledWith(1, expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/users/create',
+            method: 'POST',
+            data: createPayload,
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+        expect(request).toHaveBeenNthCalledWith(2, expect.objectContaining({
+            url: `http://core/api/v1/internal/core/users/edit/${userId}`,
+            method: 'PUT',
+            data: { firstName: 'Ada', backofficeRole: 'OPERARIO' },
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+        expect(request).toHaveBeenNthCalledWith(3, expect.objectContaining({
+            url: `http://core/api/v1/internal/core/users/${userId}/status`,
+            method: 'PATCH',
+            data: { active: false },
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+    });
+
+    it('updates account demo flag in CORE with internal credentials', async () => {
+        const accountId = '22222222-2222-4222-8222-222222222222';
+        const response = {
+            id: accountId,
+            code: '00000001',
+            isActive: true,
+            isDeleted: false,
+            isDemo: true,
+            createdAt: '2026-01-01T00:00:00.000Z',
+            updatedAt: '2026-01-02T00:00:00.000Z',
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.updateAccountDemo(accountId, { isDemo: true })).resolves.toMatchObject({
+            id: accountId,
+            isDemo: true,
+        });
+
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: `http://core/api/v1/internal/core/accounts/${accountId}/demo`,
+            method: 'PATCH',
+            data: { isDemo: true },
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+    });
+
     it('calls CORE catalog match with extracted text values', async () => {
         const response = [{
             catalog: 'documentType',

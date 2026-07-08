@@ -85,6 +85,24 @@ export class AuthorizationRepository {
         return Boolean(result?.allowed);
     }
 
+    async isBackofficeAdministratorEmail(email: string): Promise<boolean> {
+        const [result] = await this.dataSource.query(
+            `
+                SELECT EXISTS (
+                    SELECT 1
+                    FROM core.usuarios
+                    WHERE LOWER(correo) = LOWER($1)
+                      AND es_admin = TRUE
+                      AND rol_bo = 'ADMINISTRADOR'
+                      AND eliminado = FALSE
+                      AND activo = TRUE
+                ) AS allowed
+            `,
+            [email],
+        );
+        return Boolean(result?.allowed);
+    }
+
     async findCompanyApiKeys(): Promise<CompanyApiKey[]> {
         return this.dataSource.query(
             `
