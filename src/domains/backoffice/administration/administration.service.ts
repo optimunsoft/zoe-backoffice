@@ -7,6 +7,8 @@ import {
     CoreCatalog,
     CoreCatalogMatchDto,
     CoreCompanyExtendedListItemDto,
+    CoreCompanyLogoDto,
+    CoreCompanyLogoUploadDto,
     CoreCompanyModuleAssignmentDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
@@ -64,6 +66,14 @@ export class AdministrationService {
 
     async updateCompanyStatus(companyId: string, dto: UpdateCoreCompanyStatusDto): Promise<CoreCompanySummaryDto> {
         return this.coreIntegration.updateCompanyStatus(companyId, dto);
+    }
+
+    async getCompanyLogo(companyId: string, returnBase64 = false): Promise<CoreCompanyLogoDto> {
+        return this.coreIntegration.getCompanyLogo(companyId, returnBase64);
+    }
+
+    async uploadCompanyLogo(companyId: string, file: UploadedFile): Promise<CoreCompanyLogoUploadDto> {
+        return this.coreIntegration.uploadCompanyLogo(companyId, file);
     }
 
     async assignCompanyUser(dto: AssignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto> {

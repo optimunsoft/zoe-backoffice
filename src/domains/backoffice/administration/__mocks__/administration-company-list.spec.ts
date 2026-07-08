@@ -136,6 +136,31 @@ describe('Administration company list', () => {
     expect(coreIntegration.updateCompanyStatus).toHaveBeenCalledWith(companyId, dto);
   });
 
+  it('delegates company logo get and upload to CORE integration', async () => {
+    const companyId = '11111111-1111-4111-8111-111111111111';
+    const logoResponse = { logo: 'https://signed-url.test/logo.png' };
+    const uploadResponse = {
+      message: 'Logo subido exitosamente',
+      logoName: `${companyId}/logo/new.png`,
+    };
+    const file = {
+      originalname: 'logo.png',
+      mimetype: 'image/png',
+      size: 12,
+      buffer: Buffer.from('png'),
+    };
+    const coreIntegration = {
+      getCompanyLogo: jest.fn().mockResolvedValue(logoResponse),
+      uploadCompanyLogo: jest.fn().mockResolvedValue(uploadResponse),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+
+    await expect(service.getCompanyLogo(companyId, true)).resolves.toBe(logoResponse);
+    await expect(service.uploadCompanyLogo(companyId, file)).resolves.toBe(uploadResponse);
+    expect(coreIntegration.getCompanyLogo).toHaveBeenCalledWith(companyId, true);
+    expect(coreIntegration.uploadCompanyLogo).toHaveBeenCalledWith(companyId, file);
+  });
+
   it('delegates user-company assignment to CORE integration', async () => {
     const dto = {
       companyId: '11111111-1111-4111-8111-111111111111',
@@ -281,6 +306,31 @@ describe('Administration company list', () => {
 
     await expect(controller.updateCompanyStatus(companyId, dto)).resolves.toBe(response);
     expect(service.updateCompanyStatus).toHaveBeenCalledWith(companyId, dto);
+  });
+
+  it('delegates controller company logo get and upload to administration service', async () => {
+    const companyId = '11111111-1111-4111-8111-111111111111';
+    const logoResponse = { logo: 'https://signed-url.test/logo.png' };
+    const uploadResponse = {
+      message: 'Logo subido exitosamente',
+      logoName: `${companyId}/logo/new.png`,
+    };
+    const file = {
+      originalname: 'logo.png',
+      mimetype: 'image/png',
+      size: 12,
+      buffer: Buffer.from('png'),
+    };
+    const service = {
+      getCompanyLogo: jest.fn().mockResolvedValue(logoResponse),
+      uploadCompanyLogo: jest.fn().mockResolvedValue(uploadResponse),
+    };
+    const controller = new AdministrationController(service as any);
+
+    await expect(controller.getCompanyLogo(companyId, false)).resolves.toBe(logoResponse);
+    await expect(controller.uploadCompanyLogo(companyId, file)).resolves.toBe(uploadResponse);
+    expect(service.getCompanyLogo).toHaveBeenCalledWith(companyId, false);
+    expect(service.uploadCompanyLogo).toHaveBeenCalledWith(companyId, file);
   });
 
   it('delegates controller user-company assignment to administration service', async () => {

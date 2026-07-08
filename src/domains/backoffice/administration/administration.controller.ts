@@ -1,11 +1,15 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Put, Query, Req, UploadedFile as UploadedFileDecorator, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, Body, Controller, DefaultValuePipe, Delete, Get, Param, ParseBoolPipe, ParseUUIDPipe, Patch, Post, Put, Query, Req, UploadedFile as UploadedFileDecorator, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { extname } from 'path';
+import multer from 'multer';
 import { UseAuth } from 'src/infrastructure/security/decorators/use-auth.decorator';
 import {
     AssignCoreCompanyUserRequestDto,
     AssignCoreCompanyModuleDto,
     CreateCoreCompanyDto,
     CoreCompanyExtendedListItemDto,
+    CoreCompanyLogoDto,
+    CoreCompanyLogoUploadDto,
     CoreCompanyModuleAssignmentDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
@@ -94,6 +98,62 @@ export class AdministrationController {
         @Body() dto: UpdateCoreCompanyStatusDto,
     ): Promise<CoreCompanySummaryDto> {
         return this.administrationService.updateCompanyStatus(companyId, dto);
+    }
+
+    /**
+     * Obtiene el logo de una empresa como URL temporal o Base64.
+     *
+     * @param companyId Identificador de la empresa.
+     * @param returnBase64 Indica si el logo debe retornarse en Base64.
+     * @returns Logo de la empresa o `null` cuando no existe.
+     */
+    @Get('companies/:companyId/logo')
+    @UseAuth('admin')
+    async getCompanyLogo(
+        @Param('companyId', ParseUUIDPipe) companyId: string,
+        @Query('base64', new DefaultValuePipe(false), ParseBoolPipe) returnBase64: boolean,
+    ): Promise<CoreCompanyLogoDto> {
+        return this.administrationService.getCompanyLogo(companyId, returnBase64);
+    }
+
+    /**
+     * Sube o reemplaza el logo de una empresa desde administracion.
+     *
+     * @param companyId Identificador de la empresa.
+     * @param file Imagen cargada en el campo `logo`.
+     * @returns Resultado de la subida en CORE.
+     */
+    @Post('companies/:companyId/logo')
+    @UseAuth('admin')
+    @UseInterceptors(FileInterceptor('logo', {
+        storage: multer.memoryStorage(),
+        limits: {
+            fileSize: 2 * 1024 * 1024,
+        },
+        fileFilter: (_req, file, cb) => {
+            if (!file.mimetype.startsWith('image/')) {
+                return cb(new BadRequestException('Solo se permiten archivos de imagen'), false);
+            }
+
+            const allowedExtensions = ['.png', '.jpg', '.jpeg'];
+            const fileExtension = extname(file.originalname).toLowerCase();
+
+            if (!allowedExtensions.includes(fileExtension)) {
+                return cb(new BadRequestException('Solo se permiten archivos PNG, JPG o JPEG'), false);
+            }
+
+            cb(null, true);
+        },
+    }))
+    async uploadCompanyLogo(
+        @Param('companyId', ParseUUIDPipe) companyId: string,
+        @UploadedFileDecorator() file: UploadedFile,
+    ): Promise<CoreCompanyLogoUploadDto> {
+        if (!file) {
+            throw new BadRequestException('No se ha proporcionado ningun archivo');
+        }
+
+        return this.administrationService.uploadCompanyLogo(companyId, file);
     }
 
     /**

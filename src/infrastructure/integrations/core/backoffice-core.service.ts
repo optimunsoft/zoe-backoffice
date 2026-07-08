@@ -22,6 +22,7 @@ import {
     CoreCompanyPageDto,
     CoreCompanyDto,
     CoreCompanyLogoDto,
+    CoreCompanyLogoUploadDto,
     CoreCompanyModuleAssignmentDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
@@ -61,6 +62,7 @@ import {
 import { IBackofficeCoreIntegration } from './interfaces/backoffice-core.interface';
 import { InternalCoreResponse } from './interfaces/internal-core-response.interface';
 import { PaginatedResult } from 'src/shared/interfaces/PaginatedResult';
+import { UploadedFile } from 'src/shared/interfaces/uploaded-file.interface';
 
 @Injectable()
 export class BackofficeCoreService implements IBackofficeCoreIntegration {
@@ -123,6 +125,30 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 params: { base64: returnBase64 },
             },
             CoreCompanyLogoDto,
+        );
+    }
+
+    /**
+     * Sube el logo de una empresa en CORE mediante multipart/form-data.
+     *
+     * @param companyId Identificador de la empresa.
+     * @param file Archivo recibido desde backoffice.
+     */
+    async uploadCompanyLogo(
+        companyId: string,
+        file: UploadedFile,
+    ): Promise<CoreCompanyLogoUploadDto> {
+        const formData = new (globalThis as any).FormData();
+        const blob = new (globalThis as any).Blob([file.buffer], { type: file.mimetype });
+        formData.append('logo', blob, file.originalname);
+
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/companies/${companyId}/logo`,
+                method: 'POST',
+                data: formData,
+            },
+            CoreCompanyLogoUploadDto,
         );
     }
 

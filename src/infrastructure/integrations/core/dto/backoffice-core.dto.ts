@@ -125,6 +125,15 @@ export class CoreCompanyLogoDto {
     logo: string | null;
 }
 
+export class CoreCompanyLogoUploadDto {
+    @IsString()
+    message: string;
+
+    @IsOptional()
+    @IsString()
+    logoName?: string | null;
+}
+
 export class CoreCompanyListItemDto {
     @IsUUID()
     id: string;
@@ -317,8 +326,8 @@ export class AssignCoreCompanyModuleDto {
     @IsUUID()
     companyId: string;
 
-    @IsBoolean()
-    active: boolean;
+    @IsEnum(['ACTIVO', 'INACTIVO', 'SOLO_LECTURA'])
+    status: 'ACTIVO' | 'INACTIVO' | 'SOLO_LECTURA';
 }
 
 export class CoreCompanyModuleAssignmentDto {
@@ -330,9 +339,6 @@ export class CoreCompanyModuleAssignmentDto {
 
     @IsEnum(['ACTIVO', 'INACTIVO', 'SOLO_LECTURA'])
     status: 'ACTIVO' | 'INACTIVO' | 'SOLO_LECTURA';
-
-    @IsBoolean()
-    active: boolean;
 
     @IsString()
     createdAt: string;
@@ -561,6 +567,20 @@ export class CoreCompanyUserDto {
     roles: CoreCompanyRoleSummaryDto[];
 }
 
+export class CoreCompanyAssignedModuleDto {
+    @IsUUID()
+    moduleId: string;
+
+    @IsString()
+    code: string;
+
+    @IsString()
+    name: string;
+
+    @IsEnum(['ACTIVO', 'INACTIVO', 'SOLO_LECTURA'])
+    status: 'ACTIVO' | 'INACTIVO' | 'SOLO_LECTURA';
+}
+
 export class CoreCompanyExtendedListItemDto {
     @IsUUID()
     id: string;
@@ -613,6 +633,11 @@ export class CoreCompanyExtendedListItemDto {
     @ValidateNested({ each: true })
     @Type(() => CoreCompanyUserDto)
     users: CoreCompanyUserDto[];
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreCompanyAssignedModuleDto)
+    modules: CoreCompanyAssignedModuleDto[];
 
     @IsString()
     createdAt: string;

@@ -202,6 +202,64 @@ describe('BackofficeCoreService', () => {
         }));
     });
 
+    it('gets and uploads company logos in CORE with internal credentials', async () => {
+        const companyId = '11111111-1111-4111-8111-111111111111';
+        const logoResponse = { logo: 'https://signed-url.test/logo.png' };
+        const uploadResponse = {
+            message: 'Logo subido exitosamente',
+            logoName: `${companyId}/logo/new.png`,
+        };
+        const request = jest.fn()
+            .mockResolvedValueOnce({ data: { status: true, message: 'OK', response: logoResponse } })
+            .mockResolvedValueOnce({ data: { status: true, message: 'OK', response: uploadResponse } });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+        const file = {
+            originalname: 'logo.png',
+            mimetype: 'image/png',
+            size: 12,
+            buffer: Buffer.from('png'),
+        };
+
+        await expect(service.getCompanyLogo(companyId, true)).resolves.toEqual(logoResponse);
+        await expect(service.uploadCompanyLogo(companyId, file)).resolves.toEqual(uploadResponse);
+
+        expect(request).toHaveBeenNthCalledWith(1, expect.objectContaining({
+            url: `http://core/api/v1/internal/core/companies/${companyId}/logo`,
+            method: 'GET',
+            params: { base64: true },
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+        expect(request).toHaveBeenNthCalledWith(2, expect.objectContaining({
+            url: `http://core/api/v1/internal/core/companies/${companyId}/logo`,
+            method: 'POST',
+            data: expect.any(FormData),
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+    });
+
+    it('rejects invalid company logo upload responses', async () => {
+        const request = jest.fn().mockResolvedValue({
+            data: {
+                status: true,
+                message: 'OK',
+                response: {
+                    logoName: 'missing-message',
+                },
+            },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.uploadCompanyLogo(
+            '11111111-1111-4111-8111-111111111111',
+            {
+                originalname: 'logo.png',
+                mimetype: 'image/png',
+                size: 12,
+                buffer: Buffer.from('png'),
+            },
+        )).rejects.toBeInstanceOf(BadGatewayException);
+    });
+
     it('assigns a user to a company in CORE with internal credentials', async () => {
         const payload = {
             companyId: '11111111-1111-4111-8111-111111111111',
@@ -264,13 +322,12 @@ describe('BackofficeCoreService', () => {
         const moduleId = '33333333-3333-4333-8333-333333333333';
         const payload = {
             companyId: '11111111-1111-4111-8111-111111111111',
-            active: true,
+            status: 'SOLO_LECTURA' as const,
         };
         const response = {
             moduleId,
             companyId: payload.companyId,
-            status: 'ACTIVO',
-            active: true,
+            status: 'SOLO_LECTURA',
             createdAt: '2026-01-01T00:00:00.000Z',
             updatedAt: '2026-01-02T00:00:00.000Z',
         };
@@ -300,7 +357,6 @@ describe('BackofficeCoreService', () => {
                     moduleId: 'invalid',
                     companyId: '11111111-1111-4111-8111-111111111111',
                     status: 'ACTIVO',
-                    active: true,
                     createdAt: '2026-01-01T00:00:00.000Z',
                     updatedAt: '2026-01-02T00:00:00.000Z',
                 },
@@ -312,7 +368,7 @@ describe('BackofficeCoreService', () => {
             '33333333-3333-4333-8333-333333333333',
             {
                 companyId: '11111111-1111-4111-8111-111111111111',
-                active: true,
+                status: 'ACTIVO',
             },
         )).rejects.toBeInstanceOf(BadGatewayException);
     });
@@ -451,6 +507,12 @@ describe('BackofficeCoreService', () => {
                         name: 'Operador',
                     }],
                 }],
+                modules: [{
+                    moduleId: '33333333-3333-4333-8333-333333333333',
+                    code: 'ACC',
+                    name: 'Contabilidad',
+                    status: 'SOLO_LECTURA',
+                }],
                 createdAt: '2026-01-01T00:00:00.000Z',
                 updatedAt: '2026-01-02T00:00:00.000Z',
             }],
@@ -486,6 +548,10 @@ describe('BackofficeCoreService', () => {
                         id: '88888888-8888-4888-8888-888888888888',
                         name: 'Operador',
                     }],
+                }],
+                modules: [{
+                    code: 'ACC',
+                    status: 'SOLO_LECTURA',
                 }],
             }],
         });

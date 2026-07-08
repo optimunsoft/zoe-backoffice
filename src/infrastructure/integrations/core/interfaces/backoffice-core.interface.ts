@@ -8,6 +8,7 @@ import {
     CoreCompanyListItemDto,
     CoreCompanyDto,
     CoreCompanyLogoDto,
+    CoreCompanyLogoUploadDto,
     CoreCompanyModuleAssignmentDto,
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
@@ -42,6 +43,7 @@ import {
     UpdateCoreCompanyStatusDto,
 } from '../dto/backoffice-core.dto';
 import { PaginatedResult } from 'src/shared/interfaces/PaginatedResult';
+import { UploadedFile } from 'src/shared/interfaces/uploaded-file.interface';
 
 export const BACKOFFICE_CORE_INTEGRATION = Symbol('BACKOFFICE_CORE_INTEGRATION');
 
@@ -49,6 +51,7 @@ export interface IBackofficeCoreIntegration {
     companyExists(companyId: string, sessionKey: string): Promise<boolean>;
     findCompanyById(companyId: string): Promise<CoreCompanyDto | null>;
     getCompanyLogo(companyId: string, returnBase64?: boolean): Promise<CoreCompanyLogoDto>;
+    uploadCompanyLogo(companyId: string, file: UploadedFile): Promise<CoreCompanyLogoUploadDto>;
     createCompany(data: CreateCoreCompanyDto): Promise<CoreCompanySummaryDto>;
     updateCompany(companyId: string, data: UpdateCoreCompanyDto): Promise<CoreCompanySummaryDto>;
     updateCompanyStatus(companyId: string, data: UpdateCoreCompanyStatusDto): Promise<CoreCompanySummaryDto>;
