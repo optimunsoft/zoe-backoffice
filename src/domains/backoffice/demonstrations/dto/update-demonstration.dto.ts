@@ -2,27 +2,27 @@ import { IsDateString, IsEmail, IsEnum, IsOptional, IsString } from 'class-valid
 import { DemonstrationStatus } from '../entities/demonstration.entity';
 
 export class UpdateDemonstrationDto {
-  @IsOptional()
-  @IsString()
-  name?: string;
+    @IsOptional()
+    @IsString()
+    name?: string;
 
-  @IsOptional()
-  @IsEmail()
-  email?: string;
+    @IsOptional()
+    @IsEmail()
+    email?: string;
 
-  @IsOptional()
-  @IsString()
-  phone?: string | null;
+    @IsOptional()
+    @IsString()
+    phone?: string | null;
 
-  @IsOptional()
-  @IsDateString()
-  scheduledAt?: string;
+    @IsOptional()
+    @IsDateString()
+    scheduledAt?: string;
 
-  @IsOptional()
-  @IsString()
-  productInterest?: string | null;
+    @IsOptional()
+    @IsString({ each: true })
+    productInterest?: string | string[] | null;
 
-  @IsOptional()
-  @IsEnum(DemonstrationStatus)
-  status?: DemonstrationStatus;
+    @IsOptional()
+    @IsEnum(DemonstrationStatus)
+    status?: DemonstrationStatus;
 }
