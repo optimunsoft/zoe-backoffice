@@ -943,6 +943,14 @@ export class UpdateCoreUserDto {
     birthDate?: string;
 
     @IsOptional()
+    @IsString()
+    phonePrefix?: string;
+
+    @IsOptional()
+    @IsString()
+    phoneNumber?: string;
+
+    @IsOptional()
     @IsBoolean()
     isAdmin?: boolean;
 

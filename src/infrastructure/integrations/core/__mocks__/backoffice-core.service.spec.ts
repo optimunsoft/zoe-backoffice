@@ -806,9 +806,15 @@ describe('BackofficeCoreService', () => {
             isAdmin: true,
             backofficeRole: 'OPERARIO' as const,
         };
+        const updatePayload = {
+            firstName: 'Ada',
+            backofficeRole: 'OPERARIO' as const,
+            phonePrefix: '+57',
+            phoneNumber: '3123456789',
+        };
 
         await expect(service.createUser(createPayload)).resolves.toMatchObject({ id: userId });
-        await expect(service.updateUser(userId, { firstName: 'Ada', backofficeRole: 'OPERARIO' })).resolves.toMatchObject({ id: userId });
+        await expect(service.updateUser(userId, updatePayload)).resolves.toMatchObject({ id: userId });
         await expect(service.updateUserStatus(userId, { active: false })).resolves.toMatchObject({ id: userId });
 
         expect(request).toHaveBeenNthCalledWith(1, expect.objectContaining({
@@ -820,7 +826,7 @@ describe('BackofficeCoreService', () => {
         expect(request).toHaveBeenNthCalledWith(2, expect.objectContaining({
             url: `http://core/api/v1/internal/core/users/edit/${userId}`,
             method: 'PUT',
-            data: { firstName: 'Ada', backofficeRole: 'OPERARIO' },
+            data: updatePayload,
             headers: { 'x-api-key-internal': 'secret' },
         }));
         expect(request).toHaveBeenNthCalledWith(3, expect.objectContaining({
