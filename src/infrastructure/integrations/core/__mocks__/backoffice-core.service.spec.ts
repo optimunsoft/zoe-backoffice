@@ -664,7 +664,18 @@ describe('BackofficeCoreService', () => {
                     createdAt: '2026-01-01T00:00:00.000Z',
                     updatedAt: '2026-01-02T00:00:00.000Z',
                 },
-                companies: [],
+                companies: [{
+                    id: '33333333-3333-4333-8333-333333333333',
+                    documentNumber: '900123456',
+                    businessName: 'Acme SAS',
+                    tradeName: 'Acme',
+                    email: 'admin@acme.com',
+                    isOwner: false,
+                    roles: [{
+                        id: '44444444-4444-4444-8444-444444444444',
+                        name: 'Contador',
+                    }],
+                }],
                 sessions: [],
                 createdAt: '2026-01-01T00:00:00.000Z',
                 updatedAt: '2026-01-02T00:00:00.000Z',
@@ -690,6 +701,12 @@ describe('BackofficeCoreService', () => {
             data: [{
                 backofficeRole: 'ADMINISTRADOR',
                 account: { code: '00000001' },
+                companies: [{
+                    roles: [{
+                        id: '44444444-4444-4444-8444-444444444444',
+                        name: 'Contador',
+                    }],
+                }],
                 sessions: [],
             }],
         });

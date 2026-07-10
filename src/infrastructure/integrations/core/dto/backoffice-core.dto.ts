@@ -703,6 +703,11 @@ export class CoreUserCompanyListItemDto {
 
     @IsBoolean()
     isOwner: boolean;
+
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreCompanyRoleSummaryDto)
+    roles: CoreCompanyRoleSummaryDto[];
 }
 
 export class CoreUserListItemDto {
