@@ -650,6 +650,10 @@ describe('BackofficeCoreService', () => {
                 lastName: 'Lovelace',
                 email: 'ada@example.com',
                 username: 'ada',
+                birthDate: '1990-05-21',
+                municipalityId: '22222222-2222-4222-8222-222222222222',
+                phonePrefix: '+57',
+                phoneNumber: '3123456789',
                 userType: 'USUARIO',
                 isActive: true,
                 isVerified: true,
@@ -700,6 +704,10 @@ describe('BackofficeCoreService', () => {
         })).resolves.toMatchObject({
             data: [{
                 backofficeRole: 'ADMINISTRADOR',
+                birthDate: '1990-05-21',
+                municipalityId: '22222222-2222-4222-8222-222222222222',
+                phonePrefix: '+57',
+                phoneNumber: '3123456789',
                 account: { code: '00000001' },
                 companies: [{
                     roles: [{

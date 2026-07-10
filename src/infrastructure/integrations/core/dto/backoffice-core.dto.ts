@@ -721,6 +721,10 @@ export class CoreUserListItemDto {
     @IsOptional() @IsString() lastName?: string | null;
     @IsOptional() @IsEmail() email?: string | null;
     @IsOptional() @IsString() username?: string | null;
+    @IsOptional() @IsString() birthDate?: string | null;
+    @IsOptional() @IsUUID() municipalityId?: string | null;
+    @IsOptional() @IsString() phonePrefix?: string | null;
+    @IsOptional() @IsString() phoneNumber?: string | null;
 
     @IsString()
     userType: string;
