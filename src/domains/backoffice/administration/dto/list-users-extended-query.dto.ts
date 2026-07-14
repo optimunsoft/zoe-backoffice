@@ -27,4 +27,10 @@ export class ListUsersExtendedQueryDto extends PaginationQueryDto implements Sea
   @IsOptional()
   @IsEnum(['USUARIO', 'SUBUSUARIO'])
   type?: 'USUARIO' | 'SUBUSUARIO';
+
+  @IsOptional()
+  @Type(() => String)
+  @Transform(({ value }) => value === true || value === 'true')
+  @IsBoolean()
+  isActive?: boolean;
 }

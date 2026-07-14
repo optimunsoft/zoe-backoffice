@@ -1098,6 +1098,7 @@ export interface SearchCoreUserExtendedListDto extends SearchCoreUserListDto {
     companyId?: string;
     isAdmin?: boolean;
     isDemo?: boolean;
+    isActive?: boolean;
     type?: 'USUARIO' | 'SUBUSUARIO';
 }
 
