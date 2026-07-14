@@ -16,6 +16,7 @@ import {
     CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
+    CoreCompanyApiKeyDto,
     CoreCompanyExtendedListItemDto,
     CoreCompanyExtendedPageDto,
     CoreCompanyListItemDto,
@@ -27,6 +28,7 @@ import {
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreCompanyUserAssignmentDto,
+    CoreDemoUserDeletionDto,
     CoreModuleDeleteDto,
     CoreModuleDto,
     CoreModulePageDto,
@@ -149,6 +151,38 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 data: formData,
             },
             CoreCompanyLogoUploadDto,
+        );
+    }
+
+    /**
+     * Genera una API key para una empresa en CORE.
+     *
+     * @param companyId Identificador de la empresa.
+     */
+    async generateCompanyApiKey(companyId: string): Promise<CoreCompanyApiKeyDto> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/companies/generate-api-key',
+                method: 'POST',
+                params: { companyId },
+            },
+            CoreCompanyApiKeyDto,
+        );
+    }
+
+    /**
+     * Obtiene la API key de una empresa en CORE.
+     *
+     * @param companyId Identificador de la empresa.
+     */
+    async getCompanyApiKey(companyId: string): Promise<CoreCompanyApiKeyDto> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/companies/get-api-key',
+                method: 'GET',
+                params: { companyId },
+            },
+            CoreCompanyApiKeyDto,
         );
     }
 
@@ -484,6 +518,27 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 data,
             },
             CoreUserExtendedListItemDto,
+        );
+    }
+
+    /**
+     * Solicita a CORE la eliminacion destructiva de un usuario demo.
+     *
+     * CORE aplica las reglas criticas de seguridad: la cuenta debe ser demo, el
+     * usuario debe tener una unica empresa asociada, esa relacion debe ser
+     * propietaria y la cuenta no puede tener mas usuarios. CORE elimina primero
+     * en base de datos y solo al final intenta limpiar Auth0 sin bloquear si
+     * Auth0 falla.
+     *
+     * @param userId Identificador del usuario demo.
+     */
+    async deleteDemoUser(userId: string): Promise<CoreDemoUserDeletionDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/users/${userId}/demo`,
+                method: 'DELETE',
+            },
+            CoreDemoUserDeletionDto,
         );
     }
 

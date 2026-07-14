@@ -161,6 +161,21 @@ describe('Administration company list', () => {
     expect(coreIntegration.uploadCompanyLogo).toHaveBeenCalledWith(companyId, file);
   });
 
+  it('delegates company api key generation and retrieval to CORE integration', async () => {
+    const companyId = '11111111-1111-4111-8111-111111111111';
+    const response = { apiKey: 'plain-api-key' };
+    const coreIntegration = {
+      generateCompanyApiKey: jest.fn().mockResolvedValue(response),
+      getCompanyApiKey: jest.fn().mockResolvedValue(response),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+
+    await expect(service.generateCompanyApiKey(companyId)).resolves.toBe(response);
+    await expect(service.getCompanyApiKey(companyId)).resolves.toBe(response);
+    expect(coreIntegration.generateCompanyApiKey).toHaveBeenCalledWith(companyId);
+    expect(coreIntegration.getCompanyApiKey).toHaveBeenCalledWith(companyId);
+  });
+
   it('delegates user-company assignment to CORE integration', async () => {
     const dto = {
       companyId: '11111111-1111-4111-8111-111111111111',
@@ -331,6 +346,21 @@ describe('Administration company list', () => {
     await expect(controller.uploadCompanyLogo(companyId, file)).resolves.toBe(uploadResponse);
     expect(service.getCompanyLogo).toHaveBeenCalledWith(companyId, false);
     expect(service.uploadCompanyLogo).toHaveBeenCalledWith(companyId, file);
+  });
+
+  it('delegates controller company api key generation and retrieval to administration service', async () => {
+    const companyId = '11111111-1111-4111-8111-111111111111';
+    const response = { apiKey: 'plain-api-key' };
+    const service = {
+      generateCompanyApiKey: jest.fn().mockResolvedValue(response),
+      getCompanyApiKey: jest.fn().mockResolvedValue(response),
+    };
+    const controller = new AdministrationController(service as any);
+
+    await expect(controller.generateCompanyApiKey(companyId)).resolves.toBe(response);
+    await expect(controller.getCompanyApiKey(companyId)).resolves.toBe(response);
+    expect(service.generateCompanyApiKey).toHaveBeenCalledWith(companyId);
+    expect(service.getCompanyApiKey).toHaveBeenCalledWith(companyId);
   });
 
   it('delegates controller user-company assignment to administration service', async () => {
@@ -505,11 +535,18 @@ describe('Administration company list', () => {
   it('delegates user CRUD operations to CORE integration', async () => {
     const userId = '11111111-1111-4111-8111-111111111111';
     const response = { id: userId };
+    const deletionResponse = {
+      userId,
+      accountId: '22222222-2222-4222-8222-222222222222',
+      deletedCompanies: ['33333333-3333-4333-8333-333333333333'],
+      deleted: true,
+    };
     const coreIntegration = {
       findUserById: jest.fn().mockResolvedValue(response),
       createUser: jest.fn().mockResolvedValue(response),
       updateUser: jest.fn().mockResolvedValue(response),
       updateUserStatus: jest.fn().mockResolvedValue(response),
+      deleteDemoUser: jest.fn().mockResolvedValue(deletionResponse),
     };
     const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
     const createDto = {
@@ -527,11 +564,13 @@ describe('Administration company list', () => {
     await expect(service.createUser({ email: 'admin@example.com' }, createDto)).resolves.toBe(response);
     await expect(service.updateUser({ email: 'admin@example.com' }, userId, { firstName: 'Ada' })).resolves.toBe(response);
     await expect(service.updateUserStatus(userId, { active: false })).resolves.toBe(response);
+    await expect(service.deleteDemoUser(userId)).resolves.toBe(deletionResponse);
 
     expect(coreIntegration.findUserById).toHaveBeenCalledWith(userId);
     expect(coreIntegration.createUser).toHaveBeenCalledWith(createDto);
     expect(coreIntegration.updateUser).toHaveBeenCalledWith(userId, { firstName: 'Ada' });
     expect(coreIntegration.updateUserStatus).toHaveBeenCalledWith(userId, { active: false });
+    expect(coreIntegration.deleteDemoUser).toHaveBeenCalledWith(userId);
   });
 
   it('rejects administrator role assignment when actor is not backoffice administrator', async () => {
@@ -614,12 +653,19 @@ describe('Administration company list', () => {
   it('delegates controller user CRUD endpoints to administration service', async () => {
     const userId = '11111111-1111-4111-8111-111111111111';
     const response = { id: userId };
+    const deletionResponse = {
+      userId,
+      accountId: '22222222-2222-4222-8222-222222222222',
+      deletedCompanies: ['33333333-3333-4333-8333-333333333333'],
+      deleted: true,
+    };
     const service = {
       listUsersExtended: jest.fn().mockResolvedValue({ data: [], total: 0, page: 1, amount: 10 }),
       findUserById: jest.fn().mockResolvedValue(response),
       createUser: jest.fn().mockResolvedValue(response),
       updateUser: jest.fn().mockResolvedValue(response),
       updateUserStatus: jest.fn().mockResolvedValue(response),
+      deleteDemoUser: jest.fn().mockResolvedValue(deletionResponse),
     };
     const controller = new AdministrationController(service as any);
     const query = { page: 1, amount: 10, search: 'ada' };
@@ -639,12 +685,14 @@ describe('Administration company list', () => {
     await expect(controller.createUser({ user: { email: 'admin@example.com' } }, createDto)).resolves.toBe(response);
     await expect(controller.updateUser({ user: { email: 'admin@example.com' } }, userId, { firstName: 'Ada' })).resolves.toBe(response);
     await expect(controller.updateUserStatus(userId, { active: false })).resolves.toBe(response);
+    await expect(controller.deleteDemoUser(userId)).resolves.toBe(deletionResponse);
 
     expect(service.listUsersExtended).toHaveBeenCalledWith(query);
     expect(service.findUserById).toHaveBeenCalledWith(userId);
     expect(service.createUser).toHaveBeenCalledWith({ email: 'admin@example.com' }, createDto);
     expect(service.updateUser).toHaveBeenCalledWith({ email: 'admin@example.com' }, userId, { firstName: 'Ada' });
     expect(service.updateUserStatus).toHaveBeenCalledWith(userId, { active: false });
+    expect(service.deleteDemoUser).toHaveBeenCalledWith(userId);
   });
 
   it('delegates controller account demo endpoint to administration service', async () => {

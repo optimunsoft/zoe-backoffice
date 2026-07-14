@@ -6,6 +6,7 @@ import {
     CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
+    CoreCompanyApiKeyDto,
     CoreCompanyExtendedListItemDto,
     CoreCompanyLogoDto,
     CoreCompanyLogoUploadDto,
@@ -13,6 +14,7 @@ import {
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreCompanyUserAssignmentDto,
+    CoreDemoUserDeletionDto,
     CoreModuleDeleteDto,
     CoreModuleDto,
     CoreUserAccountDto,
@@ -74,6 +76,14 @@ export class AdministrationService {
 
     async uploadCompanyLogo(companyId: string, file: UploadedFile): Promise<CoreCompanyLogoUploadDto> {
         return this.coreIntegration.uploadCompanyLogo(companyId, file);
+    }
+
+    async generateCompanyApiKey(companyId: string): Promise<CoreCompanyApiKeyDto> {
+        return this.coreIntegration.generateCompanyApiKey(companyId);
+    }
+
+    async getCompanyApiKey(companyId: string): Promise<CoreCompanyApiKeyDto> {
+        return this.coreIntegration.getCompanyApiKey(companyId);
     }
 
     async assignCompanyUser(dto: AssignCoreCompanyUserDto): Promise<CoreCompanyUserAssignmentDto> {
@@ -148,6 +158,19 @@ export class AdministrationService {
 
     async updateUserStatus(userId: string, dto: UpdateCoreUserStatusDto): Promise<CoreUserExtendedListItemDto> {
         return this.coreIntegration.updateUserStatus(userId, dto);
+    }
+
+    /**
+     * Elimina un usuario demo a traves de CORE.
+     *
+     * La logica destructiva y sus validaciones viven en CORE. Desde backoffice
+     * solo se expone la accion administrativa y se conserva el contrato de
+     * respuesta auditado. CORE solo permite borrar cuando la cuenta es demo, el
+     * usuario tiene una unica empresa asociada, dicha relacion es propietaria y
+     * la cuenta no tiene mas usuarios.
+     */
+    async deleteDemoUser(userId: string): Promise<CoreDemoUserDeletionDto> {
+        return this.coreIntegration.deleteDemoUser(userId);
     }
 
     async updateAccountDemo(accountId: string, dto: UpdateCoreAccountDemoDto): Promise<CoreUserAccountDto> {

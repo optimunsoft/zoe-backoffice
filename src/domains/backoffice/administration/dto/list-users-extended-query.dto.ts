@@ -9,7 +9,7 @@ export class ListUsersExtendedQueryDto extends PaginationQueryDto implements Sea
   search?: string;
 
   @IsOptional()
-  @IsUUID()
+  @IsString()
   companyId?: string;
 
   @IsOptional()

@@ -4,6 +4,7 @@ import {
     CreateCoreCompanyDto,
     CoreCatalog,
     CoreCatalogMatchDto,
+    CoreCompanyApiKeyDto,
     CoreCompanyExtendedListItemDto,
     CoreCompanyListItemDto,
     CoreCompanyDto,
@@ -13,6 +14,7 @@ import {
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreCompanyUserAssignmentDto,
+    CoreDemoUserDeletionDto,
     CoreModuleDeleteDto,
     CoreModuleDto,
     CoreResolvedCatalogDto,
@@ -52,6 +54,8 @@ export interface IBackofficeCoreIntegration {
     findCompanyById(companyId: string): Promise<CoreCompanyDto | null>;
     getCompanyLogo(companyId: string, returnBase64?: boolean): Promise<CoreCompanyLogoDto>;
     uploadCompanyLogo(companyId: string, file: UploadedFile): Promise<CoreCompanyLogoUploadDto>;
+    generateCompanyApiKey(companyId: string): Promise<CoreCompanyApiKeyDto>;
+    getCompanyApiKey(companyId: string): Promise<CoreCompanyApiKeyDto>;
     createCompany(data: CreateCoreCompanyDto): Promise<CoreCompanySummaryDto>;
     updateCompany(companyId: string, data: UpdateCoreCompanyDto): Promise<CoreCompanySummaryDto>;
     updateCompanyStatus(companyId: string, data: UpdateCoreCompanyStatusDto): Promise<CoreCompanySummaryDto>;
@@ -72,6 +76,7 @@ export interface IBackofficeCoreIntegration {
     createUser(data: CreateCoreUserDto): Promise<CoreUserExtendedListItemDto>;
     updateUser(userId: string, data: UpdateCoreUserDto): Promise<CoreUserExtendedListItemDto>;
     updateUserStatus(userId: string, data: UpdateCoreUserStatusDto): Promise<CoreUserExtendedListItemDto>;
+    deleteDemoUser(userId: string): Promise<CoreDemoUserDeletionDto>;
     updateAccountDemo(accountId: string, data: UpdateCoreAccountDemoDto): Promise<CoreUserAccountDto>;
     findCompanyOwner(companyId: string): Promise<CoreUserDto | null>;
     resolveUsers(ids: string[]): Promise<CoreUserDto[]>;

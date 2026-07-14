@@ -8,10 +8,10 @@ export class ListCompaniesQueryDto extends PaginationQueryDto implements SearchC
   search?: string;
 
   @IsOptional()
-  @IsUUID()
+  @IsString()
   municipalityId?: string;
 
   @IsOptional()
-  @IsUUID()
+  @IsString()
   stateId?: string;
 }

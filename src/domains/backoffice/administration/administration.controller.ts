@@ -7,6 +7,7 @@ import {
     AssignCoreCompanyUserRequestDto,
     AssignCoreCompanyModuleDto,
     CreateCoreCompanyDto,
+    CoreCompanyApiKeyDto,
     CoreCompanyExtendedListItemDto,
     CoreCompanyLogoDto,
     CoreCompanyLogoUploadDto,
@@ -14,6 +15,7 @@ import {
     CoreCompanyRoleDetailDto,
     CoreCompanySummaryDto,
     CoreCompanyUserAssignmentDto,
+    CoreDemoUserDeletionDto,
     CoreModuleDeleteDto,
     CoreModuleDto,
     CoreUserAccountDto,
@@ -154,6 +156,34 @@ export class AdministrationController {
         }
 
         return this.administrationService.uploadCompanyLogo(companyId, file);
+    }
+
+    /**
+     * Genera una API key para una empresa desde administracion.
+     *
+     * @param companyId Identificador de la empresa.
+     * @returns API key generada en CORE.
+     */
+    @Post('companies/:companyId/generate-api-key')
+    @UseAuth('admin')
+    async generateCompanyApiKey(
+        @Param('companyId', ParseUUIDPipe) companyId: string,
+    ): Promise<CoreCompanyApiKeyDto> {
+        return this.administrationService.generateCompanyApiKey(companyId);
+    }
+
+    /**
+     * Obtiene la API key de una empresa desde administracion.
+     *
+     * @param companyId Identificador de la empresa.
+     * @returns API key registrada en CORE.
+     */
+    @Get('companies/:companyId/get-api-key')
+    @UseAuth('admin')
+    async getCompanyApiKey(
+        @Param('companyId', ParseUUIDPipe) companyId: string,
+    ): Promise<CoreCompanyApiKeyDto> {
+        return this.administrationService.getCompanyApiKey(companyId);
     }
 
     /**
@@ -398,6 +428,31 @@ export class AdministrationController {
         @Body() dto: UpdateCoreUserStatusDto,
     ): Promise<CoreUserExtendedListItemDto> {
         return this.administrationService.updateUserStatus(userId, dto);
+    }
+
+    /**
+     * Elimina definitivamente un usuario demo desde administracion.
+     *
+     * Reglas aplicadas por CORE antes de borrar:
+     * - El usuario debe existir y su cuenta debe estar marcada como demo.
+     * - El usuario debe estar asociado exactamente a una empresa.
+     * - Esa unica asociacion debe ser propietaria.
+     * - La cuenta demo no debe tener otros usuarios asociados.
+     * - CORE elimina primero en base de datos y solo despues intenta borrar la
+     *   identidad en Auth0; un fallo de Auth0 no bloquea la limpieza local.
+     *
+     * Este endpoint es destructivo y debe usarse solo para limpieza de usuarios
+     * demo. No debe utilizarse para usuarios de produccion.
+     *
+     * @param userId Identificador del usuario demo.
+     * @returns Resumen de la eliminacion confirmada por CORE.
+     */
+    @Delete('users/:userId/demo')
+    @UseAuth('admin')
+    async deleteDemoUser(
+        @Param('userId', ParseUUIDPipe) userId: string,
+    ): Promise<CoreDemoUserDeletionDto> {
+        return this.administrationService.deleteDemoUser(userId);
     }
 
     /**

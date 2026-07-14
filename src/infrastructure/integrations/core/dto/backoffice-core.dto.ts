@@ -28,7 +28,7 @@ export class CoreResolvedCatalogDto {
     @IsEnum(CoreCatalog)
     catalog: CoreCatalog;
 
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -46,7 +46,7 @@ export class CoreCatalogMatchDto {
     input: Record<string, string | undefined>;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     id?: string;
 
     @IsOptional()
@@ -94,7 +94,7 @@ export class CoreMunicipalityDto {
 }
 
 export class CoreCompanyDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsOptional() @IsBoolean() active?: boolean;
@@ -134,24 +134,29 @@ export class CoreCompanyLogoUploadDto {
     logoName?: string | null;
 }
 
+export class CoreCompanyApiKeyDto {
+    @IsString()
+    apiKey: string;
+}
+
 export class CoreCompanyListItemDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
-    @IsUUID()
+    @IsString()
     businessNatureId: string;
 
-    @IsUUID()
+    @IsString()
     taxResponsibilityId: string;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     vatRegimeId?: string | null;
 
-    @IsUUID()
+    @IsString()
     documentTypeId: string;
 
-    @IsUUID()
+    @IsString()
     municipalityId: string;
 
     @IsOptional()
@@ -196,20 +201,20 @@ export class CoreCompanyPageDto implements PaginatedResult<CoreCompanyListItemDt
 }
 
 export class CreateCoreCompanyDto {
-    @IsUUID()
+    @IsString()
     ownerUserId: string;
 
-    @IsUUID()
+    @IsString()
     businessNatureId: string;
 
-    @IsUUID()
+    @IsString()
     taxResponsibilityId: string;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     vatRegimeId?: string | null;
 
-    @IsUUID()
+    @IsString()
     documentTypeId: string;
 
     @IsString()
@@ -225,7 +230,7 @@ export class CreateCoreCompanyDto {
     @IsOptional() @IsString() accountantName?: string | null;
     @IsOptional() @IsString() professionalCard?: string | null;
 
-    @IsUUID()
+    @IsString()
     municipalityId: string;
 
     @IsOptional()
@@ -235,19 +240,19 @@ export class CreateCoreCompanyDto {
 
 export class UpdateCoreCompanyDto {
     @IsOptional()
-    @IsUUID()
+    @IsString()
     businessNatureId?: string | null;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     taxResponsibilityId?: string | null;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     vatRegimeId?: string | null;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     documentTypeId?: string | null;
 
     @IsOptional()
@@ -265,7 +270,7 @@ export class UpdateCoreCompanyDto {
     @IsOptional() @IsString() professionalCard?: string | null;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     municipalityId?: string | null;
 
     @IsOptional()
@@ -279,10 +284,10 @@ export class UpdateCoreCompanyStatusDto {
 }
 
 export class AssignCoreCompanyUserDto {
-    @IsUUID()
+    @IsString()
     companyId: string;
 
-    @IsUUID()
+    @IsString()
     userId: string;
 
     @IsOptional()
@@ -291,10 +296,10 @@ export class AssignCoreCompanyUserDto {
 }
 
 export class AssignCoreCompanyUserRequestDto {
-    @IsUUID()
+    @IsString()
     companyId: string;
 
-    @IsUUID()
+    @IsString()
     userId: string;
 
     @IsOptional()
@@ -303,18 +308,18 @@ export class AssignCoreCompanyUserRequestDto {
 }
 
 export class UnassignCoreCompanyUserDto {
-    @IsUUID()
+    @IsString()
     companyId: string;
 
-    @IsUUID()
+    @IsString()
     userId: string;
 }
 
 export class CoreCompanyUserAssignmentDto {
-    @IsUUID()
+    @IsString()
     companyId: string;
 
-    @IsUUID()
+    @IsString()
     userId: string;
 
     @IsOptional()
@@ -323,7 +328,7 @@ export class CoreCompanyUserAssignmentDto {
 }
 
 export class AssignCoreCompanyModuleDto {
-    @IsUUID()
+    @IsString()
     companyId: string;
 
     @IsEnum(['ACTIVO', 'INACTIVO', 'SOLO_LECTURA'])
@@ -331,10 +336,10 @@ export class AssignCoreCompanyModuleDto {
 }
 
 export class CoreCompanyModuleAssignmentDto {
-    @IsUUID()
+    @IsString()
     moduleId: string;
 
-    @IsUUID()
+    @IsString()
     companyId: string;
 
     @IsEnum(['ACTIVO', 'INACTIVO', 'SOLO_LECTURA'])
@@ -348,7 +353,7 @@ export class CoreCompanyModuleAssignmentDto {
 }
 
 export class CoreModuleDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -418,25 +423,25 @@ export class UpdateCoreModuleDto {
 }
 
 export class CoreModuleDeleteDto {
-    @IsUUID()
+    @IsString()
     id: string;
 }
 
 export class CoreCompanySummaryDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
-    @IsUUID()
+    @IsString()
     businessNatureId: string;
 
-    @IsUUID()
+    @IsString()
     taxResponsibilityId: string;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     vatRegimeId?: string | null;
 
-    @IsUUID()
+    @IsString()
     documentTypeId: string;
 
     @IsOptional()
@@ -460,7 +465,7 @@ export class CoreCompanySummaryDto {
     @IsOptional() @IsString() professionalCard?: string | null;
     @IsOptional() @IsString() logoName?: string | null;
 
-    @IsUUID()
+    @IsString()
     municipalityId: string;
 
     @IsOptional()
@@ -475,7 +480,7 @@ export class CoreCompanySummaryDto {
 }
 
 export class CoreCompanyLocationDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -493,7 +498,7 @@ export class CoreCompanyMunicipalityDto extends CoreCompanyLocationDto {
 }
 
 export class CoreCompanyPermissionDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -514,7 +519,7 @@ export class CoreCompanyPermissionDto {
 }
 
 export class CoreCompanyRoleSummaryDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -522,7 +527,7 @@ export class CoreCompanyRoleSummaryDto {
 }
 
 export class CoreCompanyRoleDetailDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -542,7 +547,7 @@ export class CoreCompanyRoleDetailDto {
 }
 
 export class CoreCompanyUserDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -568,7 +573,7 @@ export class CoreCompanyUserDto {
 }
 
 export class CoreCompanyAssignedModuleDto {
-    @IsUUID()
+    @IsString()
     moduleId: string;
 
     @IsString()
@@ -582,20 +587,20 @@ export class CoreCompanyAssignedModuleDto {
 }
 
 export class CoreCompanyExtendedListItemDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
-    @IsUUID()
+    @IsString()
     businessNatureId: string;
 
-    @IsUUID()
+    @IsString()
     taxResponsibilityId: string;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     vatRegimeId?: string | null;
 
-    @IsUUID()
+    @IsString()
     documentTypeId: string;
 
     @IsOptional()
@@ -658,7 +663,7 @@ export class CoreCompanyExtendedPageDto implements PaginatedResult<CoreCompanyEx
 }
 
 export class CoreUserDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -682,7 +687,7 @@ export class CoreUserPageDto {
 }
 
 export class CoreUserCompanyListItemDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsOptional()
@@ -711,7 +716,7 @@ export class CoreUserCompanyListItemDto {
 }
 
 export class CoreUserListItemDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -722,7 +727,7 @@ export class CoreUserListItemDto {
     @IsOptional() @IsEmail() email?: string | null;
     @IsOptional() @IsString() username?: string | null;
     @IsOptional() @IsString() birthDate?: string | null;
-    @IsOptional() @IsUUID() municipalityId?: string | null;
+    @IsOptional() @IsString() municipalityId?: string | null;
     @IsOptional() @IsString() phonePrefix?: string | null;
     @IsOptional() @IsString() phoneNumber?: string | null;
 
@@ -766,7 +771,7 @@ export class CoreUserListPageDto implements PaginatedResult<CoreUserListItemDto>
 }
 
 export class CoreUserAccountDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -789,7 +794,7 @@ export class CoreUserAccountDto {
 }
 
 export class CoreUserSessionDto {
-    @IsUUID()
+    @IsString()
     id: string;
 
     @IsString()
@@ -853,6 +858,14 @@ export class CoreUserExtendedListItemDto extends CoreUserListItemDto {
     @ValidateNested({ each: true })
     @Type(() => CoreUserSessionDto)
     sessions: CoreUserSessionDto[];
+
+    @IsOptional()
+    @IsString()
+    last_login_at?: string | null;
+
+    @IsInt()
+    @Min(0)
+    total_sessions: number;
 }
 
 export class CoreUserExtendedPageDto implements PaginatedResult<CoreUserExtendedListItemDto> {
@@ -864,6 +877,21 @@ export class CoreUserExtendedPageDto implements PaginatedResult<CoreUserExtended
     @IsInt() @Min(0) total: number;
     @IsInt() @Min(1) page: number;
     @IsInt() @Min(1) amount: number;
+}
+
+export class CoreDemoUserDeletionDto {
+    @IsString()
+    userId: string;
+
+    @IsString()
+    accountId: string;
+
+    @IsArray()
+    @IsString({ each: true })
+    deletedCompanies: string[];
+
+    @IsBoolean()
+    deleted: boolean;
 }
 
 export class CreateCoreUserDto {
@@ -879,7 +907,7 @@ export class CreateCoreUserDto {
     @IsString()
     lastName: string;
 
-    @IsUUID()
+    @IsString()
     municipalityId: string;
 
     @IsString()
@@ -935,7 +963,7 @@ export class UpdateCoreUserDto {
     username?: string;
 
     @IsOptional()
-    @IsUUID()
+    @IsString()
     municipalityId?: string;
 
     @IsOptional()
@@ -974,14 +1002,14 @@ export class UpdateCoreAccountDemoDto {
 }
 
 export class CoreThirdPartyDto {
-    @IsUUID() id: string;
-    @IsUUID() companyId: string;
+    @IsString() id: string;
+    @IsString() companyId: string;
     @IsString() documentNumber: string;
     @IsString() businessName: string;
-    @IsOptional() @IsUUID() businessNatureId?: string;
-    @IsOptional() @IsUUID() taxResponsibilityId?: string;
-    @IsOptional() @IsUUID() vatRegimeId?: string | null;
-    @IsOptional() @IsUUID() documentTypeId?: string;
+    @IsOptional() @IsString() businessNatureId?: string;
+    @IsOptional() @IsString() taxResponsibilityId?: string;
+    @IsOptional() @IsString() vatRegimeId?: string | null;
+    @IsOptional() @IsString() documentTypeId?: string;
     @IsOptional() @IsString() documentTypeCode?: string | null;
     @IsOptional() @IsString() businessNatureCode?: string | null;
     @IsOptional() @IsString() tradeName?: string | null;
@@ -990,10 +1018,10 @@ export class CoreThirdPartyDto {
     @IsOptional() @IsString() lastName?: string | null;
     @IsOptional() @IsString() secondLastName?: string | null;
     @IsOptional() @IsString() address?: string | null;
-    @IsOptional() @IsUUID() municipalityId?: string | null;
+    @IsOptional() @IsString() municipalityId?: string | null;
     @IsOptional() @IsString() municipalityCode?: string | null;
     @IsOptional() @IsString() email?: string | null;
-    @IsOptional() @IsUUID() countryId?: string | null;
+    @IsOptional() @IsString() countryId?: string | null;
     @IsOptional() @IsString() countryCode?: string | null;
     @IsOptional() @IsString() state?: string | null;
     @IsOptional() @IsString() stateCode?: string | null;

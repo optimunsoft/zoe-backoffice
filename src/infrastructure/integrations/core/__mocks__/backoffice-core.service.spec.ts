@@ -237,6 +237,31 @@ describe('BackofficeCoreService', () => {
         }));
     });
 
+    it('generates and gets company api keys in CORE with internal credentials', async () => {
+        const companyId = '11111111-1111-4111-8111-111111111111';
+        const response = { apiKey: 'plain-api-key' };
+        const request = jest.fn()
+            .mockResolvedValueOnce({ data: { status: true, message: 'OK', response } })
+            .mockResolvedValueOnce({ data: { status: true, message: 'OK', response } });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.generateCompanyApiKey(companyId)).resolves.toEqual(response);
+        await expect(service.getCompanyApiKey(companyId)).resolves.toEqual(response);
+
+        expect(request).toHaveBeenNthCalledWith(1, expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/companies/generate-api-key',
+            method: 'POST',
+            params: { companyId },
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+        expect(request).toHaveBeenNthCalledWith(2, expect.objectContaining({
+            url: 'http://core/api/v1/internal/core/companies/get-api-key',
+            method: 'GET',
+            params: { companyId },
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+    });
+
     it('rejects invalid company logo upload responses', async () => {
         const request = jest.fn().mockResolvedValue({
             data: {
@@ -681,6 +706,8 @@ describe('BackofficeCoreService', () => {
                     }],
                 }],
                 sessions: [],
+                last_login_at: '2026-01-03T00:00:00.000Z',
+                total_sessions: 2,
                 createdAt: '2026-01-01T00:00:00.000Z',
                 updatedAt: '2026-01-02T00:00:00.000Z',
             }],
@@ -716,6 +743,8 @@ describe('BackofficeCoreService', () => {
                     }],
                 }],
                 sessions: [],
+                last_login_at: '2026-01-03T00:00:00.000Z',
+                total_sessions: 2,
             }],
         });
 
@@ -754,6 +783,8 @@ describe('BackofficeCoreService', () => {
             account: null,
             companies: [],
             sessions: [],
+            last_login_at: null,
+            total_sessions: 0,
             createdAt: '2026-01-01T00:00:00.000Z',
             updatedAt: '2026-01-02T00:00:00.000Z',
         };
@@ -789,6 +820,8 @@ describe('BackofficeCoreService', () => {
             account: null,
             companies: [],
             sessions: [],
+            last_login_at: null,
+            total_sessions: 0,
             createdAt: '2026-01-01T00:00:00.000Z',
             updatedAt: '2026-01-02T00:00:00.000Z',
         };
@@ -833,6 +866,27 @@ describe('BackofficeCoreService', () => {
             url: `http://core/api/v1/internal/core/users/${userId}/status`,
             method: 'PATCH',
             data: { active: false },
+            headers: { 'x-api-key-internal': 'secret' },
+        }));
+    });
+
+    it('deletes a demo user in CORE with internal credentials', async () => {
+        const userId = '11111111-1111-4111-8111-111111111111';
+        const response = {
+            userId,
+            accountId: '22222222-2222-4222-8222-222222222222',
+            deletedCompanies: ['33333333-3333-4333-8333-333333333333'],
+            deleted: true,
+        };
+        const request = jest.fn().mockResolvedValue({
+            data: { status: true, message: 'OK', response },
+        });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.deleteDemoUser(userId)).resolves.toEqual(response);
+        expect(request).toHaveBeenCalledWith(expect.objectContaining({
+            url: `http://core/api/v1/internal/core/users/${userId}/demo`,
+            method: 'DELETE',
             headers: { 'x-api-key-internal': 'secret' },
         }));
     });
