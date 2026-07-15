@@ -31,7 +31,7 @@ export class DemonstrationsService {
 
         const query = this.demonstrationRepository
             .qb('demonstration')
-            .orderBy('demonstration.name', 'ASC');
+            .orderBy('demonstration.createdAt', 'DESC');
 
         if (search?.trim()) {
             query.where(
