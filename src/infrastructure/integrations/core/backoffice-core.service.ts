@@ -448,7 +448,6 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
     async searchUserListExtended(
         params: SearchCoreUserExtendedListDto,
     ): Promise<PaginatedResult<CoreUserExtendedListItemDto>> {
-        console.log(params)
         return this.requestDto(
             {
                 url: '/api/v1/internal/core/users/list-extended',
