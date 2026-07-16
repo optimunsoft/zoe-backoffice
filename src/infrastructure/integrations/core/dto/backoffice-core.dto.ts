@@ -921,13 +921,6 @@ export class CreateCoreUserDto {
     @IsString()
     phoneNumber?: string;
 
-    @IsBoolean()
-    isAdmin: boolean;
-
-    @IsOptional()
-    @IsEnum(['ADMINISTRADOR', 'OPERARIO'])
-    backofficeRole?: 'ADMINISTRADOR' | 'OPERARIO';
-
     @IsOptional()
     @IsBoolean()
     isVerified?: boolean;
@@ -943,6 +936,48 @@ export class CreateCoreUserDto {
     @IsOptional()
     @IsEnum(['USUARIO', 'SUBUSUARIO'])
     type?: 'USUARIO' | 'SUBUSUARIO';
+}
+
+export class CreateCoreBackofficeUserRequestDto {
+    @IsEmail()
+    email: string;
+
+    @IsString()
+    password: string;
+
+    @IsString()
+    firstName: string;
+
+    @IsString()
+    lastName: string;
+
+    @IsString()
+    municipalityId: string;
+
+    @IsString()
+    birthDate: string;
+
+    @IsOptional()
+    @IsString()
+    phonePrefix?: string;
+
+    @IsOptional()
+    @IsString()
+    phoneNumber?: string;
+
+    @IsEnum(['ADMINISTRADOR', 'OPERARIO'])
+    backofficeRole: 'ADMINISTRADOR' | 'OPERARIO';
+}
+
+export class CreateCoreBackofficeUserDto extends CreateCoreBackofficeUserRequestDto {
+    @IsBoolean()
+    isVerified: boolean;
+
+    @IsBoolean()
+    isDemo: boolean;
+
+    @IsUUID()
+    creatorUserId: string;
 }
 
 export class UpdateCoreUserDto {
@@ -989,6 +1024,49 @@ export class UpdateCoreUserDto {
     @IsOptional()
     @IsBoolean()
     isVerified?: boolean;
+}
+
+export class UpdateCoreBackofficeUserRequestDto {
+    @IsOptional()
+    @IsEmail()
+    email?: string;
+
+    @IsOptional()
+    @IsString()
+    firstName?: string;
+
+    @IsOptional()
+    @IsString()
+    lastName?: string;
+
+    @IsOptional()
+    @IsString()
+    username?: string;
+
+    @IsOptional()
+    @IsString()
+    municipalityId?: string;
+
+    @IsOptional()
+    @IsString()
+    birthDate?: string;
+
+    @IsOptional()
+    @IsString()
+    phonePrefix?: string;
+
+    @IsOptional()
+    @IsString()
+    phoneNumber?: string;
+
+    @IsOptional()
+    @IsEnum(['ADMINISTRADOR', 'OPERARIO'])
+    backofficeRole?: 'ADMINISTRADOR' | 'OPERARIO';
+}
+
+export class UpdateCoreBackofficeUserDto extends UpdateCoreBackofficeUserRequestDto {
+    @IsUUID()
+    updaterUserId: string;
 }
 
 export class UpdateCoreUserStatusDto {

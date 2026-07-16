@@ -43,6 +43,7 @@ import {
     CoreUserListItemDto,
     CoreUserListPageDto,
     CoreUserPageDto,
+    CreateCoreBackofficeUserDto,
     CreateCoreModuleDto,
     CreateCoreUserDto,
     SearchCoreThirdPartiesDto,
@@ -55,6 +56,7 @@ import {
     UnassignCoreCompanyUserDto,
     UpsertCoreThirdPartyDto,
     UpdateCoreAccountDemoDto,
+    UpdateCoreBackofficeUserDto,
     UpdateCoreCompanyDto,
     UpdateCoreModuleDto,
     UpdateCoreCompanyStatusDto,
@@ -488,6 +490,22 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
     }
 
     /**
+     * Crea un usuario de backoffice en CORE y Auth0 validando el actor creador.
+     *
+     * @param data Datos del usuario y usuario administrador que ejecuta la accion.
+     */
+    async createBackofficeUser(data: CreateCoreBackofficeUserDto): Promise<CoreUserExtendedListItemDto> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/users/create-backoffice',
+                method: 'POST',
+                data,
+            },
+            CoreUserExtendedListItemDto,
+        );
+    }
+
+    /**
      * Edita un usuario ROOT en CORE.
      *
      * @param userId Identificador del usuario.
@@ -497,6 +515,23 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
         return this.requestDto(
             {
                 url: `/api/v1/internal/core/users/edit/${userId}`,
+                method: 'PUT',
+                data,
+            },
+            CoreUserExtendedListItemDto,
+        );
+    }
+
+    /**
+     * Edita un usuario de backoffice en CORE validando el actor editor.
+     *
+     * @param userId Identificador del usuario de backoffice.
+     * @param data Datos editables y usuario administrador que ejecuta la accion.
+     */
+    async updateBackofficeUser(userId: string, data: UpdateCoreBackofficeUserDto): Promise<CoreUserExtendedListItemDto> {
+        return this.requestDto(
+            {
+                url: `/api/v1/internal/core/users/backoffice/edit/${userId}`,
                 method: 'PUT',
                 data,
             },

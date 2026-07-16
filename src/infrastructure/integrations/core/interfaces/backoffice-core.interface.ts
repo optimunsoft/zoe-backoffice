@@ -26,8 +26,10 @@ import {
     CoreUserDto,
     CoreUserListItemDto,
     CoreUserPageDto,
+    CreateCoreBackofficeUserDto,
     CreateCoreModuleDto,
     CreateCoreUserDto,
+    UpdateCoreBackofficeUserDto,
     UpdateCoreUserDto,
     UpdateCoreUserStatusDto,
     SearchCoreThirdPartiesDto,
@@ -74,7 +76,9 @@ export interface IBackofficeCoreIntegration {
     searchUserListExtended(params: SearchCoreUserExtendedListDto): Promise<PaginatedResult<CoreUserExtendedListItemDto>>;
     findUserById(userId: string): Promise<CoreUserExtendedListItemDto | null>;
     createUser(data: CreateCoreUserDto): Promise<CoreUserExtendedListItemDto>;
+    createBackofficeUser(data: CreateCoreBackofficeUserDto): Promise<CoreUserExtendedListItemDto>;
     updateUser(userId: string, data: UpdateCoreUserDto): Promise<CoreUserExtendedListItemDto>;
+    updateBackofficeUser(userId: string, data: UpdateCoreBackofficeUserDto): Promise<CoreUserExtendedListItemDto>;
     updateUserStatus(userId: string, data: UpdateCoreUserStatusDto): Promise<CoreUserExtendedListItemDto>;
     deleteDemoUser(userId: string): Promise<CoreDemoUserDeletionDto>;
     updateAccountDemo(accountId: string, data: UpdateCoreAccountDemoDto): Promise<CoreUserAccountDto>;

@@ -20,11 +20,13 @@ import {
     CoreModuleDto,
     CoreUserAccountDto,
     CoreUserExtendedListItemDto,
+    CreateCoreBackofficeUserRequestDto,
     CreateCoreUserDto,
     CreateCoreModuleDto,
     SearchCoreModulesDto,
     UnassignCoreCompanyUserDto,
     UpdateCoreAccountDemoDto,
+    UpdateCoreBackofficeUserRequestDto,
     UpdateCoreCompanyDto,
     UpdateCoreModuleDto,
     UpdateCoreCompanyStatusDto,
@@ -387,14 +389,34 @@ export class AdministrationController {
      *
      * @param dto Datos personales, cuenta y configuracion inicial del usuario.
      * @returns Usuario creado con informacion extendida desde CORE.
+     * 
+     * Un usuario 'OPERARIO' NO puede crear otros usuarios del backoffice
      */
     @Post('users/create')
     @UseAuth('admin')
     async createUser(
-        @Req() request: { user?: { email?: string } },
+        @Req() request: { user?: { id?: string; email?: string } },
         @Body() dto: CreateCoreUserDto,
     ): Promise<CoreUserExtendedListItemDto> {
         return this.administrationService.createUser(request.user, dto);
+    }
+
+    /**
+     * Crea un usuario de backoffice desde administracion.
+     *
+     * El usuario autenticado se envia a CORE como creador para validar que sea
+     * un administrador de backoffice antes de persistir el nuevo usuario.
+     *
+     * @param dto Datos personales y rol de backoffice del usuario.
+     * @returns Usuario creado con informacion extendida desde CORE.
+     */
+    @Post('users/create-backoffice')
+    @UseAuth('admin')
+    async createBackofficeUser(
+        @Req() request: { user?: { id?: string; email?: string } },
+        @Body() dto: CreateCoreBackofficeUserRequestDto,
+    ): Promise<CoreUserExtendedListItemDto> {
+        return this.administrationService.createBackofficeUser(request.user, dto);
     }
 
     /**
@@ -412,6 +434,26 @@ export class AdministrationController {
         @Body() dto: UpdateCoreUserDto,
     ): Promise<CoreUserExtendedListItemDto> {
         return this.administrationService.updateUser(request.user, userId, dto);
+    }
+
+    /**
+     * Edita los datos y rol de un usuario de backoffice desde administracion.
+     *
+     * El usuario autenticado se envia a CORE como editor para validar permisos
+     * antes de aplicar cambios de rol o datos internos.
+     *
+     * @param userId Identificador del usuario de backoffice.
+     * @param dto Datos editables del usuario de backoffice.
+     * @returns Usuario actualizado con informacion extendida desde CORE.
+     */
+    @Put('users/backoffice/edit/:userId')
+    @UseAuth('admin')
+    async updateBackofficeUser(
+        @Req() request: { user?: { id?: string; email?: string } },
+        @Param('userId', ParseUUIDPipe) userId: string,
+        @Body() dto: UpdateCoreBackofficeUserRequestDto,
+    ): Promise<CoreUserExtendedListItemDto> {
+        return this.administrationService.updateBackofficeUser(request.user, userId, dto);
     }
 
     /**

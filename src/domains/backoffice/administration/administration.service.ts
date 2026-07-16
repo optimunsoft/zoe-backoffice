@@ -20,6 +20,7 @@ import {
     CoreUserAccountDto,
     CoreUserExtendedListItemDto,
     CoreUserListItemDto,
+    CreateCoreBackofficeUserRequestDto,
     CreateCoreUserDto,
     CreateCoreModuleDto,
     MatchCoreCatalogItemDto,
@@ -29,6 +30,7 @@ import {
     SearchCoreUserListDto,
     UnassignCoreCompanyUserDto,
     UpdateCoreAccountDemoDto,
+    UpdateCoreBackofficeUserRequestDto,
     UpdateCoreCompanyDto,
     UpdateCoreModuleDto,
     UpdateCoreCompanyStatusDto,
@@ -143,17 +145,58 @@ export class AdministrationService {
         return this.coreIntegration.findUserById(userId);
     }
 
-    async createUser(actor: { email?: string } | undefined, dto: CreateCoreUserDto): Promise<CoreUserExtendedListItemDto> {
-        this.validateBackofficeAdministratorPayload(dto);
-        await this.ensureCanAssignBackofficeAdministrator(actor, dto.backofficeRole);
+    async createUser(actor: { id?: string; email?: string } | undefined, dto: CreateCoreUserDto): Promise<CoreUserExtendedListItemDto> {
+        this.validateRootUserPayload(dto);
         return this.coreIntegration.createUser(dto);
     }
 
+    async createBackofficeUser(actor: { id?: string; email?: string } | undefined, dto: CreateCoreBackofficeUserRequestDto): Promise<CoreUserExtendedListItemDto> {
+        this.validateBackofficeUserCreatePayload(dto);
+
+        const backofficeDto = {
+            ...dto,
+            isAdmin: true,
+        };
+
+        this.validateBackofficeAdministratorPayload(backofficeDto);
+        await this.ensureCanAssignBackofficeAdministrator(actor, backofficeDto.backofficeRole);
+
+        if (!actor?.id) {
+            throw new ForbiddenException('Usuario no autenticado.');
+        }
+
+        return this.coreIntegration.createBackofficeUser({
+            ...backofficeDto,
+            isVerified: true,
+            isDemo: false,
+            creatorUserId: actor.id,
+        });
+    }
+
     async updateUser(actor: { email?: string } | undefined, userId: string, dto: UpdateCoreUserDto): Promise<CoreUserExtendedListItemDto> {
+        this.validateRootUserUpdatePayload(dto);
         const currentUser = await this.findUserForBackofficeValidation(userId, dto);
         this.validateBackofficeAdministratorPayload(dto, currentUser);
         await this.ensureCanAssignBackofficeAdministrator(actor, dto.backofficeRole);
         return this.coreIntegration.updateUser(userId, dto);
+    }
+
+    async updateBackofficeUser(
+        actor: { id?: string; email?: string } | undefined,
+        userId: string,
+        dto: UpdateCoreBackofficeUserRequestDto,
+    ): Promise<CoreUserExtendedListItemDto> {
+        if (!actor?.id) {
+            throw new ForbiddenException('Usuario no autenticado.');
+        }
+
+        this.validateBackofficeUserUpdatePayload(dto);
+        await this.ensureCanAssignBackofficeAdministrator(actor, dto.backofficeRole);
+
+        return this.coreIntegration.updateBackofficeUser(userId, {
+            ...dto,
+            updaterUserId: actor.id,
+        });
     }
 
     async updateUserStatus(userId: string, dto: UpdateCoreUserStatusDto): Promise<CoreUserExtendedListItemDto> {
@@ -327,7 +370,7 @@ export class AdministrationService {
     }
 
     private validateBackofficeAdministratorPayload(
-        dto: CreateCoreUserDto | UpdateCoreUserDto,
+        dto: { email?: string; isAdmin?: boolean; backofficeRole?: 'ADMINISTRADOR' | 'OPERARIO' },
         currentUser?: CoreUserExtendedListItemDto | null,
     ): void {
         const nextIsAdmin = dto.isAdmin ?? currentUser?.isAdmin ?? false;
@@ -346,6 +389,58 @@ export class AdministrationService {
 
     private isOptimunsoftEmail(email: string): boolean {
         return email.trim().toLowerCase().endsWith('@optimunsoft.co');
+    }
+
+    private validateRootUserPayload(dto: CreateCoreUserDto): void {
+        const raw = dto as any;
+
+        if (raw.isAdmin === true) {
+            throw new BadRequestException('Este endpoint no crea usuarios administradores.');
+        }
+
+        if (raw.backofficeRole) {
+            throw new BadRequestException('Este endpoint no asigna roles de backoffice.');
+        }
+
+        if ((raw.userType && raw.userType !== 'USUARIO') || (raw.type && raw.type !== 'USUARIO')) {
+            throw new BadRequestException('Solo se pueden crear usuarios root.');
+        }
+    }
+
+    private validateRootUserUpdatePayload(dto: UpdateCoreUserDto): void {
+        const raw = dto as any;
+
+        if (dto.isAdmin !== undefined) {
+            throw new BadRequestException('Este endpoint no cambia usuarios administradores.');
+        }
+
+        if (dto.backofficeRole !== undefined) {
+            throw new BadRequestException('Este endpoint no cambia roles de backoffice.');
+        }
+
+        if (raw.userType !== undefined || raw.type !== undefined) {
+            throw new BadRequestException('Este endpoint no cambia tipo de usuario.');
+        }
+    }
+
+    private validateBackofficeUserUpdatePayload(dto: UpdateCoreBackofficeUserRequestDto): void {
+        const raw = dto as any;
+
+        if (raw.userType !== undefined || raw.type !== undefined) {
+            throw new BadRequestException('Este endpoint no cambia tipo de usuario.');
+        }
+
+        if (dto.email !== undefined && !this.isOptimunsoftEmail(dto.email)) {
+            throw new BadRequestException('Los usuarios de backoffice deben usar un correo @optimunsoft.co.');
+        }
+    }
+
+    private validateBackofficeUserCreatePayload(dto: CreateCoreBackofficeUserRequestDto): void {
+        const raw = dto as any;
+
+        if (raw.userType !== undefined || raw.type !== undefined) {
+            throw new BadRequestException('Este endpoint no recibe tipo de usuario. Los usuarios de backoffice siempre son root.');
+        }
     }
 
     private async ensureAssignableCompanyUser(userId: string): Promise<void> {

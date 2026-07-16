@@ -12,9 +12,11 @@ import { BadRequestException, ForbiddenException, ValidationPipe } from '@nestjs
 import {
   AssignCoreCompanyUserDto,
   AssignCoreCompanyUserRequestDto,
+  CreateCoreBackofficeUserRequestDto,
   CreateCoreUserDto,
   UnassignCoreCompanyUserDto,
   UpdateCoreAccountDemoDto,
+  UpdateCoreBackofficeUserRequestDto,
   UpdateCoreCompanyStatusDto,
   UpdateCoreUserStatusDto,
 } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
@@ -544,31 +546,49 @@ describe('Administration company list', () => {
     const coreIntegration = {
       findUserById: jest.fn().mockResolvedValue(response),
       createUser: jest.fn().mockResolvedValue(response),
+      createBackofficeUser: jest.fn().mockResolvedValue(response),
       updateUser: jest.fn().mockResolvedValue(response),
+      updateBackofficeUser: jest.fn().mockResolvedValue(response),
       updateUserStatus: jest.fn().mockResolvedValue(response),
       deleteDemoUser: jest.fn().mockResolvedValue(deletionResponse),
     };
     const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
     const createDto = {
-      email: 'ada@optimunsoft.co',
+      email: 'ada@example.com',
       password: 'TemporalPassword123!',
       firstName: 'Ada',
       lastName: 'Lovelace',
       municipalityId: '22222222-2222-4222-8222-222222222222',
       birthDate: '1990-05-21',
-      isAdmin: true,
+    };
+    const createBackofficeDto = {
+      ...createDto,
+      email: 'ada@optimunsoft.co',
       backofficeRole: 'OPERARIO' as const,
     };
 
     await expect(service.findUserById(userId)).resolves.toBe(response);
-    await expect(service.createUser({ email: 'admin@example.com' }, createDto)).resolves.toBe(response);
+    await expect(service.createUser({ id: userId, email: 'admin@example.com' }, createDto)).resolves.toBe(response);
+    await expect(service.createBackofficeUser({ id: userId, email: 'admin@example.com' }, createBackofficeDto)).resolves.toBe(response);
     await expect(service.updateUser({ email: 'admin@example.com' }, userId, { firstName: 'Ada' })).resolves.toBe(response);
+    await expect(service.updateBackofficeUser({ id: userId, email: 'admin@example.com' }, userId, { backofficeRole: 'OPERARIO' })).resolves.toBe(response);
     await expect(service.updateUserStatus(userId, { active: false })).resolves.toBe(response);
     await expect(service.deleteDemoUser(userId)).resolves.toBe(deletionResponse);
 
     expect(coreIntegration.findUserById).toHaveBeenCalledWith(userId);
     expect(coreIntegration.createUser).toHaveBeenCalledWith(createDto);
+    expect(coreIntegration.createBackofficeUser).toHaveBeenCalledWith({
+      ...createBackofficeDto,
+      isAdmin: true,
+      isVerified: true,
+      isDemo: false,
+      creatorUserId: userId,
+    });
     expect(coreIntegration.updateUser).toHaveBeenCalledWith(userId, { firstName: 'Ada' });
+    expect(coreIntegration.updateBackofficeUser).toHaveBeenCalledWith(userId, {
+      backofficeRole: 'OPERARIO',
+      updaterUserId: userId,
+    });
     expect(coreIntegration.updateUserStatus).toHaveBeenCalledWith(userId, { active: false });
     expect(coreIntegration.deleteDemoUser).toHaveBeenCalledWith(userId);
   });
@@ -576,13 +596,14 @@ describe('Administration company list', () => {
   it('rejects administrator role assignment when actor is not backoffice administrator', async () => {
     const coreIntegration = {
       createUser: jest.fn(),
+      createBackofficeUser: jest.fn(),
     };
     const authorizationRepository = {
       isBackofficeAdministratorEmail: jest.fn().mockResolvedValue(false),
     };
     const service = new AdministrationService(coreIntegration as any, {} as any, authorizationRepository as any);
 
-    await expect(service.createUser(
+    await expect(service.createBackofficeUser(
       { email: 'operator@example.com' },
       {
         email: 'ada@optimunsoft.co',
@@ -591,16 +612,17 @@ describe('Administration company list', () => {
         lastName: 'Lovelace',
         municipalityId: '22222222-2222-4222-8222-222222222222',
         birthDate: '1990-05-21',
-        isAdmin: true,
         backofficeRole: 'ADMINISTRADOR',
       },
     )).rejects.toBeInstanceOf(ForbiddenException);
     expect(coreIntegration.createUser).not.toHaveBeenCalled();
+    expect(coreIntegration.createBackofficeUser).not.toHaveBeenCalled();
   });
 
   it('rejects admin users without backoffice role or optimunsoft email', async () => {
     const coreIntegration = {
       createUser: jest.fn(),
+      createBackofficeUser: jest.fn(),
     };
     const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
     const baseDto = {
@@ -610,16 +632,15 @@ describe('Administration company list', () => {
       lastName: 'Lovelace',
       municipalityId: '22222222-2222-4222-8222-222222222222',
       birthDate: '1990-05-21',
-      isAdmin: true,
     };
 
-    await expect(service.createUser(
-      { email: 'admin@example.com' },
-      baseDto,
+    await expect(service.createBackofficeUser(
+      { id: '11111111-1111-4111-8111-111111111111', email: 'admin@example.com' },
+      baseDto as any,
     )).rejects.toBeInstanceOf(BadRequestException);
 
-    await expect(service.createUser(
-      { email: 'admin@example.com' },
+    await expect(service.createBackofficeUser(
+      { id: '11111111-1111-4111-8111-111111111111', email: 'admin@example.com' },
       {
         ...baseDto,
         email: 'ada@example.com',
@@ -628,6 +649,99 @@ describe('Administration company list', () => {
     )).rejects.toBeInstanceOf(BadRequestException);
 
     expect(coreIntegration.createUser).not.toHaveBeenCalled();
+    expect(coreIntegration.createBackofficeUser).not.toHaveBeenCalled();
+  });
+
+  it('rejects root user creation with backoffice fields', async () => {
+    const coreIntegration = {
+      createUser: jest.fn(),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+    const baseDto = {
+      email: 'ada@example.com',
+      password: 'TemporalPassword123!',
+      firstName: 'Ada',
+      lastName: 'Lovelace',
+      municipalityId: '22222222-2222-4222-8222-222222222222',
+      birthDate: '1990-05-21',
+    };
+
+    await expect(service.createUser(
+      { email: 'admin@example.com' },
+      { ...baseDto, isAdmin: true } as any,
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(service.createUser(
+      { email: 'admin@example.com' },
+      { ...baseDto, backofficeRole: 'OPERARIO' } as any,
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(service.createUser(
+      { email: 'admin@example.com' },
+      { ...baseDto, userType: 'SUBUSUARIO' } as any,
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    expect(coreIntegration.createUser).not.toHaveBeenCalled();
+  });
+
+  it('rejects root user updates with backoffice fields', async () => {
+    const coreIntegration = {
+      updateUser: jest.fn(),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+    const userId = '11111111-1111-4111-8111-111111111111';
+
+    await expect(service.updateUser(
+      { email: 'admin@example.com' },
+      userId,
+      { isAdmin: true } as any,
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(service.updateUser(
+      { email: 'admin@example.com' },
+      userId,
+      { backofficeRole: 'OPERARIO' } as any,
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(service.updateUser(
+      { email: 'admin@example.com' },
+      userId,
+      { userType: 'SUBUSUARIO' } as any,
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    expect(coreIntegration.updateUser).not.toHaveBeenCalled();
+  });
+
+  it('rejects backoffice user create and update with explicit user type', async () => {
+    const coreIntegration = {
+      createBackofficeUser: jest.fn(),
+      updateBackofficeUser: jest.fn(),
+    };
+    const service = new AdministrationService(coreIntegration as any, {} as any, {} as any);
+    const actor = { id: '11111111-1111-4111-8111-111111111111', email: 'admin@example.com' };
+
+    await expect(service.createBackofficeUser(
+      actor,
+      {
+        email: 'ada@optimunsoft.co',
+        password: 'TemporalPassword123!',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        municipalityId: '22222222-2222-4222-8222-222222222222',
+        birthDate: '1990-05-21',
+        backofficeRole: 'OPERARIO',
+        userType: 'USUARIO',
+      } as any,
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(service.updateBackofficeUser(
+      actor,
+      '22222222-2222-4222-8222-222222222222',
+      { type: 'USUARIO' } as any,
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    expect(coreIntegration.createBackofficeUser).not.toHaveBeenCalled();
+    expect(coreIntegration.updateBackofficeUser).not.toHaveBeenCalled();
   });
 
   it('delegates account demo updates to CORE integration', async () => {
@@ -663,7 +777,9 @@ describe('Administration company list', () => {
       listUsersExtended: jest.fn().mockResolvedValue({ data: [], total: 0, page: 1, amount: 10 }),
       findUserById: jest.fn().mockResolvedValue(response),
       createUser: jest.fn().mockResolvedValue(response),
+      createBackofficeUser: jest.fn().mockResolvedValue(response),
       updateUser: jest.fn().mockResolvedValue(response),
+      updateBackofficeUser: jest.fn().mockResolvedValue(response),
       updateUserStatus: jest.fn().mockResolvedValue(response),
       deleteDemoUser: jest.fn().mockResolvedValue(deletionResponse),
     };
@@ -683,14 +799,18 @@ describe('Administration company list', () => {
     await expect(controller.listUsersExtended(query)).resolves.toEqual({ data: [], total: 0, page: 1, amount: 10 });
     await expect(controller.findUserById(userId)).resolves.toBe(response);
     await expect(controller.createUser({ user: { email: 'admin@example.com' } }, createDto)).resolves.toBe(response);
+    await expect(controller.createBackofficeUser({ user: { id: userId, email: 'admin@example.com' } }, createDto)).resolves.toBe(response);
     await expect(controller.updateUser({ user: { email: 'admin@example.com' } }, userId, { firstName: 'Ada' })).resolves.toBe(response);
+    await expect(controller.updateBackofficeUser({ user: { id: userId, email: 'admin@example.com' } }, userId, { backofficeRole: 'OPERARIO' })).resolves.toBe(response);
     await expect(controller.updateUserStatus(userId, { active: false })).resolves.toBe(response);
     await expect(controller.deleteDemoUser(userId)).resolves.toBe(deletionResponse);
 
     expect(service.listUsersExtended).toHaveBeenCalledWith(query);
     expect(service.findUserById).toHaveBeenCalledWith(userId);
     expect(service.createUser).toHaveBeenCalledWith({ email: 'admin@example.com' }, createDto);
+    expect(service.createBackofficeUser).toHaveBeenCalledWith({ id: userId, email: 'admin@example.com' }, createDto);
     expect(service.updateUser).toHaveBeenCalledWith({ email: 'admin@example.com' }, userId, { firstName: 'Ada' });
+    expect(service.updateBackofficeUser).toHaveBeenCalledWith({ id: userId, email: 'admin@example.com' }, userId, { backofficeRole: 'OPERARIO' });
     expect(service.updateUserStatus).toHaveBeenCalledWith(userId, { active: false });
     expect(service.deleteDemoUser).toHaveBeenCalledWith(userId);
   });
@@ -758,16 +878,29 @@ describe('Administration company list', () => {
 
     await expect(pipe.transform(
       {
+        email: 'ada@example.com',
+        password: 'TemporalPassword123!',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        municipalityId: '22222222-2222-4222-8222-222222222222',
+        birthDate: '1990-05-21',
+      },
+      { type: 'body', metatype: CreateCoreUserDto },
+    )).resolves.toMatchObject({
+      email: 'ada@example.com',
+    });
+
+    await expect(pipe.transform(
+      {
         email: 'ada@optimunsoft.co',
         password: 'TemporalPassword123!',
         firstName: 'Ada',
         lastName: 'Lovelace',
         municipalityId: '22222222-2222-4222-8222-222222222222',
         birthDate: '1990-05-21',
-        isAdmin: true,
         backofficeRole: 'ADMINISTRADOR',
       },
-      { type: 'body', metatype: CreateCoreUserDto },
+      { type: 'body', metatype: CreateCoreBackofficeUserRequestDto },
     )).resolves.toMatchObject({
       email: 'ada@optimunsoft.co',
       backofficeRole: 'ADMINISTRADOR',
@@ -781,10 +914,80 @@ describe('Administration company list', () => {
         lastName: 'Lovelace',
         municipalityId: '22222222-2222-4222-8222-222222222222',
         birthDate: '1990-05-21',
-        isAdmin: true,
+        backofficeRole: 'ADMINISTRADOR',
+        isVerified: false,
+      },
+      { type: 'body', metatype: CreateCoreBackofficeUserRequestDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(pipe.transform(
+      {
+        email: 'ada@optimunsoft.co',
+        password: 'TemporalPassword123!',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        municipalityId: '22222222-2222-4222-8222-222222222222',
+        birthDate: '1990-05-21',
+        backofficeRole: 'ADMINISTRADOR',
+        userType: 'USUARIO',
+      },
+      { type: 'body', metatype: CreateCoreBackofficeUserRequestDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(pipe.transform(
+      {
+        email: 'ada@optimunsoft.co',
+        password: 'TemporalPassword123!',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        municipalityId: '22222222-2222-4222-8222-222222222222',
+        birthDate: '1990-05-21',
+        backofficeRole: 'ADMINISTRADOR',
+        isDemo: true,
+      },
+      { type: 'body', metatype: CreateCoreBackofficeUserRequestDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(pipe.transform(
+      {
+        email: 'ada@optimunsoft.co',
+        backofficeRole: 'OPERARIO',
+      },
+      { type: 'body', metatype: UpdateCoreBackofficeUserRequestDto },
+    )).resolves.toMatchObject({
+      email: 'ada@optimunsoft.co',
+      backofficeRole: 'OPERARIO',
+    });
+
+    await expect(pipe.transform(
+      {
+        email: 'ada@optimunsoft.co',
+        backofficeRole: 'OPERARIO',
+        isVerified: false,
+      },
+      { type: 'body', metatype: UpdateCoreBackofficeUserRequestDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(pipe.transform(
+      {
+        email: 'ada@optimunsoft.co',
+        backofficeRole: 'OPERARIO',
+        userType: 'USUARIO',
+      },
+      { type: 'body', metatype: UpdateCoreBackofficeUserRequestDto },
+    )).rejects.toBeInstanceOf(BadRequestException);
+
+    await expect(pipe.transform(
+      {
+        email: 'ada@optimunsoft.co',
+        password: 'TemporalPassword123!',
+        firstName: 'Ada',
+        lastName: 'Lovelace',
+        municipalityId: '22222222-2222-4222-8222-222222222222',
+        birthDate: '1990-05-21',
         backofficeRole: 'ROOT',
       },
-      { type: 'body', metatype: CreateCoreUserDto },
+      { type: 'body', metatype: CreateCoreBackofficeUserRequestDto },
     )).rejects.toBeInstanceOf(BadRequestException);
 
     await expect(pipe.transform(
