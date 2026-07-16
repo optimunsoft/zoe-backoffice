@@ -970,11 +970,6 @@ export class CreateCoreBackofficeUserRequestDto {
 }
 
 export class CreateCoreBackofficeUserDto extends CreateCoreBackofficeUserRequestDto {
-    @IsBoolean()
-    isVerified: boolean;
-
-    @IsBoolean()
-    isDemo: boolean;
 
     @IsUUID()
     creatorUserId: string;
