@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, ForbiddenException, Injectable } from '@
 import { AuthorizationRepository, BackofficeRole } from '../authorization.repository';
 
 @Injectable()
-export class IsAdminGuard implements CanActivate {
+export class IsOperatorGuard implements CanActivate {
     constructor(private readonly authorizationRepository: AuthorizationRepository) {}
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -10,7 +10,7 @@ export class IsAdminGuard implements CanActivate {
         const userId = request?.user?.id;
         if (!userId) throw new ForbiddenException('Usuario no autenticado.');
 
-        if (!await this.authorizationRepository.hasAccessBackoffice(userId, BackofficeRole.ADMIN)) {
+        if (!await this.authorizationRepository.hasAccessBackoffice(userId, BackofficeRole.OPERATOR)) {
             throw new ForbiddenException('No tienes permisos para esta acción.');
         }
 

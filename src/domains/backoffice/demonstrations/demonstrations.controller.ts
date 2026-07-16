@@ -35,14 +35,14 @@ export class DemonstrationsController {
     }
 
     @Post('create')
-    @UseAuth('admin')
+    @UseAuth('operator')
     @UseInterceptors(TransactionInterceptor)
     async create(@Body() data: CreateDemonstrationDto): Promise<DemonstrationDto> {
         return this.toDto(await this.demonstrationsService.create(data));
     }
 
     @Get('list')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async list(
         @Query('page', new ParseIntPipe({ optional: true })) page = 1,
         @Query('amount', new ParseIntPipe({ optional: true })) amount = 10,
@@ -53,13 +53,13 @@ export class DemonstrationsController {
     }
 
     @Get('specific/:id')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async find(@Param('id', ParseUUIDPipe) id: string): Promise<DemonstrationDto> {
         return this.toDto(await this.demonstrationsService.find(id));
     }
 
     @Put('edit/:id')
-    @UseAuth('admin')
+    @UseAuth('operator')
     @UseInterceptors(TransactionInterceptor)
     async update(
         @Param('id', ParseUUIDPipe) id: string,
@@ -69,7 +69,7 @@ export class DemonstrationsController {
     }
 
     @Delete('delete/:id')
-    @UseAuth('admin')
+    @UseAuth('operator')
     @UseInterceptors(TransactionInterceptor)
     async delete(@Param('id', ParseUUIDPipe) id: string): Promise<{ message: string }> {
         await this.demonstrationsService.delete(id);

@@ -3,7 +3,6 @@ import { PassportModule } from '@nestjs/passport';
 import { AccountingJwtStrategy } from './auth0/jwt.strategy';
 import { AuthorizationRepository } from './authorization.repository';
 import { ApiKeyGuard } from './guards/api-key.guard';
-import { BackofficeAdminGuard } from './guards/backoffice-admin.guard';
 import { CompanyOwnerGuard } from './guards/company-owner.guard';
 import { CompanyPermissionGuard } from './guards/company-permission.guard';
 import { CompanyRelatedGuard } from './guards/company-related.guard';
@@ -20,7 +19,6 @@ const guards = [
     CompanyRelatedGuard,
     CompanyPermissionGuard,
     IsAdminGuard,
-    BackofficeAdminGuard,
     ApiKeyGuard,
 ];
 

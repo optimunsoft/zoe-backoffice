@@ -12,6 +12,11 @@ export interface CompanyApiKey {
     apiKey: string;
 }
 
+export enum BackofficeRole {
+    ADMIN = 'ADMINISTRADOR',
+    OPERATOR = 'OPERADOR'
+}
+
 @Injectable()
 export class AuthorizationRepository {
     constructor(private readonly dataSource: DataSource) {}
@@ -101,6 +106,17 @@ export class AuthorizationRepository {
             [email],
         );
         return Boolean(result?.allowed);
+    }
+
+    async hasAccessBackoffice(userId: string, role: BackofficeRole) {
+        const [result] = await this.dataSource.query(
+            `
+                SELECT core.has_access_backoffice($1, $2) AS allowed
+            `,
+            [userId, role],
+        )
+
+        return Boolean(result?.allowed)
     }
 
     async findCompanyApiKeys(): Promise<CompanyApiKey[]> {

@@ -51,7 +51,7 @@ export class AdministrationController {
      * @returns Pagina de empresas con ubicacion, roles resumidos y usuarios asociados.
      */
     @Get('companies/list')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async listCompanies(
         @Query() query: ListCompaniesQueryDto,
     ): Promise<PaginatedResult<CoreCompanyExtendedListItemDto>> {
@@ -65,7 +65,7 @@ export class AdministrationController {
      * @returns Resumen de la empresa creada en CORE.
      */
     @Post('companies/create')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async createCompany(
         @Body() dto: CreateCoreCompanyDto,
     ): Promise<CoreCompanySummaryDto> {
@@ -80,7 +80,7 @@ export class AdministrationController {
      * @returns Resumen de la empresa editada en CORE.
      */
     @Put('companies/edit/:companyId')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async updateCompany(
         @Param('companyId') companyId: string,
         @Body() dto: UpdateCoreCompanyDto,
@@ -96,7 +96,7 @@ export class AdministrationController {
      * @returns Resumen de la empresa actualizada en CORE.
      */
     @Patch('companies/:companyId/status')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async updateCompanyStatus(
         @Param('companyId', ParseUUIDPipe) companyId: string,
         @Body() dto: UpdateCoreCompanyStatusDto,
@@ -112,7 +112,7 @@ export class AdministrationController {
      * @returns Logo de la empresa o `null` cuando no existe.
      */
     @Get('companies/:companyId/logo')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async getCompanyLogo(
         @Param('companyId', ParseUUIDPipe) companyId: string,
         @Query('base64', new DefaultValuePipe(false), ParseBoolPipe) returnBase64: boolean,
@@ -128,7 +128,7 @@ export class AdministrationController {
      * @returns Resultado de la subida en CORE.
      */
     @Post('companies/:companyId/logo')
-    @UseAuth('admin')
+    @UseAuth('operator')
     @UseInterceptors(FileInterceptor('logo', {
         storage: multer.memoryStorage(),
         limits: {
@@ -167,7 +167,7 @@ export class AdministrationController {
      * @returns API key generada en CORE.
      */
     @Post('companies/:companyId/generate-api-key')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async generateCompanyApiKey(
         @Param('companyId', ParseUUIDPipe) companyId: string,
     ): Promise<CoreCompanyApiKeyDto> {
@@ -181,7 +181,7 @@ export class AdministrationController {
      * @returns API key registrada en CORE.
      */
     @Get('companies/:companyId/get-api-key')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async getCompanyApiKey(
         @Param('companyId', ParseUUIDPipe) companyId: string,
     ): Promise<CoreCompanyApiKeyDto> {
@@ -195,7 +195,7 @@ export class AdministrationController {
      * @returns Relacion creada o actualizada en CORE.
      */
     @Post('companies/users/assign')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async assignCompanyUser(
         @Body() dto: AssignCoreCompanyUserRequestDto,
     ): Promise<CoreCompanyUserAssignmentDto> {
@@ -213,7 +213,7 @@ export class AdministrationController {
      * @returns Relacion removida en CORE.
      */
     @Post('companies/users/unassign')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async unassignCompanyUser(
         @Body() dto: UnassignCoreCompanyUserDto,
     ): Promise<CoreCompanyUserAssignmentDto> {
@@ -228,7 +228,7 @@ export class AdministrationController {
      * @returns Asignacion del modulo a la empresa en CORE.
      */
     @Patch('modules/:moduleId/companies')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async assignCompanyModule(
         @Param('moduleId', ParseUUIDPipe) moduleId: string,
         @Body() dto: AssignCoreCompanyModuleDto,
@@ -243,7 +243,7 @@ export class AdministrationController {
      * @returns Pagina de modulos registrados en CORE.
      */
     @Get('modules/list')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async listModules(
         @Query() query: SearchCoreModulesDto,
     ): Promise<PaginatedResult<CoreModuleDto>> {
@@ -271,7 +271,7 @@ export class AdministrationController {
      * @returns Modulo encontrado o `null` cuando CORE no lo encuentra.
      */
     @Get('modules/:moduleId')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async findModuleById(
         @Param('moduleId', ParseUUIDPipe) moduleId: string,
     ): Promise<CoreModuleDto | null> {
@@ -316,7 +316,7 @@ export class AdministrationController {
      * @returns Detalle del rol con metadata y permisos asociados.
      */
     @Get('companies/:companyId/roles/:roleId')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async findCompanyRole(
         @Param('companyId') companyId: string,
         @Param('roleId') roleId: string,
@@ -331,7 +331,7 @@ export class AdministrationController {
      * @returns Datos extraidos, precarga normalizada y resolucion de catalogos.
      */
     @Post('companies/rut/extract')
-    @UseAuth('admin')
+    @UseAuth('operator')
     @UseInterceptors(FileInterceptor('file'))
     async extractCompanyRut(
         @UploadedFileDecorator() file: UploadedFile,
@@ -346,7 +346,7 @@ export class AdministrationController {
      * @returns Datos extraidos y equivalencias de catalogos para la precarga.
      */
     @Post('companies/rut/extract-prefill')
-    @UseAuth('admin')
+    @UseAuth('operator')
     @UseInterceptors(FileInterceptor('file'))
     async extractCompanyRutPrefill(
         @UploadedFileDecorator() file: UploadedFile,
@@ -361,7 +361,7 @@ export class AdministrationController {
      * @returns Datos completos extraidos, precarga y advertencias de resolucion.
      */
     @Post('companies/rut/extract-full')
-    @UseAuth('admin')
+    @UseAuth('operator')
     @UseInterceptors(FileInterceptor('file'))
     async extractCompanyRutFull(
         @UploadedFileDecorator() file: UploadedFile,
@@ -377,7 +377,7 @@ export class AdministrationController {
      * @returns Pagina de usuarios enriquecidos desde CORE.
      */
     @Get('users/list')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async listUsersExtended(
         @Query() query: ListUsersExtendedQueryDto,
     ): Promise<PaginatedResult<CoreUserExtendedListItemDto>> {
@@ -393,7 +393,7 @@ export class AdministrationController {
      * Un usuario 'OPERARIO' NO puede crear otros usuarios del backoffice
      */
     @Post('users/create')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async createUser(
         @Req() request: { user?: { id?: string; email?: string } },
         @Body() dto: CreateCoreUserDto,
@@ -427,7 +427,7 @@ export class AdministrationController {
      * @returns Usuario actualizado con informacion extendida desde CORE.
      */
     @Put('users/edit/:userId')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async updateUser(
         @Req() request: { user?: { email?: string } },
         @Param('userId', ParseUUIDPipe) userId: string,
@@ -464,7 +464,7 @@ export class AdministrationController {
      * @returns Usuario actualizado con informacion extendida desde CORE.
      */
     @Patch('users/:userId/status')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async updateUserStatus(
         @Param('userId', ParseUUIDPipe) userId: string,
         @Body() dto: UpdateCoreUserStatusDto,
@@ -490,7 +490,7 @@ export class AdministrationController {
      * @returns Resumen de la eliminacion confirmada por CORE.
      */
     @Delete('users/:userId/demo')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async deleteDemoUser(
         @Param('userId', ParseUUIDPipe) userId: string,
     ): Promise<CoreDemoUserDeletionDto> {
@@ -505,7 +505,7 @@ export class AdministrationController {
      * @returns Cuenta actualizada en CORE.
      */
     @Patch('accounts/:accountId/demo')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async updateAccountDemo(
         @Param('accountId', ParseUUIDPipe) accountId: string,
         @Body() dto: UpdateCoreAccountDemoDto,
@@ -520,7 +520,7 @@ export class AdministrationController {
      * @returns Usuario encontrado o `null` cuando CORE no lo encuentra.
      */
     @Get('users/:userId')
-    @UseAuth('admin')
+    @UseAuth('operator')
     async findUserById(
         @Param('userId', ParseUUIDPipe) userId: string,
     ): Promise<CoreUserExtendedListItemDto | null> {
