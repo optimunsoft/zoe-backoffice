@@ -14,7 +14,7 @@ export interface CompanyApiKey {
 
 export enum BackofficeRole {
     ADMIN = 'ADMINISTRADOR',
-    OPERATOR = 'OPERADOR'
+    OPERATOR = 'OPERARIO'
 }
 
 @Injectable()
