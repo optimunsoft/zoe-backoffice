@@ -848,6 +848,25 @@ export class CoreUserSessionDto {
     revokedAt?: string | null;
 }
 
+export class CoreSessionListItemDto extends CoreUserSessionDto {
+    @IsString()
+    userId: string;
+
+    @IsBoolean()
+    isActive: boolean;
+}
+
+export class CoreSessionListPageDto implements PaginatedResult<CoreSessionListItemDto> {
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => CoreSessionListItemDto)
+    data: CoreSessionListItemDto[];
+
+    @IsInt() @Min(0) total: number;
+    @IsInt() @Min(1) page: number;
+    @IsInt() @Min(1) amount: number;
+}
+
 export class CoreUserExtendedListItemDto extends CoreUserListItemDto {
     @IsOptional()
     @ValidateNested()
@@ -1173,6 +1192,13 @@ export interface SearchCoreUserExtendedListDto extends SearchCoreUserListDto {
     isDemo?: boolean;
     isActive?: boolean;
     type?: 'USUARIO' | 'SUBUSUARIO';
+}
+
+export interface SearchCoreSessionListDto {
+    page?: number;
+    amount?: number;
+    userId?: string;
+    isActive?: boolean;
 }
 
 export interface MatchCoreCatalogItemDto {

@@ -17,6 +17,7 @@ import {
     CoreDemoUserDeletionDto,
     CoreModuleDeleteDto,
     CoreModuleDto,
+    CoreSessionListItemDto,
     CoreUserAccountDto,
     CoreUserExtendedListItemDto,
     CoreUserListItemDto,
@@ -26,6 +27,7 @@ import {
     MatchCoreCatalogItemDto,
     SearchCoreCompaniesDto,
     SearchCoreModulesDto,
+    SearchCoreSessionListDto,
     SearchCoreUserExtendedListDto,
     SearchCoreUserListDto,
     UnassignCoreCompanyUserDto,
@@ -139,6 +141,12 @@ export class AdministrationService {
         query: SearchCoreUserExtendedListDto,
     ): Promise<PaginatedResult<CoreUserExtendedListItemDto>> {
         return this.coreIntegration.searchUserListExtended(query);
+    }
+
+    async listSessions(
+        query: SearchCoreSessionListDto,
+    ): Promise<PaginatedResult<CoreSessionListItemDto>> {
+        return this.coreIntegration.searchSessionList(query);
     }
 
     async findUserById(userId: string): Promise<CoreUserExtendedListItemDto | null> {

@@ -18,6 +18,7 @@ import {
     CoreDemoUserDeletionDto,
     CoreModuleDeleteDto,
     CoreModuleDto,
+    CoreSessionListItemDto,
     CoreUserAccountDto,
     CoreUserExtendedListItemDto,
     CreateCoreBackofficeUserRequestDto,
@@ -37,6 +38,7 @@ import { PaginatedResult } from 'src/shared/interfaces/PaginatedResult';
 import { UploadedFile } from 'src/shared/interfaces/uploaded-file.interface';
 import { AdministrationService } from './administration.service';
 import { ListCompaniesQueryDto } from './dto/list-companies-query.dto';
+import { ListSessionsQueryDto } from './dto/list-sessions-query.dto';
 import { ListUsersExtendedQueryDto } from './dto/list-users-extended-query.dto';
 import { RutExtractionResultDto } from './dto/rut-extraction-result.dto';
 
@@ -382,6 +384,20 @@ export class AdministrationController {
         @Query() query: ListUsersExtendedQueryDto,
     ): Promise<PaginatedResult<CoreUserExtendedListItemDto>> {
         return this.administrationService.listUsersExtended(query);
+    }
+
+    /**
+     * Lista sesiones para administracion con filtros por usuario y estado.
+     *
+     * @param query Filtros de usuario, estado y paginacion.
+     * @returns Pagina de sesiones ordenadas por login descendente desde CORE.
+     */
+    @Get('sessions/list')
+    @UseAuth('operator')
+    async listSessions(
+        @Query() query: ListSessionsQueryDto,
+    ): Promise<PaginatedResult<CoreSessionListItemDto>> {
+        return this.administrationService.listSessions(query);
     }
 
     /**

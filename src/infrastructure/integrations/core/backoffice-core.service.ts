@@ -33,6 +33,8 @@ import {
     CoreModuleDto,
     CoreModulePageDto,
     CoreResolvedCatalogDto,
+    CoreSessionListItemDto,
+    CoreSessionListPageDto,
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
     CoreThirdPartyUpsertResultDto,
@@ -50,6 +52,7 @@ import {
     SearchCoreUsersDto,
     SearchCoreCompaniesDto,
     SearchCoreModulesDto,
+    SearchCoreSessionListDto,
     SearchCoreUserExtendedListDto,
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
@@ -457,6 +460,24 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 params,
             },
             CoreUserExtendedPageDto,
+        );
+    }
+
+    /**
+     * Lista sesiones desde CORE para vistas administrativas.
+     *
+     * @param params Filtros por usuario, estado y paginacion.
+     */
+    async searchSessionList(
+        params: SearchCoreSessionListDto,
+    ): Promise<PaginatedResult<CoreSessionListItemDto>> {
+        return this.requestDto(
+            {
+                url: '/api/v1/internal/core/sessions/list',
+                method: 'GET',
+                params,
+            },
+            CoreSessionListPageDto,
         );
     }
 

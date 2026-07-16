@@ -18,6 +18,7 @@ import {
     CoreModuleDeleteDto,
     CoreModuleDto,
     CoreResolvedCatalogDto,
+    CoreSessionListItemDto,
     CoreThirdPartyDto,
     CoreThirdPartyPageDto,
     CoreThirdPartyUpsertResultDto,
@@ -36,6 +37,7 @@ import {
     SearchCoreUsersDto,
     SearchCoreCompaniesDto,
     SearchCoreModulesDto,
+    SearchCoreSessionListDto,
     SearchCoreUserExtendedListDto,
     SearchCoreUserListDto,
     MatchCoreCatalogItemDto,
@@ -74,6 +76,7 @@ export interface IBackofficeCoreIntegration {
     findCompanyRole(companyId: string, roleId: string): Promise<CoreCompanyRoleDetailDto>;
     searchUserList(params: SearchCoreUserListDto): Promise<PaginatedResult<CoreUserListItemDto>>;
     searchUserListExtended(params: SearchCoreUserExtendedListDto): Promise<PaginatedResult<CoreUserExtendedListItemDto>>;
+    searchSessionList(params: SearchCoreSessionListDto): Promise<PaginatedResult<CoreSessionListItemDto>>;
     findUserById(userId: string): Promise<CoreUserExtendedListItemDto | null>;
     createUser(data: CreateCoreUserDto): Promise<CoreUserExtendedListItemDto>;
     createBackofficeUser(data: CreateCoreBackofficeUserDto): Promise<CoreUserExtendedListItemDto>;
