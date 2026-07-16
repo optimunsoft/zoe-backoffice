@@ -154,8 +154,7 @@ export class AdministrationService {
         this.validateBackofficeUserCreatePayload(dto);
 
         const backofficeDto = {
-            ...dto,
-            isAdmin: true,
+            ...dto
         };
 
         this.validateBackofficeAdministratorPayload(backofficeDto);
@@ -167,8 +166,6 @@ export class AdministrationService {
 
         return this.coreIntegration.createBackofficeUser({
             ...backofficeDto,
-            isVerified: true,
-            isDemo: false,
             creatorUserId: actor.id,
         });
     }
