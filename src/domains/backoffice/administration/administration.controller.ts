@@ -507,10 +507,8 @@ export class AdministrationController {
      */
     @Delete('users/:userId/demo')
     @UseAuth('operator')
-    async deleteDemoUser(
-        @Param('userId', ParseUUIDPipe) userId: string,
-    ): Promise<CoreDemoUserDeletionDto> {
-        return this.administrationService.deleteDemoUser(userId);
+    deleteDemoUser(){
+        throw new BadRequestException('Esta opción NO está disponible por el momento.')
     }
 
     /**
