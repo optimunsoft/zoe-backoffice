@@ -379,9 +379,9 @@ describe('BackofficeCoreService', () => {
                 status: true,
                 message: 'OK',
                 response: {
-                    moduleId: 'invalid',
+                    moduleId: '33333333-3333-4333-8333-333333333333',
                     companyId: '11111111-1111-4111-8111-111111111111',
-                    status: 'ACTIVO',
+                    status: 'INVALIDO',
                     createdAt: '2026-01-01T00:00:00.000Z',
                     updatedAt: '2026-01-02T00:00:00.000Z',
                 },
@@ -405,6 +405,7 @@ describe('BackofficeCoreService', () => {
             code: 'ACC',
             name: 'Accounting',
             description: 'Accounting module',
+            active: true,
             price: '100.00',
             createdAt: '2026-01-01T00:00:00.000Z',
             updatedAt: '2026-01-02T00:00:00.000Z',
@@ -1005,7 +1006,7 @@ describe('BackofficeCoreService', () => {
             data: {
                 status: true,
                 message: 'OK',
-                response: [{ ...user, id: 'invalid' }],
+                response: [{ ...user, label: undefined }],
             },
         });
         const service = new BackofficeCoreService({ axiosRef: { request } } as any);

@@ -370,6 +370,9 @@ export class CoreModuleDto {
     @IsString()
     price?: string | null;
 
+    @IsBoolean()
+    active: boolean;
+
     @IsString()
     createdAt: string;
 
@@ -402,6 +405,10 @@ export class CreateCoreModuleDto {
     @IsOptional()
     @IsString()
     price?: string | null;
+
+    @IsOptional()
+    @IsBoolean()
+    active?: boolean;
 }
 
 export class UpdateCoreModuleDto {
@@ -420,6 +427,10 @@ export class UpdateCoreModuleDto {
     @IsOptional()
     @IsString()
     price?: string | null;
+
+    @IsOptional()
+    @IsBoolean()
+    active?: boolean;
 }
 
 export class CoreModuleDeleteDto {
