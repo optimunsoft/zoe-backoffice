@@ -66,6 +66,7 @@ describe('Administration company list', () => {
   it('delegates company creation to CORE integration', async () => {
     const dto = {
       ownerUserId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+      production: true,
       businessNatureId: '22222222-2222-4222-8222-222222222222',
       taxResponsibilityId: '33333333-3333-4333-8333-333333333333',
       documentTypeId: '44444444-4444-4444-8444-444444444444',
@@ -251,6 +252,7 @@ describe('Administration company list', () => {
   it('delegates controller company creation to administration service', async () => {
     const dto = {
       ownerUserId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+      production: true,
       businessNatureId: '22222222-2222-4222-8222-222222222222',
       taxResponsibilityId: '33333333-3333-4333-8333-333333333333',
       documentTypeId: '44444444-4444-4444-8444-444444444444',

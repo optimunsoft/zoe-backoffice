@@ -72,6 +72,7 @@ describe('BackofficeCoreService', () => {
     it('creates a company in CORE with owner user and internal credentials', async () => {
         const payload = {
             ownerUserId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+            production: true,
             businessNatureId: '22222222-2222-4222-8222-222222222222',
             taxResponsibilityId: '33333333-3333-4333-8333-333333333333',
             vatRegimeId: null,
@@ -88,6 +89,7 @@ describe('BackofficeCoreService', () => {
             taxResponsibilityId: payload.taxResponsibilityId,
             vatRegimeId: null,
             documentTypeId: payload.documentTypeId,
+            production: payload.production,
             apiKey: 'encrypted-api-key',
             documentNumber: payload.documentNumber,
             businessName: payload.businessName,

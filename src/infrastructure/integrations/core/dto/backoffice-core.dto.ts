@@ -98,6 +98,7 @@ export class CoreCompanyDto {
     id: string;
 
     @IsOptional() @IsBoolean() active?: boolean;
+    @IsOptional() @IsBoolean() production?: boolean;
     @IsOptional() @IsString() businessName?: string | null;
     @IsOptional() @IsString() tradeName?: string | null;
     @IsString() documentNumber: string;
@@ -163,6 +164,10 @@ export class CoreCompanyListItemDto {
     @IsBoolean()
     active?: boolean;
 
+    @IsOptional()
+    @IsBoolean()
+    production?: boolean;
+
     @IsString()
     documentNumber: string;
 
@@ -203,6 +208,9 @@ export class CoreCompanyPageDto implements PaginatedResult<CoreCompanyListItemDt
 export class CreateCoreCompanyDto {
     @IsString()
     ownerUserId: string;
+
+    @IsBoolean()
+    production: boolean;
 
     @IsString()
     businessNatureId: string;
@@ -459,6 +467,10 @@ export class CoreCompanySummaryDto {
     @IsBoolean()
     active?: boolean;
 
+    @IsOptional()
+    @IsBoolean()
+    production?: boolean;
+
     @IsString()
     documentNumber: string;
 
@@ -617,6 +629,10 @@ export class CoreCompanyExtendedListItemDto {
     @IsOptional()
     @IsBoolean()
     active?: boolean;
+
+    @IsOptional()
+    @IsBoolean()
+    production?: boolean;
 
     @IsString()
     documentNumber: string;
