@@ -2,6 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import {
     BadGatewayException,
     BadRequestException,
+    HttpException,
     Inject,
     Injectable,
     Logger
@@ -760,10 +761,7 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
                 CoreThirdPartyUpsertResultDto,
             );
         } catch (error: any) {
-            if (error instanceof BadRequestException) throw error;
-            if (error?.response?.status === 400) {
-                throw new BadRequestException(error.response.data);
-            }
+            if (error instanceof HttpException) throw error;
             this.throwCoreError(error, 'No fue posible guardar el tercero en CORE.');
         }
     }
@@ -831,7 +829,7 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
         try {
             return await this.requestDto({ url: path, method: 'GET' }, dtoClass);
         } catch (error: any) {
-            if (error?.response?.status === 404) return null;
+            if (this.isHttpStatus(error, 404)) return null;
             this.throwCoreError(error, fallback);
         }
     }
@@ -916,9 +914,10 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
             });
             return data.response;
         } catch (error: any) {
-            if (error?.response?.status === 400) {
-                throw new BadRequestException(error.response.data);
+            if (error?.response?.status) {
+                throw this.createCoreHttpException(error.response.status, error.response.data);
             }
+
             throw error;
         }
     }
@@ -928,10 +927,50 @@ export class BackofficeCoreService implements IBackofficeCoreIntegration {
      * consumidores, conservando excepciones de negocio ya normalizadas.
      */
     private throwCoreError(error: any, fallback: string): never {
-        if (error instanceof BadGatewayException || error instanceof BadRequestException) {
+        if (error instanceof HttpException) {
             throw error;
         }
         throw new BadGatewayException(error?.response?.data?.message || fallback);
+    }
+
+    private createCoreHttpException(status: number, data: unknown): HttpException {
+        const response = this.normalizeCoreErrorResponse(data, status);
+
+        if (status === 400) {
+            return new BadRequestException(response);
+        }
+
+        return new HttpException(response, status);
+    }
+
+    private normalizeCoreErrorResponse(data: unknown, status: number): unknown {
+        if (data && typeof data === 'object') {
+            const record = data as Record<string, unknown>;
+            const message = record.message ?? record.error;
+
+            if (message) {
+                return {
+                    ...record,
+                    message,
+                    statusCode: record.statusCode ?? status,
+                };
+            }
+
+            return data;
+        }
+
+        return {
+            message: typeof data === 'string' ? data : 'No pudimos completar la tarea, intentalo mas tarde.',
+            statusCode: status,
+        };
+    }
+
+    private isHttpStatus(error: unknown, status: number): boolean {
+        if (error instanceof HttpException) {
+            return error.getStatus() === status;
+        }
+
+        return (error as { response?: { status?: number } })?.response?.status === status;
     }
 
     /**

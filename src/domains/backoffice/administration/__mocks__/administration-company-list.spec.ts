@@ -1,4 +1,4 @@
-﻿jest.mock('src/config/env.config', () => ({
+jest.mock('src/config/env.config', () => ({
   envs: {
     api_url_internal_core: 'http://core',
     api_key_internal_core: 'secret',
@@ -542,7 +542,8 @@ describe('Administration company list', () => {
     const deletionResponse = {
       userId,
       accountId: '22222222-2222-4222-8222-222222222222',
-      deletedCompanies: ['33333333-3333-4333-8333-333333333333'],
+      deletedCompanies: 1,
+      deletedPhones: 0,
       deleted: true,
     };
     const coreIntegration = {
@@ -772,7 +773,8 @@ describe('Administration company list', () => {
     const deletionResponse = {
       userId,
       accountId: '22222222-2222-4222-8222-222222222222',
-      deletedCompanies: ['33333333-3333-4333-8333-333333333333'],
+      deletedCompanies: 1,
+      deletedPhones: 0,
       deleted: true,
     };
     const service = {

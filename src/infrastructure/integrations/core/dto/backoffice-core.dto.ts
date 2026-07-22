@@ -932,9 +932,13 @@ export class CoreDemoUserDeletionDto {
     @IsString()
     accountId: string;
 
-    @IsArray()
-    @IsString({ each: true })
-    deletedCompanies: string[];
+    @IsInt()
+    @Min(0)
+    deletedCompanies: number;
+
+    @IsInt()
+    @Min(0)
+    deletedPhones: number;
 
     @IsBoolean()
     deleted: boolean;

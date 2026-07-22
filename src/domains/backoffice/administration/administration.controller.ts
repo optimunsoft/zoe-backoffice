@@ -493,11 +493,12 @@ export class AdministrationController {
      *
      * Reglas aplicadas por CORE antes de borrar:
      * - El usuario debe existir y su cuenta debe estar marcada como demo.
-     * - El usuario debe estar asociado exactamente a una empresa.
-     * - Esa unica asociacion debe ser propietaria.
+     * - Sus empresas asociadas no pueden estar en produccion.
+     * - Sus empresas asociadas no pueden estar compartidas con otros usuarios.
      * - La cuenta demo no debe tener otros usuarios asociados.
-     * - CORE elimina primero en base de datos y solo despues intenta borrar la
-     *   identidad en Auth0; un fallo de Auth0 no bloquea la limpieza local.
+     * - CORE elimina primero en base de datos dentro de una transaccion y luego
+     *   borra la identidad en Auth0 antes del commit; si Auth0 falla, se revierte
+     *   la eliminacion local.
      *
      * Este endpoint es destructivo y debe usarse solo para limpieza de usuarios
      * demo. No debe utilizarse para usuarios de produccion.
@@ -507,8 +508,10 @@ export class AdministrationController {
      */
     @Delete('users/:userId/demo')
     @UseAuth('operator')
-    deleteDemoUser(){
-        throw new BadRequestException('Esta opción NO está disponible por el momento.')
+    deleteDemoUser(
+        @Param('userId', ParseUUIDPipe) userId: string,
+    ): Promise<CoreDemoUserDeletionDto> {
+        return this.administrationService.deleteDemoUser(userId);
     }
 
     /**

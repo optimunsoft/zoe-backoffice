@@ -878,7 +878,8 @@ describe('BackofficeCoreService', () => {
         const response = {
             userId,
             accountId: '22222222-2222-4222-8222-222222222222',
-            deletedCompanies: ['33333333-3333-4333-8333-333333333333'],
+            deletedCompanies: 1,
+            deletedPhones: 0,
             deleted: true,
         };
         const request = jest.fn().mockResolvedValue({
@@ -999,6 +1000,24 @@ describe('BackofficeCoreService', () => {
         })).rejects.toMatchObject({
             response: {
                 message: 'Usuario invalido',
+            },
+        });
+    });
+
+    it('preserves non-400 HTTP errors returned by CORE requests', async () => {
+        const response = { status: 404, data: { message: 'Usuario no encontrado' } };
+        const request = jest.fn().mockRejectedValue({ response });
+        const service = new BackofficeCoreService({ axiosRef: { request } } as any);
+
+        await expect(service.assignCompanyUser({
+            companyId: '11111111-1111-4111-8111-111111111111',
+            userId: '22222222-2222-4222-8222-222222222222',
+            isOwner: false,
+        })).rejects.toMatchObject({
+            status: 404,
+            response: {
+                message: 'Usuario no encontrado',
+                statusCode: 404,
             },
         });
     });
