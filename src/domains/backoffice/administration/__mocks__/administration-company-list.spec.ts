@@ -20,6 +20,7 @@ import {
   UpdateCoreCompanyStatusDto,
   UpdateCoreUserStatusDto,
 } from 'src/infrastructure/integrations/core/dto/backoffice-core.dto';
+import { ListCompaniesQueryDto } from '../dto/list-companies-query.dto';
 import { ListUsersExtendedQueryDto } from '../dto/list-users-extended-query.dto';
 
 describe('Administration company list', () => {
@@ -35,6 +36,7 @@ describe('Administration company list', () => {
       search: 'zoe',
       municipalityId: '55555555-5555-4555-8555-555555555555',
       stateId: '66666666-6666-4666-8666-666666666666',
+      production: false,
     };
 
     await expect(service.listCompanies(query)).resolves.toBe(response);
@@ -870,6 +872,33 @@ describe('Administration company list', () => {
       { type: 'ROOT' },
       { type: 'query', metatype: ListUsersExtendedQueryDto },
     )).rejects.toBeInstanceOf(BadRequestException);
+  });
+
+  it('validates company list production query as boolean', async () => {
+    const pipe = new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: true },
+    });
+
+    await expect(pipe.transform(
+      {
+        page: '1',
+        amount: '10',
+        production: 'false',
+      },
+      { type: 'query', metatype: ListCompaniesQueryDto },
+    )).resolves.toMatchObject({
+      page: 1,
+      amount: 10,
+      production: false,
+    });
+
+    await expect(pipe.transform(
+      { production: 'true' },
+      { type: 'query', metatype: ListCompaniesQueryDto },
+    )).resolves.toMatchObject({ production: true });
   });
 
   it('validates user create and status DTOs strictly', async () => {

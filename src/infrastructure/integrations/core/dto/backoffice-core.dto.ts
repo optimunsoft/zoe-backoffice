@@ -1203,6 +1203,7 @@ export interface SearchCoreCompaniesDto {
     search?: string;
     municipalityId?: string;
     stateId?: string;
+    production?: boolean | string;
 }
 
 export interface SearchCoreModulesDto {
