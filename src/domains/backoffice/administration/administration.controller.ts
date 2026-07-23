@@ -507,7 +507,7 @@ export class AdministrationController {
      * @returns Resumen de la eliminacion confirmada por CORE.
      */
     @Delete('users/:userId/demo')
-    @UseAuth('operator')
+    @UseAuth('admin')
     deleteDemoUser(
         @Param('userId', ParseUUIDPipe) userId: string,
     ): Promise<CoreDemoUserDeletionDto> {
