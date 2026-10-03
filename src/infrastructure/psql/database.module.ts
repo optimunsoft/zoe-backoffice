@@ -13,7 +13,7 @@ import { Demonstration } from 'src/domains/backoffice/demonstrations/entities/de
             password: envs.db_password,
             database: envs.db_name,
             synchronize: envs.db_sync_mode,
-            poolSize: 120,
+            poolSize: envs.db_pool_size,
             entities: [
                 Demonstration,
             ],

@@ -38,6 +38,7 @@ interface EnvVarsI {
     DB_USER_NAME: string;
     DB_PASSWORD: string;
     DB_SYNC_MODE: boolean;
+    DB_POOL_SIZE: number;
 
     AWS_REGION: string;
     AWS_ACCESS_KEY_ID: string;
@@ -80,6 +81,7 @@ const envSchema = Joi.object({
     DB_USER_NAME: Joi.string().required() ?? '',
     DB_PASSWORD: Joi.string().required() ?? '',
     DB_SYNC_MODE: Joi.boolean().default(false) ?? '',
+    DB_POOL_SIZE: Joi.number().positive().required() ?? 0,
 
     AWS_REGION: Joi.string().required() ?? '',
     AWS_ACCESS_KEY_ID: Joi.string().required() ?? '',
@@ -135,6 +137,7 @@ export const envs = {
     db_user_name: envVars.DB_USER_NAME,
     db_password: envVars.DB_PASSWORD,
     db_sync_mode: envVars.DB_SYNC_MODE,
+    db_pool_size: envVars.DB_POOL_SIZE,
 
     aws_region: envVars.AWS_REGION,
     aws_access_key_id: envVars.AWS_ACCESS_KEY_ID,
